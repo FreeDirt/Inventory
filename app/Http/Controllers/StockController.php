@@ -1,0 +1,152 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+use App\Stock;
+use App\Device;
+
+class StockController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $stocks = Stock::orderBy('created_at', 'desc')->paginate(10);
+        $devices = Device::all();
+        return view('stock.index', compact('stocks', 'current_user', 'devices'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $this->validate($request, [
+            'serial' => 'required',
+            'item_code' => 'required',
+        ]);
+
+        // Create New Message
+        $stock = new Stock;
+        $stock->name = $request->input('serial');
+        $stock->item_code = $request->input('item_code');
+        
+        // Create New stock
+        $stock->save();
+        
+        // Return Back
+        return back()->with('success', 'stock Sent!');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'device_id' => 'required',
+            'serial' => 'required',
+            'item_code' => 'required',
+        ]);
+
+        // Create New List
+        $stock = new Stock;
+        $stock->device_id = $request->input('device_id');
+        $stock->serial = $request->input('serial');
+        $stock->item_code = $request->input('item_code');
+        // $stock->user_id = auth()->user()->id;
+        $stock->save();
+        
+        // Return Back
+        return redirect('/stock')->with('success', 'New Stock List Created!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $stock = Stock::find($id);
+        return view('stock', compact('stock', 'current_user'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $stock = Stock::find($id);
+        return view('stock')->with(compact('stock','current_user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'device_id' => 'required',
+            'serial' => 'required',
+            'item_code' => 'required',
+        ]);
+
+        // Create New List
+        $stock = Stock::find($id);
+        $stock->stock_id = $request->input('stock_id');
+        $stock->serial = $request->input('serial');
+        $stock->item_code = $request->input('item_code');
+
+        $stock->save();
+        
+        // Return Back
+        return redirect('/stock')->with('success', 'Updated Stock List!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $stock = Stock::find($id);
+        $stock->delete();
+        return redirect('/stock')->with('success', 'Stock Deleted!');
+    }
+}

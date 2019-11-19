@@ -1,0 +1,155 @@
+html, body {
+    background-color: #eee;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    // height: 100vh;
+    margin: 0;
+}
+
+// .container {
+//     width: 1280px;
+// }
+
+.callouts-container {
+    clear: both;
+
+    .sidebar {
+        float: left;
+        width: 260px;
+        margin-right: 20px;
+        box-sizing: border-box;
+        position: fixed;
+        background-size: contain;
+        background-attachment: fixed;
+        background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)),url(https://pbs.twimg.com/media/C5av3QbWMAQahzV.jpg) no-repeat 43% 37%;
+        top:0;
+        overflow-y:scroll;
+        overflow-x:hidden;
+        height: 100%;
+        left: 0px;
+        box-shadow: 0 16px 38px -12px rgba(0,0,0,.56), 0 4px 25px 0 rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+        transition: all 500ms linear;
+
+            ul li {
+                color:#333;
+                list-style: none;
+                padding: 5px 20px;
+
+                a {
+                    display: block;
+                    padding: 10px;
+                    border-radius: 2px;
+                    margin: auto;
+                    color: #ffffff;
+                    
+                    &:hover {
+                        text-decoration: none;
+                        background: #ddd;
+                        color: #00408e;
+                        transition: all .3s ease-in;
+                    }
+
+                    .f-box {
+                        display: grid;
+                        grid-template-columns: 25% 75%;
+                        
+                        
+                        .fl-item-icon {
+                            margin: 0;
+                        }
+
+                        .fl-item-text {
+                            margin: auto 0;
+
+                            i {
+                                float: right;
+                                top: 5px;
+                                position: relative;
+                                right: 5px;
+                            }
+                        }
+                    }
+                }
+                ul.hidebtn {
+                    display: none;
+                }
+
+            }
+
+        }
+
+        .sidebar.active {
+            left: -260px;
+        }
+
+
+    .right-content {
+        float: left;
+        width: 100%;
+        padding: 80px 80px 80px 300px;
+        box-sizing: border-box;
+        transition: all 500ms linear;
+    }
+    .right-content.active {
+        padding: 80px;
+    }
+}
+
+
+
+
+
+
+
+
+// html, body {
+//     background-color: #fff;
+//     color: #636b6f;
+//     font-family: 'Nunito', sans-serif;
+//     font-weight: 200;
+//     height: 100vh;
+//     margin: 0;
+// }
+
+// .full-height {
+//     height: 100vh;
+// }
+
+// .flex-center {
+//     align-items: center;
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .position-ref {
+//     position: relative;
+// }
+
+// .top-right {
+//     position: absolute;
+//     right: 10px;
+//     top: 18px;
+// }
+
+// .content {
+//     text-align: center;
+// }
+
+// .title {
+//     font-size: 84px;
+// }
+
+// .links > a {
+//     color: #636b6f;
+//     padding: 0 25px;
+//     font-size: 13px;
+//     font-weight: 600;
+//     letter-spacing: .1rem;
+//     text-decoration: none;
+//     text-transform: uppercase;
+// }
+
+// .m-b-md {
+//     margin-bottom: 30px;
+// }
