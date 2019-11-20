@@ -36,12 +36,25 @@ html, body {
                 list-style: none;
                 padding: 5px 20px;
 
-                a {
+                ul li {
+                    padding: 10px 0;
+
+                    a {
+                        padding: 5px;
+                        
+                        .f-box .fl-item-icon {
+                            margin: auto;
+                        }
+                    }
+                }
+
+                a, .toggle-btn-menu {
                     display: block;
                     padding: 10px;
                     border-radius: 2px;
                     margin: auto;
                     color: #ffffff;
+                    cursor: pointer;
                     
                     &:hover {
                         text-decoration: none;
@@ -96,8 +109,80 @@ html, body {
     }
 }
 
+.table-title {
+    position: relative;
+}
 
-
+.select-hidden {
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;
+  }
+  .select {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    color: #ffffff;
+    width: 200px;
+    height: 100%;
+  }
+  .select-styled {
+    position: absolute; 
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #00408e;
+    padding: 8px 15px;
+    @include transition(all 0.2s ease-in);
+    &:after {
+      content:"";
+      width: 0;
+      height: 0;
+      border: 7px solid transparent;
+      border-color: #ffffff transparent transparent transparent;
+      position: absolute;
+      top: 16px;
+      right: 10px;
+    }
+    &:hover {
+      background-color: darken(#00408e, 2);
+    }
+    &:active, &.active {
+      background-color: darken(#00408e, 5);
+      &:after {
+        top: 9px;
+        border-color: transparent transparent #ffffff transparent;
+      }
+    }
+  }
+  
+  .select-options {
+    display: none; 
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: darken(#00408e, 5);
+    li {
+      margin: 0;
+      padding: 12px 0;
+      text-indent: 15px;
+      border-top: 1px solid darken(#00408e, 10);
+      @include transition(all 0.15s ease-in);
+      &:hover {
+        color: #00408e;
+        background: #ffffff;
+      }
+      &[rel="hide"] {
+        display: none;
+      }
+    }
+  }
 
 
 

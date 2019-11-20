@@ -4,13 +4,15 @@
 
 <div class="body-theme">
     <div class="container">
-        <h1>Add Stocks</h1>
+        <div class="table-title">
+            <h1>Add Stocks</h1>
+        </div>
 
         {!! Form::open(['action' => 'StockController@store', 'method' => 'POST']) !!}
         <div class="row">
             <div class="col-sm">
                 {{ Form::label('devices', 'Device') }}
-                <select class="form-control" name="device_id" id="">
+                <select id="mounth" class="form-control" name="device_id" id="">
                 @foreach ($devices as $key => $value)
                     <option value="{{$value->id}}">{{$value->name}}</option>
                 @endforeach
@@ -40,7 +42,7 @@
     <div class="body-theme">
     <div class="search-field">
         <div class="search-by-categories">
-            <div><p>Select by stocks: drop down     |    show: 10</p></div>
+            <div>{{ $stocks->appends(request()->query())->links() }}</div>
         </div>
         <div class="search-btn-form">
             <form action="/search" method="get">

@@ -6,9 +6,9 @@
 </div>
     <div class="current-user-container">
         <hr>
-            <div class="user-profile">
+            <div class="user-profile {{Request::is('profile') ? 'activebtn' : ''}}">
                 <div class="current-user-img"><img src="https://secure.gravatar.com/avatar/8dc83045e49cce170613fb08551e9df0?s=96&d=mm&r=g" alt="Ryan Mendoza Profile"></div>
-                <div class="current-user-name" id="btn-profile" ><span> {{$current_user->name}} mendoza </span> <i id="myprofile" class="fas fa-caret-up"></i></div>
+                <div class="current-user-name" id="btn-profile" ><span> {{$current_user->name}} mendoza </span> <i id="myprofile" class="{{Request::is('profile') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
             </div>
             <div class="user-profile-settings {{Request::is('profile') ? 'active' : ''}}" >
                 <ul>
@@ -40,7 +40,6 @@
             </div>
         <hr>
     </div>
-
     
     <div id="usidebar">
         <ul>
@@ -75,21 +74,37 @@
                     </div>
             </a></li>
 
-            <li><a class="{{Request::is('inventory') ? 'activebtn' : ''}}" href="/inventory">
+            <li><div class="toggle-btn-menu {{Request::is('device', 'stock') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-th-list fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Inventory List</span><i class="fas fa-caret-up"></i></div>
+                        <div class="fl-item-text"><span>Inventory List</span><i id="inv-tog-icon" class="{{Request::is('device', 'stock') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
-                </a>
-                <ul class="{{Request::is('inventory') ? 'showbtn' : 'hidebtn'}}">
-                    <li><a href="/device">Devices</a></li>
-                    <li><a href="/stock">Stocks</a></li>
-                </ul>
+                </div>
+                <div class="inventory-menu-settings {{Request::is('device','stock') ? 'active' : ''}}" >
+                    <ul>
+                        <li>
+                            <a class="{{Request::is('device') ? 'invactivebtn' : ''}}" href="/device">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-user"></i></div> 
+                                    <div class="fl-item-text"><span>Devices</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{Request::is('stock') ? 'invactivebtn' : ''}}" href="/stock">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-user-edit"></i></div> 
+                                    <div class="fl-item-text"><span>Stocks</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li><a class="{{Request::is('tblist') ? 'activebtn' : ''}}" href="/tblist">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Employees</span><i class="fas fa-caret-up"></i></div>
+                        <div class="fl-item-text"><span>Employees</span><i class="fas fa-caret-down"></i></div>
                     </div>
                 </a>
                 <ul class="{{Request::is('tblist') ? 'showbtn' : 'hidebtn'}}">

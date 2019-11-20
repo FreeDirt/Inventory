@@ -23,13 +23,27 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+   
+
     public function index()
     {
+        
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $stocks = Stock::orderBy('created_at', 'desc')->paginate(10);
+        $stocks = Stock::orderBy('created_at', 'desc')->paginate(10)->appends(request()->query());;
         $devices = Device::all();
+        
         return view('stock.index', compact('stocks', 'current_user', 'devices'));
+
+        // JSON
+        // $result = $stocks->getCollection()->transform(function($stock, $key){
+        //     return [
+        //         'id' => $stock->id,
+        //         'serial' => $stock->serial,
+        //     ];
+        // });
+        // return response()->json($result);
     }
 
     /**
@@ -66,7 +80,7 @@ class StockController extends Controller
     {
         $this->validate($request, [
             'device_id' => 'required',
-            'serial' => 'required',
+            'serial' => 'required|unique:stocks|max:255',
             'item_code' => 'required',
         ]);
 

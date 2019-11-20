@@ -10681,35 +10681,54 @@ body {
   padding: 5px 20px;
 }
 
-.callouts-container .sidebar ul li a {
+.callouts-container .sidebar ul li ul li {
+  padding: 10px 0;
+}
+
+.callouts-container .sidebar ul li ul li a {
+  padding: 5px;
+}
+
+.callouts-container .sidebar ul li ul li a .f-box .fl-item-icon {
+  margin: auto;
+}
+
+.callouts-container .sidebar ul li a,
+.callouts-container .sidebar ul li .toggle-btn-menu {
   display: block;
   padding: 10px;
   border-radius: 2px;
   margin: auto;
   color: #ffffff;
+  cursor: pointer;
 }
 
-.callouts-container .sidebar ul li a:hover {
+.callouts-container .sidebar ul li a:hover,
+.callouts-container .sidebar ul li .toggle-btn-menu:hover {
   text-decoration: none;
   background: #ddd;
   color: #00408e;
   transition: all 0.3s ease-in;
 }
 
-.callouts-container .sidebar ul li a .f-box {
+.callouts-container .sidebar ul li a .f-box,
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box {
   display: grid;
   grid-template-columns: 25% 75%;
 }
 
-.callouts-container .sidebar ul li a .f-box .fl-item-icon {
+.callouts-container .sidebar ul li a .f-box .fl-item-icon,
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-icon {
   margin: 0;
 }
 
-.callouts-container .sidebar ul li a .f-box .fl-item-text {
+.callouts-container .sidebar ul li a .f-box .fl-item-text,
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text {
   margin: auto 0;
 }
 
-.callouts-container .sidebar ul li a .f-box .fl-item-text i {
+.callouts-container .sidebar ul li a .f-box .fl-item-text i,
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text i {
   float: right;
   top: 5px;
   position: relative;
@@ -10734,6 +10753,104 @@ body {
 
 .callouts-container .right-content.active {
   padding: 80px;
+}
+
+.table-title {
+  position: relative;
+}
+
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: #ffffff;
+  width: 200px;
+  height: 100%;
+}
+
+.select-styled {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #00408e;
+  padding: 8px 15px;
+  transition: all 0.2s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-styled {
+    transition: none;
+  }
+}
+
+.select-styled:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: #ffffff transparent transparent transparent;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+
+.select-styled:hover {
+  background-color: #003b84;
+}
+
+.select-styled:active,
+.select-styled.active {
+  background-color: #003575;
+}
+
+.select-styled:active:after,
+.select-styled.active:after {
+  top: 9px;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+.select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #003575;
+}
+
+.select-options li {
+  margin: 0;
+  padding: 12px 0;
+  text-indent: 15px;
+  border-top: 1px solid #00295b;
+  transition: all 0.15s ease-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-options li {
+    transition: none;
+  }
+}
+
+.select-options li:hover {
+  color: #00408e;
+  background: #ffffff;
+}
+
+.select-options li[rel=hide] {
+  display: none;
 }
 
 * {
@@ -10766,6 +10883,7 @@ body {
   display: grid;
   grid-template-columns: 25% 75%;
   padding: 10px;
+  cursor: pointer;
 }
 
 .current-user-container .user-profile .current-user-img {
@@ -10809,6 +10927,10 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.invactivebtn {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 hr {
   background-color: #999;
   border: 0 none;
@@ -10835,12 +10957,12 @@ hr {
   transition: all 500ms linear;
 }
 
-.fa-caret-up {
+.fa-caret-down {
   transition: all 0.3s linear;
 }
 
 .arrow-rotated {
-  transform: rotate(-180deg);
+  transform: rotate(180deg);
   transition: all 0.3s linear;
 }
 
@@ -10849,6 +10971,7 @@ hr {
   background-color: #fff;
   box-sizing: border-box;
   border-radius: 5px;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
 }
 
 .column-2 {
@@ -10880,7 +11003,6 @@ hr {
   color: #fff !important;
   border-radius: 2px;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
 }
 
 .showbtn {

@@ -37,6 +37,10 @@ Route::resource('profile', 'ProfileController');
 Route::resource('admin', 'AdminController');
 // Employee Controller CRUD
 Route::resource('employee', 'EmployeeController');
+
+// Employee Controller CRUD
+Route::get('stock/{post_id}/{like_value}', ['uses' => 'stockController@index', 'as' => 'like']);
+
 // Massagers Controller Submit
 Route::post('/contact/submit', 'MessagesController@submit');
 // Massagers Controller Output/View
