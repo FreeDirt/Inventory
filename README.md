@@ -1,3 +1,3 @@
 # Inventory
 Laravel Inventory
-This is laravel README
+This is laravel Inventory
