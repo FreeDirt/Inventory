@@ -35,6 +35,8 @@ Route::resource('role', 'RoleController');
 Route::resource('profile', 'ProfileController');
 // Admin Controller CRUD
 Route::resource('admin', 'AdminController');
+// Employee Controller CRUD
+Route::resource('employee', 'EmployeeController');
 // Massagers Controller Submit
 Route::post('/contact/submit', 'MessagesController@submit');
 // Massagers Controller Output/View
