@@ -10771,7 +10771,7 @@ body {
   position: relative;
   font-size: 16px;
   color: #ffffff;
-  width: 200px;
+  width: 250px;
   height: 100%;
 }
 
@@ -10781,7 +10781,7 @@ body {
   bottom: 0;
   left: 0;
   background-color: #00408e;
-  padding: 8px 15px;
+  padding: 6px 15px;
   transition: all 0.2s ease-in;
 }
 
@@ -10832,7 +10832,7 @@ body {
 
 .select-options li {
   margin: 0;
-  padding: 12px 0;
+  padding: 6px 0;
   text-indent: 15px;
   border-top: 1px solid #00295b;
   transition: all 0.15s ease-in;

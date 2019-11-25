@@ -11,7 +11,6 @@
         {!! Form::open(['action' => 'StockController@store', 'method' => 'POST']) !!}
         <div class="row">
             <div class="col-sm">
-                {{ Form::label('devices', 'Device') }}
                 <select id="mounth" class="form-control" name="device_id" id="">
                 @foreach ($devices as $key => $value)
                     <option value="{{$value->id}}">{{$value->name}}</option>
@@ -19,14 +18,12 @@
                 </select>
             </div>
             <div class="col-sm">
-                {{ Form::label('serial', 'Serial') }}
                 {{ Form::text('serial', '', ['class' => 'form-control', 'placeholder' => 'Enter serial']) }}
             </div>
             <div class="col-sm">
-                {{ Form::label('item_code', 'Item Code') }}
                 {{ Form::text('item_code', '', ['class' => 'form-control', 'placeholder' => 'Enter Item Code']) }}
             </div>
-            <div class="col-sm"><br>
+            <div class="col-sm">
                 {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
             </div>
         </div>
@@ -34,15 +31,24 @@
         {!! Form::close() !!}
         
     </div>
-</div>
+</div><br>
 
-<h1>stock List</h1>
+
 <!-- <a href="/stock/create" class="btn btn-info float-right">Create New</a><br><br> -->
 @if(count($stocks) > 0)
     <div class="body-theme">
+    <h1>stock List</h1>
     <div class="search-field">
         <div class="search-by-categories">
-            <div>{{ $stocks->appends(request()->query())->links() }}</div>
+            <div>
+                <form>
+                    <select id="pagination">
+                        <option value="5" @if($items == 5) selected @endif >5</option>
+                        <option value="10" @if($items == 10) selected @endif >10</option>
+                        <option value="25" @if($items == 25) selected @endif >25</option>
+                    </select>
+                </form>
+            </div>
         </div>
         <div class="search-btn-form">
             <form action="/search" method="get">
@@ -92,6 +98,11 @@
         @endforeach
         {{$stocks->links()}}
         </table>
+
+        <div>
+        Showing {{ $stocks->firstItem() }} to {{ $stocks->lastItem() }}
+of total {{$stocks->total()}} entries
+        </div>
     </div>
     
     @else

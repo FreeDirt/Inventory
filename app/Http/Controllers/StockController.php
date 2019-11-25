@@ -26,15 +26,16 @@ class StockController extends Controller
 
    
 
-    public function index()
+    public function index(Request $request)
     {
         
+        $items = $request->items ?? 10; 
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $stocks = Stock::orderBy('created_at', 'desc')->paginate(10)->appends(request()->query());;
+        $stocks = Stock::orderBy('created_at', 'asc')->paginate($items)->appends(request()->query());
         $devices = Device::all();
         
-        return view('stock.index', compact('stocks', 'current_user', 'devices'));
+        return view('stock.index', compact('stocks', 'current_user', 'devices', 'items'));
 
         // JSON
         // $result = $stocks->getCollection()->transform(function($stock, $key){
