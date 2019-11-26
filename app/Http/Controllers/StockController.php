@@ -36,7 +36,7 @@ class StockController extends Controller
 
         // $items = $request->get('per_page');
 
-        $items = $request->per_page ?? 10;
+        $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
        
         

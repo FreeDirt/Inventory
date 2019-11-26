@@ -11,7 +11,7 @@
         {!! Form::open(['action' => 'StockController@store', 'method' => 'POST']) !!}
         <div class="row">
             <div class="col-sm">
-                <select id="mounth" class="form-control" name="device_id" id="">
+                <select id="" class="form-control" name="device_id">
                 @foreach ($devices as $key => $value)
                     <option value="{{$value->id}}">{{$value->name}}</option>
                 @endforeach
@@ -45,7 +45,7 @@
 
             
             {!! Form::open([ 'url' => route('stock.index'), 'method' => 'get' ]) !!}
-                {{ Form::label('per_page', 'Show') }} {!! Form::select( 'per_page', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('per_page', 'Entries') }}
+                {{ Form::label('items', 'Show') }} {!! Form::select( 'items', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('items', 'Entries') }}
             {!! Form::close() !!}
             </div>
         </div>
