@@ -11,10 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script>
-     document.getElementById('pagination').onchange = function() { 
-         window.location = "{!! $stocks->url(1) !!}&items=" + this.value; 
-     };  </script>
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

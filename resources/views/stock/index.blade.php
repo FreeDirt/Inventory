@@ -41,13 +41,12 @@
     <div class="search-field">
         <div class="search-by-categories">
             <div>
-                <form>
-                    <select id="pagination">
-                        <option value="5" @if($items == 5) selected @endif >5</option>
-                        <option value="10" @if($items == 10) selected @endif >10</option>
-                        <option value="25" @if($items == 25) selected @endif >25</option>
-                    </select>
-                </form>
+            
+
+            
+            {!! Form::open([ 'url' => route('stock.index'), 'method' => 'get' ]) !!}
+                {{ Form::label('per_page', 'Show') }} {!! Form::select( 'per_page', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('per_page', 'Entries') }}
+            {!! Form::close() !!}
             </div>
         </div>
         <div class="search-btn-form">
