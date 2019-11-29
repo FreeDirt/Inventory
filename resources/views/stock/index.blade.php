@@ -69,7 +69,8 @@
             <!-- <th scope="col">Id</th> -->
             <th scope="col">ID</th>
             <th scope="col">Device</th>
-            <th scope="col">brand</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Category</th>
             <th scope="col">Serial</th>
             <th scope="col">Item Code</th>
             <th scope="col">Action</th>
@@ -82,6 +83,7 @@
                 <td>{{$stock->id}}</td>
                 <td>{{$stock->device['name']}}</td>
                 <td>{{$stock->device->brand['name']}}</td>
+                <td>{{$stock->device->category['name']}}</td>
                 <td>{{$stock->serial}}</td>
                 <td>{{$stock->item_code}}</td>
                 <td><a href="/stock/{{$stock->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
@@ -105,13 +107,36 @@ of total {{$stocks->total()}} entries
         <div>
         </div>
 
-        <div>
+    </div><br>
+
+    <div class="body-theme">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+            <!-- <th scope="col">Id</th> -->
+            <th scope="col">STOCKS</th>
+            <th scope="col">TOTAL</th>
+            <th scope="col">ACTION</th>
+            </tr>
+        </thead>
         @foreach ($devices as $device)
-            <li><a href="#">{{ucfirst($device->name)}}</a>
-                {{ $device->phpStocks->count() }}
-            </li>
+            <tbody>
+                <tr>
+                <!-- <td>{{$stock->id}}</td> -->
+                <td>{{ucfirst($device->category['name'])}}</td>
+                <td>{{ $device->phpStocks->count() }}</td>
+                <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+
+                {!!Form::close()!!}
+                </td>
+                </tr>
+            </tbody>
         @endforeach
-        </div>
+        </table>
     </div>
     
     @else
