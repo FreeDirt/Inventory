@@ -102,6 +102,16 @@
         Showing {{ $stocks->firstItem() }} to {{ $stocks->lastItem() }}
 of total {{$stocks->total()}} entries
         </div>
+        <div>
+        </div>
+
+        <div>
+        @foreach ($devices as $device)
+            <li><a href="#">{{ucfirst($device->name)}}</a>
+                {{ $device->phpStocks->count() }}
+            </li>
+        @endforeach
+        </div>
     </div>
     
     @else

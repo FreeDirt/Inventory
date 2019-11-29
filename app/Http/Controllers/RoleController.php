@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\User;
 
 class RoleController extends Controller
 {
@@ -23,8 +24,10 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
         $roles = Role::orderBy('created_at', 'desc')->paginate(10);
-        return view('role.index')->with('roles', $roles);
+        return view('role.index', compact('current_user', 'roles'));
     }
 
     /**

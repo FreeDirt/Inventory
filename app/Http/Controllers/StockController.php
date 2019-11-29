@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Stock;
 use App\Device;
+use App\category;
 
 class StockController extends Controller
 {
@@ -24,21 +25,20 @@ class StockController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-   
-
     public function index(Request $request)
-    {
-        
-        
+    {    
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $devices = Device::all();
 
-        // $items = $request->get('per_page');
+        foreach($devices as $device) {
+            $device->phpStocks =  Stock::where('device_id', '=', $device->id)->get();
+        }
+            
 
+        // $items = $request->get('per_page');
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
-       
         
         return view('stock.index', compact('stocks', 'current_user', 'devices'))->with('items', $items);
 
