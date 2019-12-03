@@ -48,7 +48,7 @@ html, body {
                     }
                 }
 
-                a, .toggle-btn-menu {
+                a, .toggle-btn-menu, .toggle-btn-menu-emp  {
                     display: block;
                     padding: 10px;
                     border-radius: 2px;
@@ -59,7 +59,7 @@ html, body {
                     &:hover {
                         text-decoration: none;
                         background: #ddd;
-                        color: #00408e;
+                        color: #00408e!important;
                         transition: all .3s ease-in;
                     }
 

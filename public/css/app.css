@@ -10694,7 +10694,8 @@ body {
 }
 
 .callouts-container .sidebar ul li a,
-.callouts-container .sidebar ul li .toggle-btn-menu {
+.callouts-container .sidebar ul li .toggle-btn-menu,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp {
   display: block;
   padding: 10px;
   border-radius: 2px;
@@ -10704,31 +10705,36 @@ body {
 }
 
 .callouts-container .sidebar ul li a:hover,
-.callouts-container .sidebar ul li .toggle-btn-menu:hover {
+.callouts-container .sidebar ul li .toggle-btn-menu:hover,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp:hover {
   text-decoration: none;
   background: #ddd;
-  color: #00408e;
+  color: #00408e !important;
   transition: all 0.3s ease-in;
 }
 
 .callouts-container .sidebar ul li a .f-box,
-.callouts-container .sidebar ul li .toggle-btn-menu .f-box {
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp .f-box {
   display: grid;
   grid-template-columns: 25% 75%;
 }
 
 .callouts-container .sidebar ul li a .f-box .fl-item-icon,
-.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-icon {
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-icon,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp .f-box .fl-item-icon {
   margin: 0;
 }
 
 .callouts-container .sidebar ul li a .f-box .fl-item-text,
-.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text {
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp .f-box .fl-item-text {
   margin: auto 0;
 }
 
 .callouts-container .sidebar ul li a .f-box .fl-item-text i,
-.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text i {
+.callouts-container .sidebar ul li .toggle-btn-menu .f-box .fl-item-text i,
+.callouts-container .sidebar ul li .toggle-btn-menu-emp .f-box .fl-item-text i {
   float: right;
   top: 5px;
   position: relative;
@@ -10928,6 +10934,10 @@ body {
 }
 
 .invactivebtn {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.empactivebtn {
   background-color: rgba(255, 255, 255, 0.5);
 }
 

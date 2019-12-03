@@ -101,17 +101,33 @@
                     </ul>
                 </div>
             </li>
-            <li><a class="{{Request::is('tblist') ? 'activebtn' : ''}}" href="/tblist">
+
+            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Employees</span><i class="fas fa-caret-down"></i></div>
+                        <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'tblist') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
-                </a>
-                <ul class="{{Request::is('tblist') ? 'showbtn' : 'hidebtn'}}">
-                    <li><a href="">Users Details</a></li>
-                    <li><a href="">Users Details</a></li>
-                    <li><a href="">Services</a></li>
-                </ul>
+                </div>
+                <div class="employee-menu-settings {{Request::is('employee','tblist') ? 'active' : ''}}" >
+                    <ul>
+                        <li>
+                            <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-id-card"></i></div> 
+                                    <div class="fl-item-text"><span>Employee Details</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{Request::is('tblist') ? 'empactivebtn' : ''}}" href="/tblist">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-id-card-alt"></i></div> 
+                                    <div class="fl-item-text"><span>Employee IP</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li><a class="{{Request::is('contact') ? 'activebtn' : ''}}" href="/contact">
                     <div class="f-box">

@@ -35,7 +35,7 @@ class StockController extends Controller
         foreach($devices as $device) {
             $device->phpStocks =  Stock::where('device_id', $device->id)->get();
         }
-
+        
         $catNames = DB::table('stocks')
         ->join('devices', 'devices.id', 'device_id')
         ->join('categories', 'categories.id', 'category_id')

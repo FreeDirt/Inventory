@@ -49580,6 +49580,11 @@ function () {
           $(".inventory-menu-settings").toggleClass('active');
           $('#inv-tog-icon').toggleClass('arrow-rotated');
         });
+        $(".toggle-btn-menu-emp").click(function () {
+          $(".employee-menu-settings").slideToggle();
+          $(".employee-menu-settings").toggleClass('active');
+          $('#emp-tog-icon').toggleClass('arrow-rotated');
+        });
       }); // SELECT OPTION
 
       /*
