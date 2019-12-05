@@ -3,6 +3,59 @@
 @section('content')
 
 <div class="body-theme">
+
+<div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Select State and get bellow Related City</div>
+      <div class="panel-body">
+            <div class="form-group">
+                <label for="title">Select State:</label>
+                <select name="state" class="form-control" style="width:350px">
+                    <option value="">--- Select State ---</option>
+                    @foreach ($device_list as $key => $value)
+                        <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Select City:</label>
+                <select name="city" class="form-control" style="width:350px">
+                </select>
+            </div>
+      </div>
+    </div>
+</div><br>
+
+    <div class="container">
+        <div class="table-title">
+            <h3>Ajax Dynamic Dependent</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <select name="deviceCat" id="deviceCat" class="form-control input-lg dynamic" data-dependent="name">
+                    <option value="">Select Category</option>
+                    @foreach($devices as $deviceCat)
+                    <option value="{{ucfirst($deviceCat->id)}}">{{ucfirst($deviceCat->category['name'])}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm">
+                <select name="name" id="name" class="form-control input-lg dynamic" data-dependent="model_year">
+                    <option value="">Select Device Name</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <select name="model_year" id="model_year" class="form-control input-lg dynamic">
+                    <option value="">Select Model Year</option>
+                </select>
+            </div>
+            {{csrf_field()}}
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="body-theme">
     <div class="container">
         <div class="table-title">
             <h1>Add Stocks</h1>

@@ -13,6 +13,7 @@ class Myscript {
         $('#btn-tog').toggleClass('active');
       });
 
+      // DASHBOARD CLOCK
       jQuery(function($){
         if (!$('#clock').length) return;
           // Analog Clock
@@ -35,22 +36,19 @@ class Myscript {
         window.addEventListener("load", function(){
           this.setInterval(adjustClock, 1000);
         });
-      });
+      });// DASHBOARD CLOCK
 
+
+      // READY FUNCTION
       $(document).ready(function(){
         
+          // SHOW/HIDE MENU IF ACTIVE SIDEBAR LIST ITEMS
           if($(".user-profile-settings").hasClass('active')) {
             $(".user-profile-settings").show();
           }
           else {
             $(".user-profile-settings").hide(); 
           }
-      
-          $("#btn-profile").click(function(){
-              $(".user-profile-settings").slideToggle();
-              $(".user-profile-settings").toggleClass('active');
-              $('#myprofile').toggleClass('arrow-rotated');
-          });
 
           if($(".inventory-menu-settings").hasClass('active')) {
             $(".inventory-menu-settings").show();
@@ -58,6 +56,21 @@ class Myscript {
           else {
             $(".inventory-menu-settings").hide(); 
           }
+
+          if($(".employee-menu-settings").hasClass('active')) {
+            $(".employee-menu-settings").show();
+          }
+          else {
+            $(".employee-menu-settings").hide(); 
+          }
+
+          // ARROW TOGGLE SIDEBAR MENU
+
+          $("#btn-profile").click(function(){
+              $(".user-profile-settings").slideToggle();
+              $(".user-profile-settings").toggleClass('active');
+              $('#myprofile').toggleClass('arrow-rotated');
+          });
       
           $(".toggle-btn-menu").click(function(){
               $(".inventory-menu-settings").slideToggle();
@@ -66,11 +79,58 @@ class Myscript {
           });
 
           $(".toggle-btn-menu-emp").click(function(){
-            $(".employee-menu-settings").slideToggle();
-            $(".employee-menu-settings").toggleClass('active');
-            $('#emp-tog-icon').toggleClass('arrow-rotated');
+              $(".employee-menu-settings").slideToggle();
+              $(".employee-menu-settings").toggleClass('active');
+              $('#emp-tog-icon').toggleClass('arrow-rotated');
+          });
+
+
+          // DYNAMIC ON CHANGE CATEGORY STOCK
+           $(document).ready(function() {
+        $('select[name="state"]').on('change', function() {
+            var stateID = $(this).val();
+            if(stateID) {
+                $.ajax({
+                    url: '/stock/ajax/'+stateID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+
+                        
+                        $('select[name="city"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="city"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+
+
+                    }
+                });
+            }else{
+                $('select[name="city"]').empty();
+            }
         });
-      });
+    });
+          // $('#deviceCat').on('change',function(){
+          //     // console.log("123");
+          //     var cat_id = $(this).val();
+          //     // console.log(cat_id);
+          //     $.ajax({
+          //       type: 'get',
+          //       url:'stock',
+          //       data:{'id':cat_id},
+          //       success:function(data){
+          //           console.log('success');
+          //       },
+          //       error:function(data){
+
+          //       }
+          //     });
+          // });
+
+         
+
+
+      }); // READY FUNCTION
 
                 // SELECT OPTION
 
@@ -123,10 +183,10 @@ class Myscript {
           //       });
 
           //     });
-
-          document.getElementById('pagination').onchange = function() {
-            window.location = "{{URL::route('stock')}}?items=" + this.value;
-          };
+          
+          // document.getElementById('pagination').onchange = function() {
+          //   window.location = "{{URL::route('stock')}}?items=" + this.value;
+          // };
       
     }
    }

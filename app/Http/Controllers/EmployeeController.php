@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Employee;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +15,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employee.index');
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        return view('employee.index', compact('employees', 'current_user'));
     }
 
     /**

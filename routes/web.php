@@ -29,6 +29,7 @@ Route::resource('brand', 'BrandController');
 Route::resource('device', 'DeviceController');
 // StocksController CRUD
 Route::resource('stock', 'StockController');
+Route::get('stock/ajax/{id}',array('as'=>'stock.ajax','uses'=>'StockController@stockAjax'));
 // Role Controller CRUD
 Route::resource('role', 'RoleController');
 // Profile Controller CRUD

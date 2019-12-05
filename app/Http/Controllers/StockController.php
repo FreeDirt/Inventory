@@ -26,27 +26,32 @@ class StockController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    
+
     public function index(Request $request)
     {    
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $devices = Device::all();
+        $categories = Category::all();
 
         foreach($devices as $device) {
             $device->phpStocks =  Stock::where('device_id', $device->id)->get();
         }
-        
-        $catNames = DB::table('stocks')
-        ->join('devices', 'devices.id', 'device_id')
-        ->join('categories', 'categories.id', 'category_id')
-        ->select('categories.name', )
-        ->get();
-
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
+        $device_list = DB::table("categories")->pluck("name","id");
         
-        return view('stock.index', compact('stocks', 'current_user', 'devices', 'catNames'))->with('items', $items);
+        
+        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories','device_list'))->with('items', $items);
+
+
+        // $catNames = DB::table('stocks')
+        // ->join('devices', 'devices.id', 'device_id')
+        // ->join('categories', 'categories.id', 'category_id')
+        // ->select('categories.name', )
+        // ->get();
 
         // JSON
         // $result = $stocks->getCollection()->transform(function($stock, $key){
@@ -56,6 +61,20 @@ class StockController extends Controller
         //     ];
         // });
         // return response()->json($result);
+    }
+
+
+    /**
+     * Get Ajax Request and restun Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stockAjax($id)
+    {
+        $cities = DB::table("devices")
+                    ->where("category_id",$id)
+                    ->pluck("name","id");
+        return json_encode($cities);
     }
 
     /**
