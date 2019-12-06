@@ -49597,23 +49597,23 @@ function () {
         }); // DYNAMIC ON CHANGE CATEGORY STOCK
 
         $(document).ready(function () {
-          $('select[name="state"]').on('change', function () {
-            var stateID = $(this).val();
+          $('select[name="devcat"]').on('change', function () {
+            var devcatID = $(this).val();
 
-            if (stateID) {
+            if (devcatID) {
               $.ajax({
-                url: '/stock/ajax/' + stateID,
+                url: '/stock/ajax/' + devcatID,
                 type: "GET",
                 dataType: "json",
                 success: function success(data) {
-                  $('select[name="city"]').empty();
+                  $('select[name="device_id"]').empty();
                   $.each(data, function (key, value) {
-                    $('select[name="city"]').append('<option value="' + key + '">' + value + '</option>');
+                    $('select[name="device_id"]').append('<option value="' + key + '">' + value + '</option>');
                   });
                 }
               });
             } else {
-              $('select[name="city"]').empty();
+              $('select[name="device_id"]').empty();
             }
           });
         }); // $('#deviceCat').on('change',function(){

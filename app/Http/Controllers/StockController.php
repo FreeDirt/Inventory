@@ -41,10 +41,7 @@ class StockController extends Controller
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
-        $device_list = DB::table("categories")->pluck("name","id");
-        
-        
-        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories','device_list'))->with('items', $items);
+        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories'))->with('items', $items);
 
 
         // $catNames = DB::table('stocks')
@@ -71,10 +68,10 @@ class StockController extends Controller
      */
     public function stockAjax($id)
     {
-        $cities = DB::table("devices")
+        $devices = DB::table("devices")
                     ->where("category_id",$id)
                     ->pluck("name","id");
-        return json_encode($cities);
+        return json_encode($devices);
     }
 
     /**
