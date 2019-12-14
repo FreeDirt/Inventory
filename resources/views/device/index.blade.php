@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="grid-container">
+@foreach ($devices->unique('category_id') as $device)
+    <div class="body-theme">
+            <p>{{  $device->category['name']}}</p>
+            <p>Created_at: {{date('M j, Y h:ia', strtotime($device->created_at))}}</p>
+            <p>Updated_at: {{date('M j, Y h:ia', strtotime($device->updated_at))}}</p>
+    </div>
+    @endforeach
+</div><br>
+
+
+
 <h1>Device List</h1>
 <a href="/device/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($devices) > 0)
@@ -29,7 +42,7 @@
             <th scope="col">Brand</th>
             <th scope="col">Category</th>
             <th scope="col">Model Number</th>
-            <th scope="col">Serial Number</th>
+            <th scope="col">Model Year</th>
             <th scope="col">Cost</th>
             <th scope="col">Action</th>
             </tr>

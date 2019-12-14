@@ -30,6 +30,21 @@ class DeviceController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $devices = Device::orderBy('created_at', 'desc')->paginate(10);
+
+        // $inventories = Inventory::all();
+        // $inventories = Inventory::where('title', '*name of the item')->get();
+        // $inventories = DB::select('SELECT * FROM inventories');
+        // $inventories = Inventory::orderBy('description', 'desc')->get();
+        // $inventories = Inventory::orderBy('description', 'desc')->take(1)->get();
+        // $categories = Category::all();
+        //  foreach($categories as $category) {
+        //     $category->monitor = Device::orderBy('name', 'desc')->where('category_id', $category->id)->get();
+        // }
+
+        // if ($user = Device::where('category_id', '=', Category::get('id'))->exists()) {
+        //     dd($user);
+        //  }
+
         return view('device.index', compact('devices', 'current_user'));
     }
 

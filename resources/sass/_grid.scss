@@ -1,6 +1,15 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 1em;
     align-items: start;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+}
+
+.twofr1 {
+    grid-template-columns: 2fr 1fr;
 }

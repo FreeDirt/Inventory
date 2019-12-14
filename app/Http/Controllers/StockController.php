@@ -41,7 +41,9 @@ class StockController extends Controller
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
-        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories'))->with('items', $items);
+        $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
+        
+        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories','laststocks'))->with('items', $items);
 
 
         // $catNames = DB::table('stocks')
