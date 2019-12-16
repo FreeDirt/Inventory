@@ -59,7 +59,7 @@ class DeviceController extends Controller
         $current_user = User::find($current_userId);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('device.create', compact('categories', 'brands', 'current_user'));
+        return view('device.create', compact('categories', 'brands', 'current_user'))->with('success', 'device successfuly created!');
     }
 
     /**

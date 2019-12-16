@@ -48,11 +48,6 @@
     <h1>stock List</h1>
     <div class="search-field">
         <div class="search-by-categories">
-            <div>
-                {!! Form::open([ 'url' => route('stock.index'), 'method' => 'get' ]) !!}
-                    {{ Form::label('items', 'Show') }} {!! Form::select( 'items', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('items', 'Entries') }}
-                {!! Form::close() !!}
-            </div>
         </div>
         <div class="search-btn-form">
             <form action="/search" method="get">
@@ -115,36 +110,6 @@ of total {{$stocks->total()}} entries
 
     </div><br>
 
-    <div class="body-theme">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <!-- <th scope="col">Id</th> -->
-            <th scope="col">STOCKS</th>
-            <th scope="col">TOTAL</th>
-            <th scope="col">ACTION</th>
-            </tr>
-        </thead>
-        @foreach ($devices->unique('category_id') as $device)
-            <tbody>
-                <tr>
-                <!-- <td>{{$stock->id}}</td> -->
-                <td>{{ucfirst($device->category['name'])}}</td>
-                <td>{{ $device->phpStocks->count() }}</td>
-                <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
-
-                {!!Form::close()!!}
-                </td>
-                </tr>
-            </tbody>
-        @endforeach
-        </table>
-    </div>
-    
     @else
         <p>No stock List is listed!</p>
     @endif

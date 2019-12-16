@@ -28,7 +28,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        return view('employee.create', compact('current_user'));
     }
 
     /**
@@ -39,7 +41,39 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:employees',
+            'bday' => 'required',
+            'personal_no' => 'required|max:255',
+            'company_no' => 'required|max:255',
+            'address' => 'required',
+            'city' => 'required',
+            'region' => 'required',
+            'postal_code' => 'required',
+            'employee_no' => 'required',
+            'gender' => 'required',
+        ]);
+
+        // Create New List
+        $employee = new Employee;
+        $employee->name = $request->input('name');
+        $employee->email = $request->input('email');
+        $employee->bday = $request->input('bday');
+        // $employee->user_id = auth()->user()->id;
+        $employee->personal_no = $request->input('personal_no');
+        $employee->company_no = $request->input('company_no');
+        $employee->address = $request->input('address');
+        $employee->city = $request->input('city');
+        $employee->region = $request->input('region');
+        $employee->postal_code = $request->input('postal_code');
+        $employee->employee_no = $request->input('employee_no');
+        $employee->gender = $request->input('gender');
+        // employeey->category = auth()->category()->category;
+        $employee->save();
+        
+        // Return Back
+        return redirect('/employee')->with('success', 'New Employee List Created!');
     }
 
     /**
@@ -50,7 +84,10 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $employee = Employee::find($id);
+        return view('employee.show', compact('employee', 'current_user'));
     }
 
     /**
@@ -61,7 +98,10 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $employee = Employee::find($id);
+        return view('employee.edit')->with(compact('employee', 'current_user'));
     }
 
     /**
@@ -73,7 +113,38 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'email',
+            'bday' => 'required',
+            'personal_no' => 'required',
+            'company_no' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'region' => 'required',
+            'postal_code' => 'required',
+            'employee_no' => 'required',
+            'gender' => 'required',
+        ]);
+
+        // Create New List
+        $employee = Employee::find($id);
+        $employee->name = $request->input('name');
+        $employee->email = $request->input('email');
+        $employee->bday = $request->input('bday');
+        $employee->user_id = auth()->user()->id;
+        $employee->personal_no = $request->input('personal_no');
+        $employee->company_no = $request->input('company_no');
+        $employee->address = $request->input('address');
+        $employee->city = $request->input('city');
+        $employee->region = $request->input('region');
+        $employee->postal_code = $request->input('postal_code');
+        $employee->employee_no = $request->input('employee_no');
+        $employee->gender = $request->input('gender');
+        $employee->save();
+        
+        // Return Back
+        return redirect('/employee')->with('success', 'Updated Employee List!');
     }
 
     /**
@@ -84,6 +155,8 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id);
+        $employee->delete();
+        return redirect('/employee')->with('success', 'Employee Deleted!');
     }
 }

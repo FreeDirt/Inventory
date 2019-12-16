@@ -14,7 +14,7 @@
 // Home Page
 Route::get('/', 'PagesController@gethome');
 // Search Inventory
-Route::get('/search', 'inventoryController@search');
+Route::get('/search', 'stockController@search');
 // Table Controller List
 Route::get('/tblist', 'PagesController@tblist');
 // Contact Message

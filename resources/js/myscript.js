@@ -86,30 +86,30 @@ class Myscript {
 
 
           // DYNAMIC ON CHANGE CATEGORY STOCK
-           $(document).ready(function() {
-        $('select[name="devcat"]').on('change', function() {
-            var devcatID = $(this).val();
-            if(devcatID) {
-                $.ajax({
-                    url: '/stock/ajax/'+devcatID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
+            $(document).ready(function() {
+                $('select[name="devcat"]').on('change', function() {
+                    var devcatID = $(this).val();
+                    if(devcatID) {
+                        $.ajax({
+                            url: '/stock/ajax/'+devcatID,
+                            type: "GET",
+                            dataType: "json",
+                            success:function(data) {
 
-                        
-                        $('select[name="device_id"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="device_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                
+                                $('select[name="device_id"]').empty();
+                                $.each(data, function(key, value) {
+                                    $('select[name="device_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                });
+
+
+                            }
                         });
-
-
+                    }else{
+                        $('select[name="device_id"]').empty();
                     }
                 });
-            }else{
-                $('select[name="device_id"]').empty();
-            }
-        });
-    });
+            });
           // $('#deviceCat').on('change',function(){
           //     // console.log("123");
           //     var cat_id = $(this).val();

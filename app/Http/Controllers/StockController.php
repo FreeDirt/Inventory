@@ -62,6 +62,40 @@ class StockController extends Controller
         // return response()->json($result);
     }
 
+    public function search(Request $request)
+    {
+        $current_userId = Auth()->user()->id;
+        $current_user = User::find($current_userId);
+        $search = $request->get('search');
+        $categories = Category::all();
+        
+        $items = $request->items ?? 10;
+        $stocks = Stock::where('id', 'like', '%' .$search. '%')
+        ->orWhere('serial', 'like', '%' .$search. '%')
+        ->orWhere('item_code', 'like', '%' .$search. '%')
+        ->orWhere('device_id', 'like', '%' .$search. '%')
+        ->orWhere('created_at', 'like', '%' .$search. '%')
+        ->orWhere('updated_at', 'like', '%' .$search. '%')->paginate($items);
+
+        $devices = Device::where('id', 'like', '%' .$search. '%')
+        ->orWhere('deviceCode', 'like', '%' .$search. '%')
+        ->orWhere('brand_id', 'like', '%' .$search. '%')
+        ->orWhere('category_id', 'like', '%' .$search. '%')
+        ->orWhere('user_id', 'like', '%' .$search. '%')
+        ->orWhere('model_no', 'like', '%' .$search. '%')
+        ->orWhere('model_year', 'like', '%' .$search. '%')
+        ->orWhere('cost', 'like', '%' .$search. '%')
+        ->orWhere('created_at', 'like', '%' .$search. '%')
+        ->orWhere('updated_at', 'like', '%' .$search. '%')->paginate($items);
+
+        $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
+
+        return view('stock.search', compact('stocks', 'current_user', 'devices', 'categories','laststocks'));
+        // return view('inventory.index')->with('inventories', $inventories);
+
+    }
+
+
 
     /**
      * Get Ajax Request and restun Data
@@ -137,7 +171,7 @@ class StockController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $stock = Stock::find($id);
-        return view('stock', compact('stock', 'current_user'));
+        return view('stock.show', compact('stock', 'current_user'));
     }
 
     /**
@@ -151,7 +185,8 @@ class StockController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $stock = Stock::find($id);
-        return view('stock')->with(compact('stock','current_user'));
+        $devices = Device::all();
+        return view('stock.edit')->with(compact('stock','current_user','devices'));
     }
 
     /**
