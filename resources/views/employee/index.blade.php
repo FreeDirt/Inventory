@@ -29,7 +29,6 @@
             <th scope="col">Bday</th>
             <th scope="col">Personal Number</th>
             <th scope="col">Company Number</th>
-            <th scope="col">Address</th>
             <th scope="col">City</th>
             <th scope="col">Region</th>
             <th scope="col">Action</th>
@@ -44,7 +43,6 @@
                 <td>{{$employee->bday}}</td>
                 <td>{{$employee->personal_no}}</td>
                 <td>{{$employee->company_no}}</td>
-                <td>{{$employee->address}}</td>
                 <td>{{$employee->city}}</td>
                 <td>{{$employee->region}}</td>
                 <td>

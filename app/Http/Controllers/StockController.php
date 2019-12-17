@@ -20,14 +20,12 @@ class StockController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    
-
     public function index(Request $request)
     {    
         $current_userId = Auth()->user()->id;
