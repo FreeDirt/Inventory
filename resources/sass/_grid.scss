@@ -13,3 +13,18 @@
 .twofr1 {
     grid-template-columns: 2fr 1fr;
 }
+
+.onefr2fr1 {
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.align-items-start {
+    align-items: start;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+.grid-1em-gap {
+    grid-column-gap: 1em;
+}

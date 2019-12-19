@@ -36,16 +36,30 @@
                 @include('inc.sidebar')
             </div>
 
-            <div class="right-content" id="content">
+            
+
+            @if(Request::is('employee/*'))
+                <div class="right-content-fluid" id="content">
+                    @include('inc.error')
+
+                    @if(Request::is('/'))
+                        @include('inc.showcase')
+                    @endif
+
+                    @yield('content')
+                </div>
+            @else
+                <div class="right-content" id="content">
                     
-                @include('inc.error')
-
-                @if(Request::is('/'))
-                    @include('inc.showcase')
-                @endif
-
-                @yield('content')
-            </div>
+                    @include('inc.error')
+    
+                    @if(Request::is('/'))
+                        @include('inc.showcase')
+                    @endif
+    
+                    @yield('content')
+                </div>
+            @endif
         @endguest
             
         </div>

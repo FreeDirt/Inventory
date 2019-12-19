@@ -11127,6 +11127,22 @@ hr {
   grid-template-columns: 2fr 1fr;
 }
 
+.onefr2fr1 {
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+.grid-1em-gap {
+  grid-column-gap: 1em;
+}
+
 #clock {
   position: relative;
   background: url(https://www.pngfind.com/pngs/m/44-443400_clock-face-transparent-clock-face-transparent-png-png.png) no-repeat;
@@ -11178,6 +11194,34 @@ hr {
   position: relative;
   left: 115px;
   top: 80px;
+}
+
+.right-content-fluid {
+  float: left;
+  width: 100%;
+  padding-left: 260px;
+  box-sizing: border-box;
+  transition: all 500ms linear;
+}
+
+.right-content-fluid.active {
+  padding-left: 0px;
+}
+
+.emp-prof-banner {
+  position: relative;
+}
+
+.emp-prof-banner img {
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+}
+
+.emp-profile {
+  position: relative;
+  top: -170px;
+  bottom: 170px;
 }
 
 /*!
