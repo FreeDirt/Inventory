@@ -4,9 +4,12 @@
 <div class="emp-prof-banner">
     <div><img src="https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-texture-geometric-black-metal-gradient-image_17809.jpg" alt=""></div>
 </div>
+<div class="container">
 <div class="container body-theme emp-profile">
    <div class="grid onefr2fr1 grid-1em-gap">
-        <div class="emp-img">1</div>
+        <div class="emp-img">
+            <img src="/storage/cover_images/{{$employee->cover_image}}" alt="prifile picture">
+        </div>
         <div class="emp-details">
                 <p>ID: {{$employee->id}}</p>
                 <p>Name: {{$employee->name}}</p>
@@ -17,8 +20,13 @@
                 <p>City: {{$employee->city}}</p>
                 <p>Region: {{$employee->region}}</p>
         </div>
-        <div classs="emp-actions">3</div>
+        <div classs="emp-actions">
+            <div class="container text-center">
+                <div class="btn btn-primary">EDIT PROFILE</div>
+            </div>
+        </div>
    </div>
+</div>
 </div>
 
 

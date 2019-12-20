@@ -8,7 +8,7 @@
 
 <div class="tablebg">
 
-{!! Form::open(['action' => 'EmployeeController@store', 'method' => 'POST']) !!}
+{!! Form::open(['action' => 'EmployeeController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{ Form::label('name', 'Name') }}
         {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Name']) }}
@@ -52,7 +52,13 @@
     </div>
     <div class="form-group">
         {{ Form::label('gender', 'Gender') }}
-        {{ Form::text('gender', '', ['class' => 'form-control', 'placeholder' => 'Gender']) }}
+        <select class="form-control" name="gender" id="">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        {{ Form::file('cover_image')}}
     </div>
     <div>
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}

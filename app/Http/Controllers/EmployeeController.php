@@ -63,7 +63,24 @@ class EmployeeController extends Controller
             'postal_code' => 'required',
             'employee_no' => 'required',
             'gender' => 'required',
+            'cover_image' => 'image|nullable|max:1999',
         ]);
+
+        // Handle File Upload
+        if($request->hasFile('cover_image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // GEt just Extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
 
         // Create New List
         $employee = new Employee;
@@ -79,6 +96,7 @@ class EmployeeController extends Controller
         $employee->postal_code = $request->input('postal_code');
         $employee->employee_no = $request->input('employee_no');
         $employee->gender = $request->input('gender');
+        $employee->cover_image = $fileNameToStore;
         // employeey->category = auth()->category()->category;
         $employee->save();
         
