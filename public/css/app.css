@@ -11177,6 +11177,15 @@ hr {
   bottom: 170px;
 }
 
+.emp-tbl-lst tr td {
+  vertical-align: 0;
+}
+
+.emp-tbl-lst tr td img {
+  width: 50px;
+  border-radius: 100%;
+}
+
 #clock {
   position: relative;
   background: url(https://www.pngfind.com/pngs/m/44-443400_clock-face-transparent-clock-face-transparent-png-png.png) no-repeat;

@@ -22,7 +22,7 @@
         </div>
         <div classs="emp-actions">
             <div class="container text-center">
-                <div class="btn btn-primary">EDIT PROFILE</div>
+                <a href="/employee/{{$employee->id}}/edit" class="btn btn-primary">EDIT PROFILE</a>
             </div>
         </div>
    </div>

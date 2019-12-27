@@ -23,28 +23,22 @@
         <table class="table">
         <thead class="thead-dark">
             <tr>
-            <!-- <th scope="col">Id</th> -->
+            <th scope="col">Photo</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Bday</th>
             <th scope="col">Personal Number</th>
             <th scope="col">Company Number</th>
-            <th scope="col">City</th>
-            <th scope="col">Region</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         @foreach($employees as $employee)
-            <tbody>
+            <tbody class="emp-tbl-lst">
                 <tr>
-                <!-- <td>{{$employee->id}}</td> -->
+                <td><img src="/storage/cover_images/{{$employee->cover_image}}" alt="prifile picture"></td>
                 <td>{{$employee->name}}</td>
                 <td>{{$employee->email}}</td>
-                <td>{{$employee->bday}}</td>
                 <td>{{$employee->personal_no}}</td>
                 <td>{{$employee->company_no}}</td>
-                <td>{{$employee->city}}</td>
-                <td>{{$employee->region}}</td>
                 <td>
                 <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="/employee/{{$employee->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>

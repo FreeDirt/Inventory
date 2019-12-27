@@ -30,3 +30,17 @@
     top: -170px;
     bottom: 170px;
 }
+
+.emp-tbl-lst {
+    tr {
+
+        td {
+            vertical-align: 0;
+
+            img {
+                width: 50px;
+                border-radius: 100%;
+            }
+        }
+    }
+}
