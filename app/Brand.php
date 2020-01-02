@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Inventory;
-use App\device;
+use App\Device;
 
 class Brand extends Model
 {
@@ -17,6 +17,6 @@ class Brand extends Model
     }
     
     public function devices() {
-        return $this->belongsToMany('App\device');
+        return $this->belongsToMany('App\Device');
     }
 }

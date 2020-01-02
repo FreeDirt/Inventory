@@ -40,6 +40,8 @@ Route::resource('admin', 'AdminController');
 Route::resource('employee', 'EmployeeController');
 // Compnay Controller CRUD
 Route::resource('company', 'CompanyController');
+// Compnay Controller CRUD
+Route::resource('designation', 'DesignationController');
 
 // Employee Controller CRUD
 // Route::get('stock/{post_id}/{like_value}', ['uses' => 'stockController@index', 'as' => 'like']);

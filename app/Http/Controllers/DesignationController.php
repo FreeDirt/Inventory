@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Brand;
+use App\Designation;
 use App\User;
 
-class BrandController extends Controller
+class DesignationController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -28,8 +27,8 @@ class BrandController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $brands = Brand::orderBy('id', 'asc')->paginate(10);
-        return view('brand.index', compact('brands', 'current_user'));
+        $designations = Designation::orderBy('created_at', 'desc')->paginate(10);
+        return view('designation.index', compact('designations', 'current_user'));
     }
 
     /**
@@ -41,8 +40,7 @@ class BrandController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        // $user = User::where('id', $userId)->with('roles')->first();
-        return view('brand.create', compact('current_user'));
+        return view('employee.create', compact('current_user'));
     }
 
     /**
@@ -58,13 +56,13 @@ class BrandController extends Controller
         ]);
 
         // Create New List
-        $brand = new Brand;
-        $brand->name = $request->input('name');
-        // $brand->brand = auth()->brand()->brand;
-        $brand->save();
+        $designation = new Designation;
+        $designation->name = $request->input('name');
+        // $designation->designation = auth()->designation()->designation;
+        $designation->save();
         
         // Return Back
-        return redirect('/brand')->with('success', 'New Brand List Created!');
+        return redirect('/designation')->with('success', 'New designation List Created!');
     }
 
     /**
@@ -77,8 +75,8 @@ class BrandController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $brand = Brand::find($id);
-        return view('brand.show', compact('brand', 'current_user'));
+        $designation = Designation::find($id);
+        return view('designation.show', compact('designation', 'current_user'));
     }
 
     /**
@@ -91,8 +89,8 @@ class BrandController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $brand = Brand::find($id);
-        return view('brand.edit', compact('brand', 'current_user'));
+        $designation = Designation::find($id);
+        return view('designation.edit', compact('designation', 'current_user'));
     }
 
     /**
@@ -109,13 +107,13 @@ class BrandController extends Controller
         ]);
 
         // Create New List
-        $brand = Brand::find($id);
-        $brand->name = $request->input('name');
+        $designation = Designation::find($id);
+        $designation->name = $request->input('name');
 
-        $brand->save();
+        $designation->save();
         
         // Return Back
-        return redirect('/brand')->with('success', 'Updated Brand List!');
+        return redirect('/designation')->with('success', 'Updated designation List!');
     }
 
     /**
@@ -126,8 +124,8 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        $brand = Brand::find($id);
-        $brand->delete();
-        return redirect('/brand')->with('success', 'Brand Deleted!');
+        $designation = Designation::find($id);
+        $designation->delete();
+        return redirect('/designation')->with('success', 'designation Deleted!');
     }
 }

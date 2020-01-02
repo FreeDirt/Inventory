@@ -40,8 +40,7 @@ class CompanyController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $user = User::where('id', $userId)->with('roles')->first();
-        return view('company.create', compact('user', 'current_user'));
+        return view('company.create', compact('current_user'));
     }
 
     /**

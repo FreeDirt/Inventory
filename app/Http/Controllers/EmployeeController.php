@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Employee;
+use App\Company;
 
 class EmployeeController extends Controller
 {
@@ -41,7 +42,8 @@ class EmployeeController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        return view('employee.create', compact('current_user'));
+        $companies = Company::all();
+        return view('employee.create', compact('current_user', 'companies'));
     }
 
     /**
@@ -57,6 +59,7 @@ class EmployeeController extends Controller
             'email' => 'required|unique:employees',
             'bday' => 'required',
             'personal_no' => 'required|max:255',
+            'company_id' => 'required',
             'company_no' => 'required|max:255',
             'address' => 'required',
             'city' => 'required',
@@ -90,6 +93,7 @@ class EmployeeController extends Controller
         $employee->bday = $request->input('bday');
         $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
+        $employee->company_id = $request->input('company_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');
@@ -130,7 +134,8 @@ class EmployeeController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $employee = Employee::find($id);
-        return view('employee.edit')->with(compact('employee', 'current_user'));
+        $companies = Company::all();
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies'));
     }
 
     /**
@@ -147,6 +152,7 @@ class EmployeeController extends Controller
             'email' => 'email',
             'bday' => 'required',
             'personal_no' => 'required',
+            'company_id' => 'required',
             'company_no' => 'required',
             'address' => 'required',
             'city' => 'required',
@@ -177,6 +183,7 @@ class EmployeeController extends Controller
         $employee->bday = $request->input('bday');
         $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
+        $employee->company_id = $request->input('company_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');

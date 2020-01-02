@@ -24,6 +24,15 @@
         {{ Form::text('personal_no', $employee->personal_no, ['class' => 'form-control', 'placeholder' => 'Personal Number']) }}
     </div>
     <div class="form-group">
+        {{ Form::label('company_id', 'Company') }}
+        <select class="form-control" name="company_id" id="">
+        <?php $selectedvalue = $employee->company_id ?>
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('company_no', 'Company Number') }}
         {{ Form::text('company_no', $employee->company_no, ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
     </div>

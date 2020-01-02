@@ -118,13 +118,13 @@
                 </div>
             </li>
 
-            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist') ? 'activebtn' : ''}}">
+            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist','company') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
                         <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'tblist') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
                 </div>
-                <div class="employee-menu-settings {{Request::is('employee','tblist') ? 'active' : ''}}" >
+                <div class="employee-menu-settings {{Request::is('employee','tblist','company','designation') ? 'active' : ''}}" >
                     <ul>
                         <li>
                             <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
@@ -143,7 +143,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('#') ? 'empactivebtn' : ''}}" href="#">
+                            <a class="{{Request::is('company') ? 'empactivebtn' : ''}}" href="/company">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-building"></i></div> 
                                     <div class="fl-item-text"><span>Company</span></div>
@@ -159,7 +159,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('#') ? 'empactivebtn' : ''}}" href="#">
+                            <a class="{{Request::is('designation') ? 'empactivebtn' : ''}}" href="/designation">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-user-tie"></i></div> 
                                     <div class="fl-item-text"><span>Designation</span></div>

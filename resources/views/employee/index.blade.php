@@ -27,6 +27,7 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Personal Number</th>
+            <th scope="col">Company</th>
             <th scope="col">Company Number</th>
             <th scope="col">Action</th>
             </tr>
@@ -38,6 +39,7 @@
                 <td>{{$employee->name}}</td>
                 <td>{{$employee->email}}</td>
                 <td>{{$employee->personal_no}}</td>
+                <td>{{$employee->company['name']}}</td>
                 <td>{{$employee->company_no}}</td>
                 <td>
                 <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>

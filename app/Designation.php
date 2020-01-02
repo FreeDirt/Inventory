@@ -1,14 +1,14 @@
 <?php
 
 namespace App;
-use App\Employee;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model
+use App\Employee;
+
+class Designation extends Model
 {
     public function employees() {
         return $this->belongsToMany('App\Employee');
     }
-    
 }

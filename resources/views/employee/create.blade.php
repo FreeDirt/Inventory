@@ -27,6 +27,14 @@
         {{ Form::text('personal_no', '', ['class' => 'form-control', 'placeholder' => 'Enter Personal Number']) }}
     </div>
     <div class="form-group">
+        {{ Form::label('company_id', 'Company') }}
+        <select class="form-control" name="company_id">
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('company_no', 'Company Number') }}
         {{ Form::text('company_no', '', ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
     </div>
@@ -52,7 +60,7 @@
     </div>
     <div class="form-group">
         {{ Form::label('gender', 'Gender') }}
-        <select class="form-control" name="gender" id="">
+        <select class="form-control" name="gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
