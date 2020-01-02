@@ -35,6 +35,14 @@
         </select>
     </div>
     <div class="form-group">
+        {{ Form::label('designation_id', 'Company') }}
+        <select class="form-control" name="designation_id">
+        @foreach ($designations as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('company_no', 'Company Number') }}
         {{ Form::text('company_no', '', ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
     </div>

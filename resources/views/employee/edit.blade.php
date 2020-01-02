@@ -33,6 +33,15 @@
         </select>
     </div>
     <div class="form-group">
+        {{ Form::label('designation_id', 'Company') }}
+        <select class="form-control" name="designation_id" id="">
+        <?php $selectedvalue = $employee->designation_id ?>
+        @foreach ($designation as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('company_no', 'Company Number') }}
         {{ Form::text('company_no', $employee->company_no, ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
     </div>

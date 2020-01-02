@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\User;
-use App\Employee;
+
 use App\Company;
+use App\Designation;
+use App\Employee;
+use App\User;
 
 class EmployeeController extends Controller
 {
