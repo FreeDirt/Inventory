@@ -14,11 +14,12 @@ class AddTablesToEmployees extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
-            $table->string('company')->after('email')->nullable();
-            $table->string('designation')->after('company')->nullable();
-            $table->string('ipAddress')->after('designation'->nullable());
-            $table->string('country')->after('region')->nullable();
+            $table->string('company')->nullable()->after('email');
+            $table->string('designation')->nullable()->after('company');
+            $table->string('ipAddress')->nullable()->after('designation');
+            $table->string('country')->nullable()->after('region');
             $table->string('cover_image')->after('gender');
+            $table->integer('user_id')->after('cover_image');
         });
     }
 
@@ -35,6 +36,7 @@ class AddTablesToEmployees extends Migration
             $table->dropColumn('ipAddress');
             $table->dropColumn('country');
             $table->dropColumn('cover_image');
+            $table->dropColumn('user_id');
         });
     }
 }

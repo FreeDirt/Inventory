@@ -6,7 +6,7 @@
 <div></div>
 <h1>employee Edit</h1>
 
-{!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST']) !!}
+{!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{ Form::label('name', 'employee Name') }}
         {{ Form::text('name', $employee->name, ['class' => 'form-control', 'placeholder' => 'Enter employee Name']) }}
@@ -50,6 +50,9 @@
     <div class="form-group">
         {{ Form::label('gender', 'Gender') }}
         {{ Form::text('gender', $employee->gender, ['class' => 'form-control', 'placeholder' => 'Gender']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::file('cover_image')}}
     </div>
     <div>
         {{ Form::hidden('_method', 'PUT')}}

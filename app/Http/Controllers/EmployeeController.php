@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\Employee;
 
@@ -87,7 +88,7 @@ class EmployeeController extends Controller
         $employee->name = $request->input('name');
         $employee->email = $request->input('email');
         $employee->bday = $request->input('bday');
-        // $employee->user_id = auth()->user()->id;
+        $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
@@ -155,6 +156,20 @@ class EmployeeController extends Controller
             'gender' => 'required',
         ]);
 
+         // Handle File Upload
+         if($request->hasFile('cover_image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // GEt just Extension
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        } 
+
         // Create New List
         $employee = Employee::find($id);
         $employee->name = $request->input('name');
@@ -169,6 +184,9 @@ class EmployeeController extends Controller
         $employee->postal_code = $request->input('postal_code');
         $employee->employee_no = $request->input('employee_no');
         $employee->gender = $request->input('gender');
+        if($request->hasFile('cover_image')){
+            $employee->cover_image = $fileNameToStore;
+        }
         $employee->save();
         
         // Return Back
@@ -184,6 +202,12 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $employee = Employee::find($id);
+
+        if($employee->cover_image != 'noimage.jpg'){
+            // Delete Image
+            Storage::delete('public/cover_images/'.$employee->cover_image);
+        }
+
         $employee->delete();
         return redirect('/employee')->with('success', 'Employee Deleted!');
     }
