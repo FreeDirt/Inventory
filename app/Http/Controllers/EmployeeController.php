@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Company;
 use App\Designation;
+use App\Department;
 use App\Employee;
 use App\User;
 
@@ -45,7 +46,9 @@ class EmployeeController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $companies = Company::all();
-        return view('employee.create', compact('current_user', 'companies'));
+        $designations = Designation::all();
+        $departments = Department::all();
+        return view('employee.create', compact('current_user', 'companies', 'designations','departments'));
     }
 
     /**
@@ -61,6 +64,8 @@ class EmployeeController extends Controller
             'email' => 'required|unique:employees',
             'bday' => 'required',
             'personal_no' => 'required|max:255',
+            'department_id' => 'required',
+            'designation_id' => 'required',
             'company_id' => 'required',
             'company_no' => 'required|max:255',
             'address' => 'required',
@@ -95,6 +100,8 @@ class EmployeeController extends Controller
         $employee->bday = $request->input('bday');
         $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
+        $employee->department_id = $request->input('department_id');
+        $employee->designation_id = $request->input('designation_id');
         $employee->company_id = $request->input('company_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
@@ -137,7 +144,9 @@ class EmployeeController extends Controller
         $current_user = User::find($current_userId);
         $employee = Employee::find($id);
         $companies = Company::all();
-        return view('employee.edit')->with(compact('employee', 'current_user', 'companies'));
+        $designations = Designation::all();
+        $departments = Department::all();
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments'));
     }
 
     /**
@@ -154,6 +163,8 @@ class EmployeeController extends Controller
             'email' => 'email',
             'bday' => 'required',
             'personal_no' => 'required',
+            'department_id' => 'required',
+            'designation' => 'required',
             'company_id' => 'required',
             'company_no' => 'required',
             'address' => 'required',
@@ -185,6 +196,8 @@ class EmployeeController extends Controller
         $employee->bday = $request->input('bday');
         $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
+        $employee->department_id = $request->input('department_id');
+        $employee->designation_id = $request->input('designation_id');
         $employee->company_id = $request->input('company_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');

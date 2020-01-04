@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Designation;
+use App\Department;
 use App\User;
 
-class DesignationController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,8 +27,8 @@ class DesignationController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $designations = Designation::orderBy('created_at', 'desc')->paginate(10);
-        return view('designation.index', compact('designations', 'current_user'));
+        $departments = Department::orderBy('created_at', 'desc')->paginate(10);
+        return view('department.index', compact('departments', 'current_user'));
     }
 
     /**
@@ -40,7 +40,7 @@ class DesignationController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        return view('employee.create', compact('current_user'));
+        return view('department.create', compact('current_user'));
     }
 
     /**
@@ -57,14 +57,14 @@ class DesignationController extends Controller
         ]);
 
         // Create New List
-        $designation = new Designation;
-        $designation->name = $request->input('name');
-        $designation->description = $request->input('description');
-        // $designation->designation = auth()->designation()->designation;
-        $designation->save();
+        $department = new Department;
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
+        // $department->department = auth()->department()->department;
+        $department->save();
         
         // Return Back
-        return redirect('/designation')->with('success', 'New designation List Created!');
+        return redirect('/department')->with('success', 'New Department List Created!');
     }
 
     /**
@@ -77,8 +77,8 @@ class DesignationController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $designation = Designation::find($id);
-        return view('designation.show', compact('designation', 'current_user'));
+        $department = Department::find($id);
+        return view('department.show', compact('department', 'current_user'));
     }
 
     /**
@@ -91,8 +91,8 @@ class DesignationController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $designation = Designation::find($id);
-        return view('designation.edit', compact('designation', 'current_user'));
+        $department = Department::find($id);
+        return view('department.edit', compact('department', 'current_user'));
     }
 
     /**
@@ -110,14 +110,14 @@ class DesignationController extends Controller
         ]);
 
         // Create New List
-        $designation = Designation::find($id);
-        $designation->name = $request->input('name');
-        $designation->description = $request->input('description');
+        $department = Department::find($id);
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
 
-        $designation->save();
+        $department->save();
         
         // Return Back
-        return redirect('/designation')->with('success', 'Updated designation List!');
+        return redirect('/department')->with('success', 'Updated Department List!');
     }
 
     /**
@@ -128,8 +128,8 @@ class DesignationController extends Controller
      */
     public function destroy($id)
     {
-        $designation = Designation::find($id);
-        $designation->delete();
-        return redirect('/designation')->with('success', 'designation Deleted!');
+        $department = Department::find($id);
+        $department->delete();
+        return redirect('/department')->with('success', 'Department Deleted!');
     }
 }

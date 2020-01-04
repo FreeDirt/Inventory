@@ -118,13 +118,13 @@
                 </div>
             </li>
 
-            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist','company') ? 'activebtn' : ''}}">
+            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist','company','department') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
                         <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'tblist') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
                 </div>
-                <div class="employee-menu-settings {{Request::is('employee','tblist','company','designation') ? 'active' : ''}}" >
+                <div class="employee-menu-settings {{Request::is('employee','tblist','company','designation','department') ? 'active' : ''}}" >
                     <ul>
                         <li>
                             <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
@@ -151,7 +151,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('#') ? 'empactivebtn' : ''}}" href="#">
+                            <a class="{{Request::is('department') ? 'empactivebtn' : ''}}" href="/department">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-briefcase"></i></div> 
                                     <div class="fl-item-text"><span>Departments</span></div>

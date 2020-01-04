@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>designation List</h1>
-<a href="/designation/create" class="btn btn-info float-right">Create New</a><br><br>
-@if(count($designations) > 0)
+<h1>Department List</h1>
+<a href="/department/create" class="btn btn-info float-right">Create New</a><br><br>
+@if(count($departments) > 0)
     <div class="body-theme">
     <div class="search-field">
         <div class="search-by-categories">
-            <div><p>Select by designations: drop down     |    show: 10</p></div>
+            <div><p>Select by departments: drop down     |    show: 10</p></div>
         </div>
         <div class="search-btn-form">
             <form action="/search" method="get">
@@ -19,14 +19,14 @@
                 </div>
             </form><br>
             
-            {!! Form::open(['action' => 'DesignationController@store', 'method' => 'POST']) !!}
+            {!! Form::open(['action' => 'DepartmentController@store', 'method' => 'POST']) !!}
             <div class="input-group">
                     {{ Form::label('name', ' ') }}
-                    {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Designation name']) }}
+                    {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter department name']) }}
 
                     {{ Form::label('description', ' ') }}
                     {{ Form::text('description', '', ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
-                    {{ Form::submit('Add designation', ['class' => 'btn btn-primary']) }}
+                    {{ Form::submit('Add department', ['class' => 'btn btn-primary']) }}
                     </div>    
             {!! Form::close() !!}
             
@@ -37,22 +37,22 @@
             <tr>
             <!-- <th scope="col">Id</th> -->
             <th scope="col">ID</th>
-            <th scope="col">Designations</th>
+            <th scope="col">Departments</th>
             <th scope="col">Description</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
-        @foreach($designations as $designation)
+        @foreach($departments as $department)
             <tbody>
                 <tr>
-                <!-- <td>{{$designation->id}}</td> -->
-                <td>{{$designation->id}}</td>
-                <td><strong>{{$designation->name}}</strong></td>
-                <td style="width: 50%;">{{$designation->description}}</td>
+                <!-- <td>{{$department->id}}</td> -->
+                <td>{{$department->id}}</td>
+                <td>{{$department->name}}</td>
+                <td style="width: 50%;">{{$department->description}}</td>
                 <td>
-                <a href="/designation/{{$designation->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/designation/{{$designation->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['DesignationController@destroy', $designation->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
+                <a href="/department/{{$department->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                <a href="/department/{{$department->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                {!!Form::open(['action' => ['DepartmentController@destroy', $department->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
                     {{Form::hidden('_method', 'DELETE')}}
                     {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
 
@@ -61,12 +61,12 @@
                 </tr>
             </tbody>
         @endforeach
-        {{$designations->links()}}
+        {{$departments->links()}}
         </table>
         </div>
     
     @else
-        <p>No designation List is listed!</p>
+        <p>No department List is listed!</p>
     @endif
 
 @endsection

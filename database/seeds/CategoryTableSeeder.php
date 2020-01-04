@@ -13,6 +13,9 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
+        $NA = new Category();
+        $NA->name = 'N/A';
+        $NA->save();
         
         $monitor = new Category();
         $monitor->name = 'Monitor';

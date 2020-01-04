@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Stock;
 use App\Company;
 use App\Designation;
+use App\Department;
 
 class Employee extends Model
 {
@@ -24,6 +25,11 @@ class Employee extends Model
     public function designation()
     {
         return $this->belongsTo('App\Designation', 'designation_id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department', 'department_id');
     }
 }
 
