@@ -118,13 +118,13 @@
                 </div>
             </li>
 
-            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'tblist','company','department') ? 'activebtn' : ''}}">
+            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'ipaddress','company','department') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'tblist') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
+                        <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'ipaddress') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
                 </div>
-                <div class="employee-menu-settings {{Request::is('employee','tblist','company','designation','department') ? 'active' : ''}}" >
+                <div class="employee-menu-settings {{Request::is('employee','ipaddress','company','designation','department') ? 'active' : ''}}" >
                     <ul>
                         <li>
                             <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
@@ -135,7 +135,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('tblist') ? 'empactivebtn' : ''}}" href="/tblist">
+                            <a class="{{Request::is('ipaddress') ? 'empactivebtn' : ''}}" href="/ipaddress">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-globe-asia"></i></div> 
                                     <div class="fl-item-text"><span>IP</span></div>

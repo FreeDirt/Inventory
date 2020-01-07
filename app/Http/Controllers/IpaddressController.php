@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Department;
+use App\Ipaddress;
 use App\User;
 
-class DepartmentController extends Controller
+class IpaddressController extends Controller
 {
-    /**
+     /**
      * Create a new controller instance.
      *
      * @return void
@@ -27,8 +27,8 @@ class DepartmentController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $departments = Department::orderBy('created_at', 'desc')->paginate(10);
-        return view('department.index', compact('departments', 'current_user'));
+        $ipaddresses = Ipaddress::orderBy('created_at', 'desc')->paginate(10);
+        return view('ipaddress.index', compact('ipaddresses', 'current_user'));
     }
 
     /**
@@ -40,7 +40,7 @@ class DepartmentController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        return view('department.create', compact('current_user'));
+        return view('ipaddress.create', compact('current_user'));
     }
 
     /**
@@ -52,19 +52,19 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:departments|max:255',
+            'ip' => 'required|unique:ipaddresses',
             'description' => 'required'
         ]);
 
         // Create New List
-        $department = new Department;
-        $department->name = $request->input('name');
-        $department->description = $request->input('description');
-        // $department->department = auth()->department()->department;
-        $department->save();
+        $ipaddress = new Ipaddress;
+        $ipaddress->ip = $request->input('ip');
+        $ipaddress->description = $request->input('description');
+        // $ipaddress->ipaddress = auth()->ipaddress()->ipaddress;
+        $ipaddress->save();
         
         // Return Back
-        return redirect('/department')->with('success', 'New Department List Created!');
+        return redirect('/ipaddress')->with('success', 'New Ipaddress List Created!');
     }
 
     /**
@@ -77,8 +77,8 @@ class DepartmentController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $department = Department::find($id);
-        return view('department.show', compact('department', 'current_user'));
+        $ipaddress = Ipaddress::find($id);
+        return view('ipaddress.show', compact('ipaddress', 'current_user'));
     }
 
     /**
@@ -91,8 +91,8 @@ class DepartmentController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $department = Department::find($id);
-        return view('department.edit', compact('department', 'current_user'));
+        $ipaddress = Ipaddress::find($id);
+        return view('ipaddress.edit', compact('ipaddress', 'current_user'));
     }
 
     /**
@@ -105,19 +105,19 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'ip' => 'required',
             'description' => 'required'
         ]);
 
         // Create New List
-        $department = Department::find($id);
-        $department->name = $request->input('name');
-        $department->description = $request->input('description');
+        $ipaddress = Ipaddress::find($id);
+        $ipaddress->ip = $request->input('ip');
+        $ipaddress->description = $request->input('description');
 
-        $department->save();
+        $ipaddress->save();
         
         // Return Back
-        return redirect('/department')->with('success', 'Updated Department List!');
+        return redirect('/ipaddress')->with('success', 'Updated Ipaddress List!');
     }
 
     /**
@@ -128,8 +128,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $department = Department::find($id);
-        $department->delete();
-        return redirect('/department')->with('success', 'Department Deleted!');
+        $ipaddress = Ipaddress::find($id);
+        $ipaddress->delete();
+        return redirect('/ipaddress')->with('success', 'Ipaddress Deleted!');
     }
 }

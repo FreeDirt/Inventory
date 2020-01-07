@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
+<div class="container">
 <a href="/employee" class="btn btn-info">Go Back</a><br><br>
-
-<div></div>
 <h1>employee Edit</h1>
 
 {!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
@@ -33,10 +33,19 @@
         </select>
     </div>
     <div class="form-group">
+        {{ Form::label('ipaddress_id', 'Ip Address') }}
+        <select class="form-control" name="ipaddress_id" id="">
+        <?php $selectedvalue = $employee->ipaddress_id ?>
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->ip}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('designation_id', 'Company') }}
         <select class="form-control" name="designation_id" id="">
         <?php $selectedvalue = $employee->designation_id ?>
-        @foreach ($designation as $key => $value)
+        @foreach ($designations as $key => $value)
             <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
         @endforeach
         </select>
@@ -77,5 +86,5 @@
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
     </div>
 {!! Form::close() !!}
-
+</div>
 @endsection

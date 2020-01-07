@@ -35,6 +35,14 @@
         </select>
     </div>
     <div class="form-group">
+        {{ Form::label('ipaddress_id', 'Ip Address') }}
+        <select class="form-control" name="ipaddress_id">
+        @foreach ($ipaddresses as $key => $value)
+            <option value="{{$value->id}}">{{$value->ip}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('department_id', 'Department') }}
         <select class="form-control" name="department_id">
         @foreach ($departments as $key => $value)

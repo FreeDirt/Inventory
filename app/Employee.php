@@ -7,6 +7,7 @@ use App\Stock;
 use App\Company;
 use App\Designation;
 use App\Department;
+use App\Ipaddress;
 
 class Employee extends Model
 {
@@ -30,6 +31,11 @@ class Employee extends Model
     public function department()
     {
         return $this->belongsTo('App\Department', 'department_id');
+    }
+
+    public function ipaddress()
+    {
+        return $this->belongsTo('App\Ipaddress', 'ipaddress_id');
     }
 }
 

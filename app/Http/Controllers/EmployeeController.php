@@ -9,6 +9,7 @@ use App\Company;
 use App\Designation;
 use App\Department;
 use App\Employee;
+use App\Ipaddress;
 use App\User;
 
 class EmployeeController extends Controller
@@ -48,7 +49,8 @@ class EmployeeController extends Controller
         $companies = Company::all();
         $designations = Designation::all();
         $departments = Department::all();
-        return view('employee.create', compact('current_user', 'companies', 'designations','departments'));
+        $ipaddresses = Ipaddress::all();
+        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses'));
     }
 
     /**
@@ -67,6 +69,7 @@ class EmployeeController extends Controller
             'department_id' => 'required',
             'designation_id' => 'required',
             'company_id' => 'required',
+            'ipaddress_id' => 'required',
             'company_no' => 'required|max:255',
             'address' => 'required',
             'city' => 'required',
@@ -103,6 +106,7 @@ class EmployeeController extends Controller
         $employee->department_id = $request->input('department_id');
         $employee->designation_id = $request->input('designation_id');
         $employee->company_id = $request->input('company_id');
+        $employee->ipaddress_id = $request->input('ipaddress_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');
@@ -146,7 +150,8 @@ class EmployeeController extends Controller
         $companies = Company::all();
         $designations = Designation::all();
         $departments = Department::all();
-        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments'));
+        $ipddresses = Ipddress::all();
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses'));
     }
 
     /**
@@ -166,6 +171,7 @@ class EmployeeController extends Controller
             'department_id' => 'required',
             'designation' => 'required',
             'company_id' => 'required',
+            'ipaddress_id' => 'required',
             'company_no' => 'required',
             'address' => 'required',
             'city' => 'required',
@@ -199,6 +205,7 @@ class EmployeeController extends Controller
         $employee->department_id = $request->input('department_id');
         $employee->designation_id = $request->input('designation_id');
         $employee->company_id = $request->input('company_id');
+        $employee->ipaddress_id = $request->input('ipaddress_id');
         $employee->company_no = $request->input('company_no');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');

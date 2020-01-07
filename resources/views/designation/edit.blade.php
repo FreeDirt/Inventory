@@ -11,7 +11,12 @@
 {!! Form::open(['action' => 'DesignationController@store', 'method' => 'POST']) !!}
     <div class="form-group">
         {{ Form::label('name', 'Designation name') }}
-        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter designation name']) }}
+        {{ Form::text('name', $designation->name, ['class' => 'form-control', 'placeholder' => 'Enter designation name']) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('description', 'Designation description') }}
+        {{ Form::text('description', $designation->description, ['class' => 'form-control', 'placeholder' => 'Enter designation name']) }}
     </div>
    
     <div>

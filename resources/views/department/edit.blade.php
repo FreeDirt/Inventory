@@ -11,7 +11,11 @@
 {!! Form::open(['action' => 'DepartmentController@store', 'method' => 'POST']) !!}
     <div class="form-group">
         {{ Form::label('name', 'department name') }}
-        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter department name']) }}
+        {{ Form::text('name', $department->name, ['class' => 'form-control', 'placeholder' => 'Enter department name']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('description', 'department description') }}
+        {{ Form::text('description', $department->description, ['class' => 'form-control', 'placeholder' => 'Enter department name']) }}
     </div>
    
     <div>
