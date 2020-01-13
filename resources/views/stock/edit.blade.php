@@ -23,6 +23,15 @@
         
     </div>
     <div class="form-group">
+        {{ Form::label('employee_id', 'Employee') }}
+        <select class="form-control" name="employee_id" id="">
+        <?php $selectedvalue = $stock->employee_id ?>
+        @foreach ($employees as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('serial', 'Serial') }}
         {{ Form::text('serial', $stock->serial, ['class' => 'form-control', 'placeholder' => 'Enter Serial']) }}
     </div>

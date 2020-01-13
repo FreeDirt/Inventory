@@ -38,14 +38,16 @@ Route::resource('profile', 'ProfileController');
 Route::resource('admin', 'AdminController');
 // Employee Controller CRUD
 Route::resource('employee', 'EmployeeController');
-// Compnay Controller CRUD
+// Company Controller CRUD
 Route::resource('company', 'CompanyController');
-// Compnay Designation CRUD
+// Company Designation CRUD
 Route::resource('designation', 'DesignationController');
-// Compnay Department CRUD
+// Company Department CRUD
 Route::resource('department', 'DepartmentController');
-// Compnay Ipaddress CRUD
+// Company Ipaddress CRUD
 Route::resource('ipaddress', 'IpaddressController');
+// Company Country CRUD
+Route::resource('country', 'CountryController');
 
 // Employee Controller CRUD
 // Route::get('stock/{post_id}/{like_value}', ['uses' => 'stockController@index', 'as' => 'like']);

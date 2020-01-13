@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use App\Company;
+use App\Country;
 use App\Designation;
 use App\Department;
 use App\Employee;
@@ -50,7 +50,8 @@ class EmployeeController extends Controller
         $designations = Designation::all();
         $departments = Department::all();
         $ipaddresses = Ipaddress::all();
-        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses'));
+        $countries = Country::all();
+        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses','countries'));
     }
 
     /**
@@ -71,6 +72,7 @@ class EmployeeController extends Controller
             'company_id' => 'required',
             'ipaddress_id' => 'required',
             'company_no' => 'required|max:255',
+            'country_id' => 'required',
             'address' => 'required',
             'city' => 'required',
             'region' => 'required',
@@ -108,6 +110,7 @@ class EmployeeController extends Controller
         $employee->company_id = $request->input('company_id');
         $employee->ipaddress_id = $request->input('ipaddress_id');
         $employee->company_no = $request->input('company_no');
+        $employee->country_id = $request->input('country_id');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');
         $employee->region = $request->input('region');
@@ -151,7 +154,8 @@ class EmployeeController extends Controller
         $designations = Designation::all();
         $departments = Department::all();
         $ipddresses = Ipddress::all();
-        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses'));
+        $countries = Country::all();
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','countries'));
     }
 
     /**
@@ -173,6 +177,7 @@ class EmployeeController extends Controller
             'company_id' => 'required',
             'ipaddress_id' => 'required',
             'company_no' => 'required',
+            'country' => 'required',
             'address' => 'required',
             'city' => 'required',
             'region' => 'required',
@@ -207,6 +212,7 @@ class EmployeeController extends Controller
         $employee->company_id = $request->input('company_id');
         $employee->ipaddress_id = $request->input('ipaddress_id');
         $employee->company_no = $request->input('company_no');
+        $employee->country_id = $request->input('country_id');
         $employee->address = $request->input('address');
         $employee->city = $request->input('city');
         $employee->region = $request->input('region');

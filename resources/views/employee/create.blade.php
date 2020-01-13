@@ -63,6 +63,14 @@
         {{ Form::text('company_no', '', ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
     </div>
     <div class="form-group">
+        {{ Form::label('country_id', 'Country') }}
+        <select class="form-control" name="country_id">
+        @foreach ($countries as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{ Form::label('address', 'Address') }}
         {{ Form::text('address', '', ['class' => 'form-control', 'placeholder' => 'Address']) }}
     </div>

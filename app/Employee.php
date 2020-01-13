@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Stock;
+use App\Country;
 use App\Company;
 use App\Designation;
 use App\Department;
@@ -15,7 +16,7 @@ class Employee extends Model
 
     public function stocks()
     {
-        return $this->belongsTo('App\Stock');
+        return $this->belongsTo('App\Stock', 'stock_id');
     }
 
     public function company()
@@ -36,6 +37,10 @@ class Employee extends Model
     public function ipaddress()
     {
         return $this->belongsTo('App\Ipaddress', 'ipaddress_id');
+    }
+    public function country()
+    {
+        return $this->belongsTo('App\Country', 'country_id');
     }
 }
 

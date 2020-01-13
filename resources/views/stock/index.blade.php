@@ -24,12 +24,26 @@
                 </select>
             </div>
             <div class="col-sm">
+                <select id="employee_id" class="form-control" name="employee_id">
+                    <option value="">-- Select Employee --</option>
+                    @foreach ($employees as $key => $employee)
+                        <option value="{{$employee->id}}">{{$employee->name}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-sm">
                 {{ Form::text('serial', '', ['class' => 'form-control', 'placeholder' => 'Enter serial']) }}
             </div>
             <div class="col-sm">
+            @if(count($laststocks) > 0)
                 @foreach ($laststocks as $laststock)
-                {{ Form::text('item_code', '', ['class' => 'form-control', 'placeholder' => $laststock->device['name'] . ' ' . $laststock['item_code']]) }}
+                    {{ Form::text('item_code', '', ['class' => 'form-control', 'placeholder' => $laststock->device['name'] . ' ' . $laststock['item_code']]) }}
                 @endforeach
+                
+             @else
+                {{ Form::text('item_code', '', ['class' => 'form-control', 'placeholder' => 'Enter Item Code']) }}
+            @endif
+                
             </div>
             <div class="col-sm">
                 {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
@@ -91,7 +105,7 @@
                 <td>{{$stock->device->category['name']}}</td>
                 <td>{{$stock->serial}}</td>
                 <td>{{$stock->device->deviceCode}}-{{$stock->item_code}}</td>
-                <td>Ryan Mendoza</td>
+                <td>{{$stock->employee['name']}}</td>
                 <td><a href="/stock/{{$stock->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="/stock/{{$stock->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
                 {!!Form::open(['action' => ['StockController@destroy', $stock->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}

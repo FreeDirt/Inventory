@@ -7,6 +7,7 @@ use App\User;
 use App\Stock;
 use App\Device;
 use App\Category;
+use App\Employee;
 use DB;
 
 class StockController extends Controller
@@ -32,6 +33,7 @@ class StockController extends Controller
         $current_user = User::find($current_userId);
         $devices = Device::all();
         $categories = Category::all();
+        $employees = Employee::all();
 
         foreach($devices as $device) {
             $device->phpStocks =  Stock::where('device_id', $device->id)->get();
@@ -41,8 +43,13 @@ class StockController extends Controller
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
         $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
         
-        return view('stock.index', compact('stocks', 'current_user', 'devices', 'categories','laststocks'))->with('items', $items);
-
+        return view('stock.index', compact(
+            'stocks',
+            'current_user',
+            'devices',
+            'categories',
+            'laststocks',
+            'employees'))->with('items', $items);
 
         // $catNames = DB::table('stocks')
         // ->join('devices', 'devices.id', 'device_id')
@@ -124,6 +131,7 @@ class StockController extends Controller
         $stock = new Stock;
         $stock->name = $request->input('serial');
         $stock->item_code = $request->input('item_code');
+        $stock->employee_id = $request->input('employee_id');
         
         // Create New stock
         $stock->save();
@@ -151,6 +159,7 @@ class StockController extends Controller
         $stock->device_id = $request->input('device_id');
         $stock->serial = $request->input('serial');
         $stock->item_code = $request->input('item_code');
+        $stock->employee_id = $request->input('employee_id');
         // $stock->user_id = auth()->user()->id;
         $stock->save();
         
@@ -184,7 +193,8 @@ class StockController extends Controller
         $current_user = User::find($current_userId);
         $stock = Stock::find($id);
         $devices = Device::all();
-        return view('stock.edit')->with(compact('stock','current_user','devices'));
+        $employees = Employee::all();
+        return view('stock.edit')->with(compact('stock','current_user','devices','employees'));
     }
 
     /**
@@ -207,6 +217,7 @@ class StockController extends Controller
         $stock->stock_id = $request->input('stock_id');
         $stock->serial = $request->input('serial');
         $stock->item_code = $request->input('item_code');
+        $stock->employee_id = $request->input('employee_id');
 
         $stock->save();
         

@@ -20,6 +20,11 @@
                 </select>
             </div>
             <div class="col-sm">
+                <select id="employee_id" class="form-control" name="employee_id">
+                        <option value="">--- Select Employee ---</option>
+                </select>
+            </div>
+            <div class="col-sm">
                 {{ Form::text('serial', '', ['class' => 'form-control', 'placeholder' => 'Enter serial']) }}
             </div>
             <div class="col-sm">
