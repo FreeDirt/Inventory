@@ -18,13 +18,17 @@
     <div class="form-group">
         {{ Form::label('Name', 'Name') }}
         <select id="device_id" class="form-control" name="device_id">
-                        <option value="">{{$stock->device['name']}}</option>
-                </select>
+                <?php $selectedvalue = $stock->device_id ?>
+                @foreach ($devices as $key => $value)
+                <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$stock->device['name']}}</option>
+                @endforeach
+        </select>
         
     </div>
     <div class="form-group">
         {{ Form::label('employee_id', 'Employee') }}
         <select class="form-control" name="employee_id" id="">
+        <option value="">--- Select Employee ---</option>
         <?php $selectedvalue = $stock->employee_id ?>
         @foreach ($employees as $key => $value)
             <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>

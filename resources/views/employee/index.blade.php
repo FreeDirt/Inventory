@@ -26,10 +26,10 @@
             <th scope="col">Photo</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Personal Number</th>
+            <th scope="col">Personal No.</th>
             <th scope="col">Company</th>
             <th scope="col">Ip Address</th>
-            <th scope="col">Company Number</th>
+            <th scope="col">Company No.</th>
             <th scope="col">Action</th>
             </tr>
         </thead>

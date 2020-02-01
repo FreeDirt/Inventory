@@ -153,7 +153,7 @@ class EmployeeController extends Controller
         $companies = Company::all();
         $designations = Designation::all();
         $departments = Department::all();
-        $ipddresses = Ipddress::all();
+        $ipaddresses = Ipaddress::all();
         $countries = Country::all();
         return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','countries'));
     }

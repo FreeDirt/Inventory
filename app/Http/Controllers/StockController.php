@@ -34,15 +34,29 @@ class StockController extends Controller
         $devices = Device::all();
         $categories = Category::all();
         $employees = Employee::all();
+        $stocks = Stock::all();
 
         foreach($devices as $device) {
-            $device->phpStocks =  Stock::where('device_id', $device->id)->get();
+
+                $device->phpStocks =  Stock::where('device_id', $device->id)->get();
+                $device->phpCategories =  Category::where('categories.id', $device->category_id)->get();
+                // dd($device->phpCategories);
         }
+
+        foreach($stocks as $stock) {
+            $stock->employee_id =  Employee::where('employees.id', $stock->employee_id)->get();
+
+            // dd($stock->employee_id);
+        }
+        
+
+
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
         $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
-        
+
+
         return view('stock.index', compact(
             'stocks',
             'current_user',
@@ -50,6 +64,12 @@ class StockController extends Controller
             'categories',
             'laststocks',
             'employees'))->with('items', $items);
+        
+
+        // $useDevices = DB::table('stocks')
+        // ->join('employees', 'stocks.employee_id', '=', 'employees.id')
+        // ->where('employees.id', '=', 1)
+        // ->sum('stocks.id');
 
         // $catNames = DB::table('stocks')
         // ->join('devices', 'devices.id', 'device_id')
@@ -214,7 +234,7 @@ class StockController extends Controller
 
         // Create New List
         $stock = Stock::find($id);
-        $stock->stock_id = $request->input('stock_id');
+        $stock->device_id = $request->input('device_id');
         $stock->serial = $request->input('serial');
         $stock->item_code = $request->input('item_code');
         $stock->employee_id = $request->input('employee_id');
