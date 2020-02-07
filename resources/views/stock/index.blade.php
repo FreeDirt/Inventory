@@ -147,8 +147,7 @@ of total {{$stocks->total()}} entries
                 <!-- <td>{{$stock->id}}</td> -->
                 <td>{{ ucfirst($device->category['name']) }}</td>
                 <td>{{ $device->phpStocks->count() }}</td>
-                <?php $selectedvalue = $stock->employee_id ?>
-                <td>{{ $selectedvalue }}</td>
+                <td>1</td>
                 <td></td>
                 <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
@@ -164,41 +163,6 @@ of total {{$stocks->total()}} entries
         </table>
     </div>
 
-
-    <div class="body-theme">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <!-- <th scope="col">Id</th> -->
-            <th scope="col">DEVICE</th>
-            <th scope="col">TOTAL</th>
-            <th scope="col">USED</th>
-            <th scope="col">STOCKS</th>
-            <th scope="col">ACTION</th>
-            </tr>
-        </thead>
-        @foreach ($stocks as $stock)
-            <tbody>
-                <tr>
-                <!-- <td>{{$stock->id}}</td> -->
-                <td>{{ucfirst($stock->device->category['name'])}}</td>
-                <td>{{$stock->device->category['name']}}</td>
-                <td>{{$stock->employee['name']}}</td>
-                <td></td>
-                <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
-
-                {!!Form::close()!!}
-                </td>
-                </tr>
-            </tbody>
-        @endforeach
-        </table>
-    </div>
-    
     @else
         <p>No stock List is listed!</p>
     @endif

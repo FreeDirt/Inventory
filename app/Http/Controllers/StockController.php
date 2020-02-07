@@ -36,19 +36,41 @@ class StockController extends Controller
         $employees = Employee::all();
         $stocks = Stock::all();
 
+
+        $empStock = $stocks->groupBy('employee_id');
+
         foreach($devices as $device) {
 
-                $device->phpStocks =  Stock::where('device_id', $device->id)->get();
+                $device->phpStocks = Stock::where('device_id', $device->id)->get();
                 $device->phpCategories =  Category::where('categories.id', $device->category_id)->get();
+                
                 // dd($device->phpCategories);
+
+                // $device->stockEmp = Stock::selectRaw("count('id') as total, id")
+                //    ->groupBy('id')
+                //    ->get();
+                // //    dd($device->stockEmp);
+                
         }
 
-        foreach($stocks as $stock) {
-            $stock->employee_id =  Employee::where('employees.id', $stock->employee_id)->get();
-
-            // dd($stock->employee_id);
+        foreach($employees as $employee) {
+            $employee->phpStocks = Stock::where('device_id', $employee->id)->get();
         }
         
+        
+
+        
+        
+        // $stockEmp = DB::table('stocks')
+        //         ->join('devices', 'devices.id', '=', 'stocks.device_id')
+        //         ->join('employees', 'employees.id', '=',  'stocks.employee_id')
+        //         ->join('categories', 'categories.id', '=', 'devices.category_id')
+        //         ->distinct()
+        //         ->get(['devices.category_id']);
+
+        // dd($stockEmp);
+
+        // $stockEmp = DB::table('stocks')->where('employee_id', '=', '2');
 
 
         // $items = $request->get('per_page');
@@ -63,7 +85,7 @@ class StockController extends Controller
             'devices',
             'categories',
             'laststocks',
-            'employees'))->with('items', $items);
+            'employees','empStock'))->with('items', $items);
         
 
         // $useDevices = DB::table('stocks')
