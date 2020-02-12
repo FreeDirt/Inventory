@@ -147,8 +147,8 @@ of total {{$stocks->total()}} entries
                 <!-- <td>{{$stock->id}}</td> -->
                 <td>{{ ucfirst($device->category['name']) }}</td>
                 <td>{{ $device->phpStocks->count() }}</td>
-                <td>1</td>
-                <td></td>
+                <td>{{ $device->employee->count()}}</td>
+                <td>{{ $device->phpStocks->count() - $device->employee->count() }}</td>
                 <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
                 {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
@@ -162,6 +162,7 @@ of total {{$stocks->total()}} entries
         @endforeach
         </table>
     </div>
+
 
     @else
         <p>No stock List is listed!</p>

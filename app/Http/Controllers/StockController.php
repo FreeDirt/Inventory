@@ -35,43 +35,15 @@ class StockController extends Controller
         $categories = Category::all();
         $employees = Employee::all();
         $stocks = Stock::all();
-
-
-        $empStock = $stocks->groupBy('employee_id');
-
+        
         foreach($devices as $device) {
 
                 $device->phpStocks = Stock::where('device_id', $device->id)->get();
                 $device->phpCategories =  Category::where('categories.id', $device->category_id)->get();
-                
-                // dd($device->phpCategories);
-
-                // $device->stockEmp = Stock::selectRaw("count('id') as total, id")
-                //    ->groupBy('id')
-                //    ->get();
-                // //    dd($device->stockEmp);
-                
+                $device->employee = DB::table('stocks')->where('device_id', $device->id)
+                                    ->join('employees', 'employees.id', '=', 'stocks.employee_id')
+                                    ->get();
         }
-
-        foreach($employees as $employee) {
-            $employee->phpStocks = Stock::where('device_id', $employee->id)->get();
-        }
-        
-        
-
-        
-        
-        // $stockEmp = DB::table('stocks')
-        //         ->join('devices', 'devices.id', '=', 'stocks.device_id')
-        //         ->join('employees', 'employees.id', '=',  'stocks.employee_id')
-        //         ->join('categories', 'categories.id', '=', 'devices.category_id')
-        //         ->distinct()
-        //         ->get(['devices.category_id']);
-
-        // dd($stockEmp);
-
-        // $stockEmp = DB::table('stocks')->where('employee_id', '=', '2');
-
 
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
@@ -85,7 +57,7 @@ class StockController extends Controller
             'devices',
             'categories',
             'laststocks',
-            'employees','empStock'))->with('items', $items);
+            'employees'))->with('items', $items);
         
 
         // $useDevices = DB::table('stocks')
