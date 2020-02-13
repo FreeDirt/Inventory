@@ -25,14 +25,16 @@
     <div id="app">
     <div class="main-container">
         <div class="callouts-container">
-        @include('inc.navbar')
+        
         @guest
             @if(Request::is('/'))
                 @include('inc.gview')
             @endif
-            
+            <div class="index-login" id="content">
              @yield('content-test')
+             </div>
         @else
+        @include('inc.navbar')
             <div class="sidebar" id="sidebar">
                 @include('inc.sidebar')
             </div>

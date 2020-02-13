@@ -10644,6 +10644,174 @@ a.text-dark:focus {
   }
 }
 
+.index-login {
+  background-color: #00408e;
+  width: 100%;
+  height: 100vh;
+}
+
+.index-login .fa-2x {
+  margin-right: 10px;
+  color: #00408e;
+}
+
+.index-form-login {
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 4px;
+  width: 500px;
+}
+
+.login-form-icon svg {
+  width: 100px;
+  height: auto;
+}
+
+.form-login-card {
+  flex: 1;
+  font-size: 18px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 48px;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+  letter-spacing: 1px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(60deg, #00408e 0%, #f27424 100%);
+  color: white;
+}
+
+.logo {
+  width: 50px;
+  fill: white;
+  padding-right: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height: 65vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 15vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  min-height: 100px;
+  max-height: 150px;
+}
+
+.content {
+  position: relative;
+  height: 20vh;
+  text-align: center;
+  background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+  -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+          animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax > use:nth-child(1) {
+  -webkit-animation-delay: -2s;
+          animation-delay: -2s;
+  -webkit-animation-duration: 7s;
+          animation-duration: 7s;
+}
+
+.parallax > use:nth-child(2) {
+  -webkit-animation-delay: -3s;
+          animation-delay: -3s;
+  -webkit-animation-duration: 10s;
+          animation-duration: 10s;
+}
+
+.parallax > use:nth-child(3) {
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+  -webkit-animation-duration: 13s;
+          animation-duration: 13s;
+}
+
+.parallax > use:nth-child(4) {
+  -webkit-animation-delay: -5s;
+          animation-delay: -5s;
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+}
+
+@-webkit-keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/*Shrinking for mobile*/
+
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .content {
+    height: 30vh;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
 html,
 body {
   background-color: #eee;
@@ -11054,6 +11222,10 @@ hr {
 
 .flex-end {
   align-items: flex-end;
+}
+
+.f-drection-r {
+  flex-direction: column;
 }
 
 .flex-start {

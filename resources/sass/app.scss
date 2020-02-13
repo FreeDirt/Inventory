@@ -7,6 +7,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import 'login';
 @import 'custom';
 @import 'sidebar';
 @import 'inventory';
@@ -18,6 +19,7 @@
 @import 'employee';
 @import 'clock';
 @import 'right-content-fluid';
+
 
 // Font-awesome
 @import 'node_modules/@fortawesome/fontawesome-free/scss/brands';

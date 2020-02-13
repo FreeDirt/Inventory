@@ -2,18 +2,6 @@
 
 @section('content')
 
-<div class="grid-container">
-@foreach ($devices->unique('category_id') as $device)
-    <div class="body-theme">
-            <p>{{  $device->category['name']}}</p>
-            <p>Created_at: {{date('M j, Y h:ia', strtotime($device->created_at))}}</p>
-            <p>Updated_at: {{date('M j, Y h:ia', strtotime($device->updated_at))}}</p>
-    </div>
-    @endforeach
-</div><br>
-
-
-
 <h1>Device List</h1>
 <a href="/device/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($devices) > 0)
@@ -78,5 +66,17 @@
     @else
         <p>No device List is listed!</p>
     @endif
+
+
+    <div class="grid-container">
+        @foreach ($devices->unique('category_id') as $device)
+        <div class="body-theme">
+                <p>{{  $device->category['name']}}</p>
+                <p>Created_at: {{date('M j, Y h:ia', strtotime($device->created_at))}}</p>
+                <p>Updated_at: {{date('M j, Y h:ia', strtotime($device->updated_at))}}</p>
+        </div>
+        @endforeach
+    </div><br>
+
 
 @endsection
