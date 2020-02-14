@@ -13,11 +13,6 @@ class CompanyTableSeeder extends Seeder
      */
     public function run()
     {
-        $NA = new Company();
-        $NA->name = 'N/A';
-        $NA->description = 'Not Applicable';
-        $NA->save();
-
         $FCA = new Company();
         $FCA->name = 'FCA';
         $FCA->description = 'Flood Control Asia RS';

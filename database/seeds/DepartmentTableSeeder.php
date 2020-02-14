@@ -14,11 +14,6 @@ class DepartmentTableSeeder extends Seeder
      */
     public function run()
     {
-        $NA = new Department();
-        $NA->name = 'N/A';
-        $NA->description = 'Not Applicable';
-        $NA->save();
-
         $Marketing = new Department();
         $Marketing->name = 'Marketing';
         $Marketing->description = 'A marketing department promotes your business and drives sales of its products or services';

@@ -16,6 +16,7 @@ class AddCategoryIdToDevices extends Migration
         Schema::table('devices', function (Blueprint $table) {
             $table->integer('brand_id')->nullable()->after('deviceCode')->unsigned();
             $table->integer('category_id')->nullable()->after('brand_id')->unsigned();
+            $table->integer('country_id')->after('category_id');
         });
     }
 

@@ -14,11 +14,6 @@ class IpTableSeeder extends Seeder
      */
     public function run()
     {
-        $NA = new Ipaddress();
-        $NA->ip = 'N/A';
-        $NA->description = 'Not Applicable';
-        $NA->save();
-
         $rysip = new Ipaddress();
         $rysip->ip = '192.168.88.32';
         $rysip->description = 'Ryan Mendoza Currently use this IP.';

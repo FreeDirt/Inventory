@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Device;
 use App\Category;
+use App\Country;
 use App\Brand;
 use App\User;
 
@@ -59,7 +60,8 @@ class DeviceController extends Controller
         $current_user = User::find($current_userId);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('device.create', compact('categories', 'brands', 'current_user'))->with('success', 'device successfuly created!');
+        $countries = Country::all();
+        return view('device.create', compact('categories', 'brands', 'current_user','countries'))->with('success', 'device successfuly created!');
     }
 
     /**
@@ -78,6 +80,7 @@ class DeviceController extends Controller
             'category_id' => 'required',
             'model_year' => 'required',
             'cost' => 'required',
+            'country_id' => 'required',
         ]);
 
         // Create New List
@@ -90,6 +93,7 @@ class DeviceController extends Controller
         $device->user_id = auth()->user()->id;
         $device->model_year = $request->input('model_year');
         $device->cost = $request->input('cost');
+        $device->country_id = $request->input('country_id');
         // $device->category = auth()->category()->category;
         $device->save();
         
@@ -144,6 +148,7 @@ class DeviceController extends Controller
             'category_id' => 'required',
             'model_year' => 'required',
             'cost' => 'required',
+            'country_id' => 'required',
         ]);
 
         // Create New List
@@ -154,7 +159,7 @@ class DeviceController extends Controller
         $device->brand_id = $request->input('brand_id');
         $device->category_id = $request->input('category_id');
         $device->model_year = $request->input('model_year');
-        $device->cost = $request->input('cost');
+        $device->country_id = $request->input('country_id');
 
         $device->save();
         

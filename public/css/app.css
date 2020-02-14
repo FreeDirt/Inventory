@@ -10923,6 +10923,7 @@ body {
   padding: 80px 80px 80px 300px;
   box-sizing: border-box;
   transition: all 500ms linear;
+  background: linear-gradient(60deg, white 0%, #00408e 100%);
 }
 
 .callouts-container .right-content.active {
@@ -11361,54 +11362,112 @@ hr {
 
 #clock {
   position: relative;
-  background: url(https://www.pngfind.com/pngs/m/44-443400_clock-face-transparent-clock-face-transparent-png-png.png) no-repeat;
+  background: url("/storage/cover_images/running-clock.jpg") no-repeat;
   background-size: contain;
   width: 316px;
   height: 316px;
+  border-radius: 100%;
 }
 
-#clock #hh,
-#clock #mh {
+#clock .clock__hands {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background: #6C5116;
+  box-sizing: border-box;
   position: absolute;
-  transform-origin: bottom;
-  background: #0099CC;
-  border-radius: 7px;
-  opacity: 1;
+  left: 50%;
+  top: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  transform: rotate(180deg);
 }
 
-#clock #sh {
+#clock .clock__hand {
+  transform-origin: top center;
+  background: #000;
   position: absolute;
-  transform-origin: bottom;
-  background: red;
-  border-radius: 7px;
-  opacity: 1;
+  top: 10px;
+  transition: transform 0.2s;
 }
 
-#clock #hh {
-  width: 12px;
-  height: 90px;
-  top: 68px;
-  left: 145px;
+#clock .clock__hand:before {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
 }
 
-#clock #mh {
-  width: 6px;
-  height: 120px;
-  top: 38px;
-  left: 148px;
+#clock .clock__hand:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #000;
 }
 
-#clock #sh {
+#clock .clock__hand--hour {
+  width: 10px;
+  height: 75px;
+  left: 5px;
+}
+
+#clock .clock__hand--hour:before {
+  bottom: -16px;
+  border: solid transparent;
+  border-width: 8px 5px;
+  border-top-color: #000;
+}
+
+#clock .clock__hand--hour:after {
+  width: 10px;
+  height: 24px;
+  top: -24px;
+}
+
+#clock .clock__hand--minute {
+  width: 8px;
+  height: 110px;
+  left: 6px;
+}
+
+#clock .clock__hand--minute:before {
+  bottom: -12px;
+  border: solid transparent;
+  border-width: 6px 4px;
+  border-top-color: #000;
+}
+
+#clock .clock__hand--minute:after {
+  width: 8px;
+  height: 32px;
+  top: -32px;
+}
+
+#clock .clock__hand--second {
   width: 2px;
-  height: 130px;
-  top: 29px;
-  left: 150px;
-  opacity: 0.3;
+  height: 135px;
+  left: 9px;
+}
+
+#clock .clock__hand--second:before {
+  top: -58.08px;
+  border: 0;
+  width: 4px;
+  height: 44px;
+  background: #000;
+  left: -1px;
+}
+
+#clock .clock__hand--second:after {
+  width: 2px;
+  height: 35.2px;
+  top: -35.2px;
 }
 
 #clock #meridiem {
   position: relative;
-  left: 115px;
+  left: 127px;
   top: 80px;
 }
 

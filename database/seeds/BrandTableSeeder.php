@@ -13,10 +13,6 @@ class BrandTableSeeder extends Seeder
      */
     public function run()
     {
-        $NA = new Brand();
-        $NA->name = 'N/A';
-        $NA->save();
-
         $samsung = new Brand();
         $samsung->name = 'Samsung';
         $samsung->save();

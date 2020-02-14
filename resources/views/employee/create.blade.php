@@ -29,6 +29,7 @@
     <div class="form-group">
         {{ Form::label('company_id', 'Company') }}
         <select class="form-control" name="company_id">
+        <option value="">--- Select Company ---</option>
         @foreach ($companies as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
         @endforeach
@@ -37,6 +38,7 @@
     <div class="form-group">
         {{ Form::label('ipaddress_id', 'Ip Address') }}
         <select class="form-control" name="ipaddress_id">
+        <option value="">--- Select IP ---</option>
         @foreach ($ipaddresses as $key => $value)
             <option value="{{$value->id}}">{{$value->ip}}</option>
         @endforeach
@@ -45,6 +47,7 @@
     <div class="form-group">
         {{ Form::label('department_id', 'Department') }}
         <select class="form-control" name="department_id">
+            <option value="">--- Select Department ---</option>
         @foreach ($departments as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
         @endforeach
@@ -53,6 +56,7 @@
     <div class="form-group">
         {{ Form::label('designation_id', 'Designation') }}
         <select class="form-control" name="designation_id">
+        <option value="">--- Select Designation ---</option>
         @foreach ($designations as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
         @endforeach
@@ -65,6 +69,7 @@
     <div class="form-group">
         {{ Form::label('country_id', 'Country') }}
         <select class="form-control" name="country_id">
+        <option value="">--- Select Country ---</option>
         @foreach ($countries as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
         @endforeach

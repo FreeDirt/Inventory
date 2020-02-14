@@ -3,9 +3,11 @@
         <h1>Welcome to our Dashboard</h1>
 
         <div id="clock">
-            <div id="hh"></div>
-            <div id="mh"></div>
-            <div id="sh"></div>
+            <div class="clock__hands">
+            <div class="clock__hand clock__hand--hour" id="hh"></div>
+            <div class="clock__hand clock__hand--minute" id="mh"></div>
+            <div class="clock__hand clock__hand--second" id="sh"></div>
+            </div>
             <div id="meridiem"></div>
         </div>
 

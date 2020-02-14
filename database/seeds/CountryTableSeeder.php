@@ -16,5 +16,9 @@ class CountryTableSeeder extends Seeder
         $PH = new Country();
         $PH->name = 'Philippines';
         $PH->save();
+
+        $DE = new Country();
+        $DE->name = 'Germany';
+        $DE->save();
     }
 }

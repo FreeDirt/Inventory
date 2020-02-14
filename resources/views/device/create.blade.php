@@ -11,7 +11,11 @@
 {!! Form::open(['action' => 'DeviceController@store', 'method' => 'POST']) !!}
     <div class="form-group">
         {{ Form::label('deviceCode', 'Device Code') }}
-        {{ Form::text('deviceCode', '', ['class' => 'form-control', 'placeholder' => 'Enter Device Code']) }}
+        <select class="form-control" name="deviceCode" id="">
+            <option value="KPH">KPH</option>
+            <option value="KPH">FCA</option>
+            <option value="KPH">KTV</option>
+        </select>
     </div>
     <div class="form-group">
         {{ Form::label('name', 'Device Name') }}
@@ -46,6 +50,15 @@
     <div class="form-group">
         {{ Form::label('cost', 'Cost') }}
         {{ Form::text('cost', '', ['class' => 'form-control', 'placeholder' => 'Cost']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('country', 'Country Purchased') }}
+        <select class="form-control" name="country_id">
+        <option value="">--- Select Country ---</option>
+        @foreach ($countries as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
     </div>
     <div>
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}

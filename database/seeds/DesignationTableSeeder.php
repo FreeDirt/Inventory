@@ -14,11 +14,6 @@ class DesignationTableSeeder extends Seeder
      */
     public function run()
     {
-        $NA = new Designation();
-        $NA->name = 'N/A';
-        $NA->description = 'Not Applicable';
-        $NA->save();
-
         $Programmer = new Designation();
         $Programmer->name = 'Programmer';
         $Programmer->description = 'Computer Programmers are tasked with designing and creating software programs';
