@@ -11360,9 +11360,29 @@ hr {
   border-radius: 100%;
 }
 
+.modalImport {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+}
+
+.modalImport .modal-content {
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
 #clock {
   position: relative;
-  background: url("/storage/cover_images/running-clock.jpg") no-repeat;
+  background: url("/storage/cover_images/running-clock.png") no-repeat;
   background-size: contain;
   width: 316px;
   height: 316px;

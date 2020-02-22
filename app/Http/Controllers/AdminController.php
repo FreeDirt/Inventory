@@ -80,9 +80,10 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   $current_userId = auth()->user()->id;
+        $current_user = User::find($current_userId);
         $user = User::find($id);
-        return view('admin.show')->with('user', $user);
+        return view('admin.show', compact('current_user'))->with('user', $user);
     }
 
     /**

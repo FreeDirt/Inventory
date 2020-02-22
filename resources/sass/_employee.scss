@@ -44,3 +44,24 @@
         }
     }
 }
+
+.modalImport {
+    // display: none;
+    position: fixed;
+    background: rgba($color: #000000, $alpha: 0.5);
+    z-index: 999;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+
+    .modal-content {
+        width: 50%;
+        height: 50%;
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0 5px 8px 0 rgba($color: #000000, $alpha: 0.2), 0 7px 20px 0 rgba($color: #000000, $alpha: 0.2);
+    }
+}

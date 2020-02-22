@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Device;
 use App\Category;
 use App\Country;
+use App\Company;
 use App\Brand;
 use App\User;
 
@@ -61,7 +62,8 @@ class DeviceController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $countries = Country::all();
-        return view('device.create', compact('categories', 'brands', 'current_user','countries'))->with('success', 'device successfuly created!');
+        $companies = Company::all();
+        return view('device.create', compact('categories', 'brands', 'current_user','countries','companies'))->with('success', 'device successfuly created!');
     }
 
     /**
@@ -128,7 +130,8 @@ class DeviceController extends Controller
         $device = Device::find($id);
         $categories = Category::all();
         $brands = Brand::all();
-        return view('device.edit')->with(compact('device', 'categories', 'brands', 'current_user'));
+        $companies = Company::all();
+        return view('device.edit')->with(compact('device', 'categories', 'brands', 'current_user', 'companies'));
     }
 
     /**

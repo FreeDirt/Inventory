@@ -12,9 +12,9 @@
     <div class="form-group">
         {{ Form::label('deviceCode', 'Device Code') }}
         <select class="form-control" name="deviceCode" id="">
-            <option value="KPH">KPH</option>
-            <option value="KPH">FCA</option>
-            <option value="KPH">KTV</option>
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
         </select>
     </div>
     <div class="form-group">

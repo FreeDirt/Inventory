@@ -2,7 +2,16 @@
 
 @section('content')
 <h1>Employee List</h1>
-<a href="/employee/create" class="btn btn-info float-right">Create New</a><br><br>
+<a href="/employee/create" class="btn btn-info float-right mx-sm-3">Create New</a>
+<button id="modalimport" class="btn btn-info float-right">Import Employee</button>
+
+<div id="importModal" class="modalImport">
+    <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <p>This is modal</p>
+    </div>
+</div>
+
 @if(count($employees) > 0)
     <div class="body-theme">
     <div class="search-field">
