@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Storage;
+use App\Exports\EmployeesExport;
+use App\Imports\EmployeesImport;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Company;
 use App\Country;
 use App\Designation;
@@ -29,6 +33,17 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // public function submit(Request $res)
+    // {
+    //     return new User([
+    //         'name'     => $row[0],
+    //         'email'    => $row[1], 
+    //         'password' => Hash::make($row[2]),
+    //      ]);
+    // }
+
+
     public function index()
     {
         $current_userId = Auth()->user()->id;
@@ -37,6 +52,26 @@ class EmployeeController extends Controller
         return view('employee.index', compact('employees', 'current_user'));
     }
 
+    /**
+     * Import function
+     */
+    public function import(Request $request)
+    {
+        if ($request->file('imported_file')) {
+            Excel::import(new EmployeesImport(), request()->file('imported_file'));
+            return back();
+        }
+    }
+
+
+    /**
+     * Export function
+     */
+    public function export()
+    {
+        return Excel::download(new EmployeesExport(), 'employees.xlsx');
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

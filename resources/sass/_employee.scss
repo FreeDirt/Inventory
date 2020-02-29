@@ -46,7 +46,7 @@
 }
 
 .modalImport {
-    // display: none;
+    display: flex;
     position: fixed;
     background: rgba($color: #000000, $alpha: 0.5);
     z-index: 999;
@@ -55,13 +55,27 @@
     height: 100%;
     width: 100%;
     overflow: auto;
-    display: flex;
+    transition: 2s ease;
 
     .modal-content {
         width: 50%;
-        height: 50%;
+        height: auto;
         margin: auto;
         padding: 20px;
         box-shadow: 0 5px 8px 0 rgba($color: #000000, $alpha: 0.2), 0 7px 20px 0 rgba($color: #000000, $alpha: 0.2);
+
+
+        .closeModalBtn {
+            color: #cccccc;
+            float: right;
+            font-size: 30px;
+        }
+        
+        .closeModalBtn:hover, .closeModalBtn:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
     }
 }
+

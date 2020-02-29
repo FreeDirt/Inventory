@@ -33,5 +33,9 @@ const app = new Vue({
 });
 
 import Myscript from './myscript';
-const to = new Myscript();
+import Modal from './modal';
+
+
+const myscript = new Myscript();
+const modal = new Modal();
 

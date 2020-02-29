@@ -49334,6 +49334,7 @@ module.exports = function(module) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _myscript__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./myscript */ "./resources/js/myscript.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal */ "./resources/js/modal.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49363,7 +49364,9 @@ var app = new Vue({
   el: '#app'
 });
 
-var to = new _myscript__WEBPACK_IMPORTED_MODULE_0__["default"]();
+
+var myscript = new _myscript__WEBPACK_IMPORTED_MODULE_0__["default"]();
+var modal = new _modal__WEBPACK_IMPORTED_MODULE_1__["default"]();
 
 /***/ }),
 
@@ -49491,6 +49494,62 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/modal.js":
+/*!*******************************!*\
+  !*** ./resources/js/modal.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Modal =
+/*#__PURE__*/
+function () {
+  function Modal() {
+    _classCallCheck(this, Modal);
+
+    this.init();
+  }
+
+  _createClass(Modal, [{
+    key: "init",
+    value: function init() {
+      // Get modal element
+      var importModal = document.getElementById('importModal'); // Get open modal button
+
+      var modalimport = document.getElementById('modalimport'); // Get close button
+
+      var closeBtn = document.getElementsByClassName('closeModalBtn')[0]; // listen for click
+
+      modalimport.addEventListener('click', openModal); //function to open modal
+
+      function openModal() {
+        importModal.style.display = 'flex';
+      } // listen for click close btn
+
+
+      closeBtn.addEventListener('click', closeModal); //function to close modal
+
+      function closeModal() {
+        importModal.style.display = 'none';
+      }
+    }
+  }]);
+
+  return Modal;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Modal);
 
 /***/ }),
 

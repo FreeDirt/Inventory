@@ -11361,6 +11361,7 @@ hr {
 }
 
 .modalImport {
+  display: flex;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
@@ -11369,15 +11370,28 @@ hr {
   height: 100%;
   width: 100%;
   overflow: auto;
-  display: flex;
+  transition: 2s ease;
 }
 
 .modalImport .modal-content {
   width: 50%;
-  height: 50%;
+  height: auto;
   margin: auto;
   padding: 20px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modalImport .modal-content .closeModalBtn {
+  color: #cccccc;
+  float: right;
+  font-size: 30px;
+}
+
+.modalImport .modal-content .closeModalBtn:hover,
+.modalImport .modal-content .closeModalBtn:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 #clock {

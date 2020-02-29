@@ -7,10 +7,54 @@
 
 <div id="importModal" class="modalImport">
     <div class="modal-content">
-        <span class="closeBtn">&times;</span>
-        <p>This is modal</p>
+        <div class="container">
+            <span id="closeBtn" class="closeModalBtn">&times;</span>
+        </div>
+        <div class="container">
+                <div class="clearfix">
+                    <div class="float-left">
+                        <form class="form-inline" action="{{url('employees/import')}}" method="post" enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="imported_file"/>
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <button style="margin-left: 10px;" class="btn btn-info" type="submit">Import</button>
+                        </form>
+                    </div>
+                    <div class="float-right">
+                        <form action="{{url('employees/export')}}" enctype="multipart/form-data">
+                            <button class="btn btn-dark" type="submit">Export</button>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+
+                @if(count($employees))
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                        </tr>
+                        </thead>
+                        @foreach($employees as $employee)
+                            <tr>
+                                <td>{{$employee->id}}</td>
+                                <td>{{$employee->name}}</td>
+                                <td>{{$employee->email}}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                @endif
+
+            </div>
+
     </div>
-</div>
+</div><br><br>
 
 @if(count($employees) > 0)
     <div class="body-theme">

@@ -49,6 +49,7 @@ Route::resource('ipaddress', 'IpaddressController');
 // Company Country CRUD
 Route::resource('country', 'CountryController');
 
+
 // Employee Controller CRUD
 // Route::get('stock/{post_id}/{like_value}', ['uses' => 'stockController@index', 'as' => 'like']);
 
@@ -62,6 +63,11 @@ Auth::routes();
 Route::get('/dashboard', 'DashboardController@index');
 
 // USER UPDATE
+
+
+// Import / Export Employee
+Route::post('employees/import', 'EmployeeController@import');
+Route::get('employees/export', 'EmployeeController@export');
 
 
 // Route::get('/admin/edit', 'UsersController@edit');
