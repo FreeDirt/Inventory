@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Employee;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class EmployeesImport implements ToModel
+class EmployeesImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,15 +16,14 @@ class EmployeesImport implements ToModel
     public function model(array $row)
     {
         return new Employee([
-            //return
-            'Name'=> $row['name'],
-            'Email'=> $row['email'],
-            'Employee_no'=> $row['employee_no'],
-            'Gender'=> $row['gender'],
-            'Cover_image'=> $row['cover_image'],
-            'User_id'=> $row['user_id'],
-            'Created At'=> $row['created_at'],
-            'Updated At'=> $row['updated_at'],
+            'name'=> $row['name'],
+            'email'=> $row['email'],
+            'employee_no'=> $row['employee_no'],
+            'gender'=> $row['gender'],
+            'cover_image'=> $row['cover_image'],
+            'user_id'=> $row['user_id'],
+            'created_at'=> $row['created_at'],
+            'updated_at'=> $row['updated_at'],
         ]);
     }
 }
