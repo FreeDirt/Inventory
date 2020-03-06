@@ -130,7 +130,7 @@
                             <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-id-card"></i></div> 
-                                    <div class="fl-item-text"><span>Employee Details</span></div>
+                                    <div class="fl-item-text"><span>Details</span></div>
                                 </div>
                             </a>
                         </li>

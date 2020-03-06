@@ -3,7 +3,7 @@
 @section('content')
 <h1>Employee List</h1>
 <a href="/employee/create" class="btn btn-info float-right mx-sm-3">Create New</a>
-<button id="modalimport" class="btn btn-info float-right">Import Employee</button>
+<button id="modalimport" class="btn btn-info float-right">Import / Export</button>
 
 <div id="importModal" class="modalImport">
     <div class="modal-content">
@@ -32,7 +32,7 @@
                 </div>
                 <br/>
 
-                @if(count($employees))
+                @if(count($importemployees))
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -41,7 +41,7 @@
                             <td>Email</td>
                         </tr>
                         </thead>
-                        @foreach($employees as $employee)
+                        @foreach($importemployees as $employee)
                             <tr>
                                 <td>{{$employee->id}}</td>
                                 <td>{{$employee->name}}</td>

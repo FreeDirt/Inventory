@@ -36,7 +36,7 @@
         {{ Form::label('ipaddress_id', 'Ip Address') }}
         <select class="form-control" name="ipaddress_id" id="">
         <?php $selectedvalue = $employee->ipaddress_id ?>
-        @foreach ($companies as $key => $value)
+        @foreach ($ipaddresses as $key => $value)
             <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->ip}}</option>
         @endforeach
         </select>

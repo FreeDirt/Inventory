@@ -7,10 +7,21 @@ use Faker\Generator as Faker;
 
 $factory->define(Employee::class, function (Faker $faker) {
     $gender = $faker->randomElement(['male', 'female']);
+    static $number = 1;
+    $department = $faker->randomElement(['1', '2', '3']);
+    $designation = $faker->randomElement(['1', '2', '3']);
 
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'company_id' => $number++,
+        'department_id' => $department,
+        'designation_id' => $designation,
+        'ipaddress_id' => '1',
+        'bday' => now(),
+        'personal_no' => '09292490219',
+        'company_no' => '09121241435',
+        'address' => $faker->address,
         'employee_no' => $faker->unique()->randomDigit,
         'gender' => $gender,
         'created_at' => now(),

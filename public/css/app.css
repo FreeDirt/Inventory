@@ -11361,7 +11361,7 @@ hr {
 }
 
 .modalImport {
-  display: flex;
+  display: none;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
@@ -11375,10 +11375,11 @@ hr {
 
 .modalImport .modal-content {
   width: 50%;
-  height: auto;
+  height: 600px;
   margin: auto;
   padding: 20px;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
+  overflow: scroll;
 }
 
 .modalImport .modal-content .closeModalBtn {

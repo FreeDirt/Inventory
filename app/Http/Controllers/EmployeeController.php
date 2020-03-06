@@ -49,7 +49,8 @@ class EmployeeController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employee.index', compact('employees', 'current_user'));
+        $importemployees = Employee::orderBy('id', 'desc')->get();
+        return view('employee.index', compact('employees', 'current_user','importemployees'));
     }
 
     /**
