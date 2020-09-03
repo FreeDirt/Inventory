@@ -74,16 +74,16 @@
                     </div>
             </a></li>
 
-            <li><div class="toggle-btn-menu {{Request::is('device', 'stock','category','brand') ? 'activebtn' : ''}}">
+            <li><div class="toggle-btn-menu {{Request::is('device*', 'stock*','category*','brand*') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-th-list fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Inventory List</span><i id="inv-tog-icon" class="{{Request::is('device', 'stock','category','brand') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
+                        <div class="fl-item-text"><span>Inventory List</span><i id="inv-tog-icon" class="{{Request::is('device', 'stock*','category*','brand*') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
                 </div>
-                <div class="inventory-menu-settings {{Request::is('device','stock','category','brand') ? 'active' : ''}}" >
+                <div class="inventory-menu-settings {{Request::is('device*','stock*','category*','brand*') ? 'active' : ''}}" >
                     <ul>
                         <li>
-                            <a class="{{Request::is('device') ? 'invactivebtn' : ''}}" href="/device">
+                            <a class="{{Request::is('device*') ? 'invactivebtn' : ''}}" href="/device">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-laptop-medical"></i></div>
                                     <div class="fl-item-text"><span>Devices</span></div>
@@ -91,7 +91,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('stock') ? 'invactivebtn' : ''}}" href="/stock">
+                            <a class="{{Request::is('stock*') ? 'invactivebtn' : ''}}" href="/stock">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-box-open"></i></div>
                                     <div class="fl-item-text"><span>Stocks</span></div>
@@ -99,7 +99,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('category') ? 'invactivebtn' : ''}}" href="/category">
+                            <a class="{{Request::is('category*') ? 'invactivebtn' : ''}}" href="/category">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fab fa-buffer"></i></div>
                                     <div class="fl-item-text"><span>Categories</span></div>
@@ -107,7 +107,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{Request::is('brand') ? 'invactivebtn' : ''}}" href="/brand">
+                            <a class="{{Request::is('brand*') ? 'invactivebtn' : ''}}" href="/brand">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-certificate"></i></div>
                                     <div class="fl-item-text"><span>Brands</span></div>

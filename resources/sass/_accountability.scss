@@ -1,0 +1,192 @@
+.print-btn {
+    text-align: center;
+    padding: 20px 0;
+
+    .btn-primary {
+        padding: 10px 50px;
+        font-weight: 700;
+    }
+}
+
+.printThis {
+
+    background-color: #ffffff;
+    padding: 20px;
+    // CTRL#
+    .ctrl-number {
+        text-align: right;
+    }
+    // LOGOS
+    .logo-fca-kph {
+        display: flex;
+
+        .the-logos {
+            flex: 1;
+            text-align: center;
+            
+            img {
+                width: 300px;
+                height: 90px;
+                object-fit: contain;
+            }
+
+            
+        }
+
+        .kph-logs img {
+            height: 100px;
+        }
+    }
+    // NAME,ADD,POSITION,DEPT.
+    .emp-acc-detail {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        line-height: 1px;
+
+        .acc-dt {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+
+            .acc-txt {
+                margin-right:10px
+            }
+            .acc-input {
+                flex: 1;
+            
+                input {
+                    border: none;
+                    width: 90%;
+                    border-bottom: 2px solid #000000;
+                }
+            }
+        }
+    }
+    // THE FORM
+    .the-form {
+
+            h6 {
+                text-align: center;
+                border: 1px solid #000;
+                margin: 0;
+            }
+
+            .table-bordered th, .table-bordered td {
+                border: 1px solid #000;
+            }
+
+            .table-bordered thead th, .table-bordered thead td {
+                text-align: center;
+                font-weight: 500;
+            }
+            
+            .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+                display: none;
+            }
+        
+            .table-bordered {
+                border: 1px solid #000;
+            }
+        
+            .table th, .table td {
+                padding: 0.25rem;
+            }
+        
+            .checkbox {
+                display: inline-block;
+                cursor: pointer;
+                margin-right:10px;
+                line-height:18px;
+                vertical-align: middle;
+            }
+            
+            input[type=checkbox] {
+                display:none;
+            }
+            .checkbox:before {
+                content:"";
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+                vertical-align:middle;
+                color: #f3f3f3;
+                text-align: center;
+                /*box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+                border: 3px solid #0168AF;
+                top:-3px;
+            }
+            .checkbox.pl:before {
+            
+                background-color: #ffffff;
+            
+            }
+            
+            input[type=checkbox]:checked + .checkbox:before {
+                content:"\2713";
+                text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+                font-size: 38px;
+                color: #01c561;
+            }
+        
+            .the-form-grid .table-bordered thead tr th p {
+                margin-bottom: 0px!important;
+                font-weight: 700;
+            }
+
+            .the-form-grid .table-bordered tbody tr td input {
+                border: none;
+                display: flex;
+                width: 100%;
+            }
+
+        }
+        
+        // System Acess
+        .sys-access {
+            .table-bordered {
+                border-top: none;
+            }
+            .table-bordered td, .table-bordered th {
+                border: none;
+            }
+
+            .table-bordered thead tr th {
+                text-align: left;
+            }
+        }
+
+        // virified-by 
+        .virified-by {
+            margin-top: 30px;
+
+          .table-bordered {  
+              border: none;
+
+              tbody tr td p strong {
+                  font-weight: 700;
+              }
+          }
+
+          .table-bordered td {
+                vertical-align: middle;
+                text-align: center;
+                font-style: italic;
+                border: none;
+            }
+
+            .table-bordered td hr {
+                width: 100%;
+                height: 1px;
+                fill: #000;
+                background: #000;
+                border-top: 1px solid #000;
+            }
+        }
+
+}
+
+
+@media print {
+	input[type=checkbox], .custom-control-label { display: none; }
+	input[type=checkbox]:checked ~ div { display: block; }
+}

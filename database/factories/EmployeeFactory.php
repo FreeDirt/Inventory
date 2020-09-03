@@ -5,6 +5,9 @@
 use App\Employee;
 use Faker\Generator as Faker;
 
+
+// php artisan tinker
+// factory(\App\Employee::class, 10)->create();
 $factory->define(Employee::class, function (Faker $faker) {
     $gender = $faker->randomElement(['male', 'female']);
     static $number = 1;
@@ -22,11 +25,11 @@ $factory->define(Employee::class, function (Faker $faker) {
         'personal_no' => '09292490219',
         'company_no' => '09121241435',
         'address' => $faker->address,
-        'employee_no' => $faker->unique()->randomDigit,
+        'employee_no' => $faker->unique()->numberBetween(1,20),
         'gender' => $gender,
         'created_at' => now(),
         'updated_at' => now(),
         'cover_image' => 'noimage.jpg',
-        'user_id' => $faker->unique()->randomDigit,
+        'user_id' => $faker->unique()->numberBetween(1,20),
     ];
 });

@@ -40,8 +40,8 @@ class CategoryController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $user = User::where('id', $userId)->with('roles')->first();
-        return view('category.create', compact('user', 'current_user'));
+        // $user = User::where('id', $userId)->with('roles')->first();
+        return view('category.create', compact('current_user'));
     }
 
     /**

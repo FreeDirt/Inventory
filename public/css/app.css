@@ -10923,7 +10923,6 @@ body {
   padding: 80px 80px 80px 300px;
   box-sizing: border-box;
   transition: all 500ms linear;
-  background: linear-gradient(60deg, white 0%, #00408e 100%);
 }
 
 .callouts-container .right-content.active {
@@ -11349,6 +11348,7 @@ hr {
   position: relative;
   top: -170px;
   bottom: 170px;
+  margin-bottom: -100px;
 }
 
 .emp-tbl-lst tr td {
@@ -11516,6 +11516,272 @@ hr {
 
 .right-content-fluid.active {
   padding-left: 0px;
+}
+
+.print-btn {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.print-btn .btn-primary {
+  padding: 10px 50px;
+  font-weight: 700;
+}
+
+.printThis {
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.printThis .ctrl-number {
+  text-align: right;
+}
+
+.printThis .logo-fca-kph {
+  display: flex;
+}
+
+.printThis .logo-fca-kph .the-logos {
+  flex: 1;
+  text-align: center;
+}
+
+.printThis .logo-fca-kph .the-logos img {
+  width: 300px;
+  height: 90px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.printThis .logo-fca-kph .kph-logs img {
+  height: 100px;
+}
+
+.printThis .emp-acc-detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  line-height: 1px;
+}
+
+.printThis .emp-acc-detail .acc-dt {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.printThis .emp-acc-detail .acc-dt .acc-txt {
+  margin-right: 10px;
+}
+
+.printThis .emp-acc-detail .acc-dt .acc-input {
+  flex: 1;
+}
+
+.printThis .emp-acc-detail .acc-dt .acc-input input {
+  border: none;
+  width: 90%;
+  border-bottom: 2px solid #000000;
+}
+
+.printThis .the-form h6 {
+  text-align: center;
+  border: 1px solid #000;
+  margin: 0;
+}
+
+.printThis .the-form .table-bordered th,
+.printThis .the-form .table-bordered td {
+  border: 1px solid #000;
+}
+
+.printThis .the-form .table-bordered thead th,
+.printThis .the-form .table-bordered thead td {
+  text-align: center;
+  font-weight: 500;
+}
+
+.printThis .the-form .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  display: none;
+}
+
+.printThis .the-form .table-bordered {
+  border: 1px solid #000;
+}
+
+.printThis .the-form .table th,
+.printThis .the-form .table td {
+  padding: 0.25rem;
+}
+
+.printThis .the-form .checkbox {
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 10px;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+.printThis .the-form input[type=checkbox] {
+  display: none;
+}
+
+.printThis .the-form .checkbox:before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  color: #f3f3f3;
+  text-align: center;
+  /*box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+  border: 3px solid #0168AF;
+  top: -3px;
+}
+
+.printThis .the-form .checkbox.pl:before {
+  background-color: #ffffff;
+}
+
+.printThis .the-form input[type=checkbox]:checked + .checkbox:before {
+  content: "\2713";
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  font-size: 38px;
+  color: #01c561;
+}
+
+.printThis .the-form .the-form-grid .table-bordered thead tr th p {
+  margin-bottom: 0px !important;
+  font-weight: 700;
+}
+
+.printThis .the-form .the-form-grid .table-bordered tbody tr td input {
+  border: none;
+  display: flex;
+  width: 100%;
+}
+
+.printThis .sys-access .table-bordered {
+  border-top: none;
+}
+
+.printThis .sys-access .table-bordered td,
+.printThis .sys-access .table-bordered th {
+  border: none;
+}
+
+.printThis .sys-access .table-bordered thead tr th {
+  text-align: left;
+}
+
+.printThis .virified-by {
+  margin-top: 30px;
+}
+
+.printThis .virified-by .table-bordered {
+  border: none;
+}
+
+.printThis .virified-by .table-bordered tbody tr td p strong {
+  font-weight: 700;
+}
+
+.printThis .virified-by .table-bordered td {
+  vertical-align: middle;
+  text-align: center;
+  font-style: italic;
+  border: none;
+}
+
+.printThis .virified-by .table-bordered td hr {
+  width: 100%;
+  height: 1px;
+  fill: #000;
+  background: #000;
+  border-top: 1px solid #000;
+}
+
+@media print {
+  input[type=checkbox],
+  .custom-control-label {
+    display: none;
+  }
+
+  input[type=checkbox]:checked ~ div {
+    display: block;
+  }
+}
+
+/*the container must be positioned relative:*/
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none;
+  /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #ccc;
+}
+
+/*style the arrow inside the select element:*/
+
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+
+.select-items div,
+.select-selected {
+  color: #000000;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/*style items (options):*/
+
+.select-items {
+  position: absolute;
+  background-color: #ccc;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /*!

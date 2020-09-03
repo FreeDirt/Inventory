@@ -73,11 +73,11 @@
             </form>
         </div>
     </div><br>
-        <table class="table">
+        <table class="table mytable">
         <thead class="thead-dark">
             <tr>
             <th scope="col">Photo</th>
-            <th scope="col">Name</th>
+            <th scope="col" onclick="sortTable(0)">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Company No.</th>
             <th scope="col">Action</th>
