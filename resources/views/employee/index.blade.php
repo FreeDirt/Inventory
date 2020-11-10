@@ -80,6 +80,7 @@
             <th scope="col" onclick="sortTable(0)">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Company No.</th>
+            <th scope="col">Serial.</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
@@ -90,6 +91,7 @@
                 <td>{{$employee->name}}</td>
                 <td>{{$employee->email}}</td>
                 <td>{{$employee->company_no}}</td>
+                <td>{{$employee->stock['name']}}</td>
                 <td>
                 <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="/employee/{{$employee->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>

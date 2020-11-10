@@ -46,6 +46,15 @@
         {{ Form::label('cost', 'Cost') }}
         {{ Form::text('cost', $device->cost, ['class' => 'form-control', 'placeholder' => 'Cost']) }}
     </div>
+    <div class="form-group">
+        {{ Form::label('country_id', 'Country') }}
+        <select class="form-control" name="country_id" id="">
+        <?php $selectedvalue = $device->country_id ?>
+        @foreach ($countries as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
     <div>
         {{ Form::hidden('_method', 'PUT')}}
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}

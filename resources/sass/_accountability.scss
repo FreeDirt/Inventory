@@ -8,13 +8,31 @@
     }
 }
 
+
 .printThis {
 
     background-color: #ffffff;
     padding: 20px;
     // CTRL#
+
+    h2 {
+        color: #000000;
+        font-size: 1.5em;
+    }
+
+    h6 {
+        padding: 5px;
+        color: #000000;
+    }
+
     .ctrl-number {
         text-align: right;
+
+        .ctrl_underline {
+            width: 100px;
+            border-bottom: 2px solid #000000;
+            -webkit-writing-mode: vertical-rl;
+        }
     }
     // LOGOS
     .logo-fca-kph {
@@ -49,7 +67,9 @@
             align-items: center;
 
             .acc-txt {
-                margin-right:10px
+                margin-right:10px;
+                color: #000000;
+                font-size: 1.2em;
             }
             .acc-input {
                 flex: 1;
@@ -58,6 +78,7 @@
                     border: none;
                     width: 90%;
                     border-bottom: 2px solid #000000;
+                    font-size: 1.2em;
                 }
             }
         }
@@ -71,8 +92,12 @@
                 margin: 0;
             }
 
-            .table-bordered th, .table-bordered td {
-                border: 1px solid #000;
+            .w-border th, .w-border td {
+                border: 1px solid #000000!important;
+            }
+
+            .table th, .table td {
+                border: 1px solid #000000;
             }
 
             .table-bordered thead th, .table-bordered thead td {
@@ -81,7 +106,10 @@
             }
             
             .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
-                display: none;
+                display: block;
+                // opacity: 1;
+                // font-size: 16px;
+                background: no-repeat 100%/100% 100%;
             }
         
             .table-bordered {
@@ -139,20 +167,32 @@
                 width: 100%;
             }
 
+            #printed-article tr th{
+                background-color: #cccccc!important;
+            }
+
         }
+
+       
         
         // System Acess
         .sys-access {
-            .table-bordered {
-                border-top: none;
+
+            .the-form-grid .table-bordered {
+                border: 0;
             }
+            
             .table-bordered td, .table-bordered th {
-                border: none;
+                border: 0;
             }
 
             .table-bordered thead tr th {
                 text-align: left;
             }
+        }
+
+        .the-border {
+            border: 1px solid #000000;
         }
 
         // virified-by 
@@ -183,10 +223,36 @@
             }
         }
 
+        .sign-over-name {
+            text-align: center;
+            color: #000000;
+            font-size: 1.2em;
+        }
+
+        
+
 }
 
 
-@media print {
+
+
+@media print and (color) {
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+     }
+
 	input[type=checkbox], .custom-control-label { display: none; }
-	input[type=checkbox]:checked ~ div { display: block; }
+    input[type=checkbox]:checked ~ div { display: block; }
+    
+    .table-bordered th, .table-bordered td {
+        border: 1px solid #000000;
+    }
+
+    .table th, .table td {
+        border: 1px solid #000000;
+    }
+    // #printed-article tr th{
+    //     background-color: #cccccc!important;
+    // }
 }

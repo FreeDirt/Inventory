@@ -11533,8 +11533,24 @@ hr {
   padding: 20px;
 }
 
+.printThis h2 {
+  color: #000000;
+  font-size: 1.5em;
+}
+
+.printThis h6 {
+  padding: 5px;
+  color: #000000;
+}
+
 .printThis .ctrl-number {
   text-align: right;
+}
+
+.printThis .ctrl-number .ctrl_underline {
+  width: 100px;
+  border-bottom: 2px solid #000000;
+  -webkit-writing-mode: vertical-rl;
 }
 
 .printThis .logo-fca-kph {
@@ -11571,6 +11587,8 @@ hr {
 
 .printThis .emp-acc-detail .acc-dt .acc-txt {
   margin-right: 10px;
+  color: #000000;
+  font-size: 1.2em;
 }
 
 .printThis .emp-acc-detail .acc-dt .acc-input {
@@ -11581,6 +11599,7 @@ hr {
   border: none;
   width: 90%;
   border-bottom: 2px solid #000000;
+  font-size: 1.2em;
 }
 
 .printThis .the-form h6 {
@@ -11589,9 +11608,14 @@ hr {
   margin: 0;
 }
 
-.printThis .the-form .table-bordered th,
-.printThis .the-form .table-bordered td {
-  border: 1px solid #000;
+.printThis .the-form .w-border th,
+.printThis .the-form .w-border td {
+  border: 1px solid #000000 !important;
+}
+
+.printThis .the-form .table th,
+.printThis .the-form .table td {
+  border: 1px solid #000000;
 }
 
 .printThis .the-form .table-bordered thead th,
@@ -11601,7 +11625,8 @@ hr {
 }
 
 .printThis .the-form .custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
-  display: none;
+  display: block;
+  background: no-repeat 100%/100% 100%;
 }
 
 .printThis .the-form .table-bordered {
@@ -11660,17 +11685,25 @@ hr {
   width: 100%;
 }
 
-.printThis .sys-access .table-bordered {
-  border-top: none;
+.printThis .the-form #printed-article tr th {
+  background-color: #cccccc !important;
+}
+
+.printThis .sys-access .the-form-grid .table-bordered {
+  border: 0;
 }
 
 .printThis .sys-access .table-bordered td,
 .printThis .sys-access .table-bordered th {
-  border: none;
+  border: 0;
 }
 
 .printThis .sys-access .table-bordered thead tr th {
   text-align: left;
+}
+
+.printThis .the-border {
+  border: 1px solid #000000;
 }
 
 .printThis .virified-by {
@@ -11700,7 +11733,18 @@ hr {
   border-top: 1px solid #000;
 }
 
-@media print {
+.printThis .sign-over-name {
+  text-align: center;
+  color: #000000;
+  font-size: 1.2em;
+}
+
+@media print and (color) {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   input[type=checkbox],
   .custom-control-label {
     display: none;
@@ -11708,6 +11752,16 @@ hr {
 
   input[type=checkbox]:checked ~ div {
     display: block;
+  }
+
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #000000;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #000000;
   }
 }
 

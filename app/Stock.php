@@ -2,8 +2,8 @@
 
 namespace App;
 use App\Device;
-use App\User;
 use App\Employee;
+use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 

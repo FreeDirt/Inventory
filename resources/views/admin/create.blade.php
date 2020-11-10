@@ -31,8 +31,8 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('password', 'Confirmation Password') }}
-        {{ Form::text('password', '', ['class' => 'form-control', 'placeholder' => 'Confirmation Password']) }}
+        {{ Form::label('confirmed', 'Confirmation Password') }}
+        {{ Form::text('confirmed', '', ['class' => 'form-control', 'placeholder' => 'Confirmation Password']) }}
     </div>
     <div>
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}

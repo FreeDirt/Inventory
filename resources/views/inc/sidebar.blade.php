@@ -7,7 +7,7 @@
     <div class="current-user-container">
         <hr>
             <div class="user-profile {{Request::is('profile') ? 'activebtn' : ''}}">
-                <div class="current-user-img"><img src="https://secure.gravatar.com/avatar/8dc83045e49cce170613fb08551e9df0?s=96&d=mm&r=g" alt="Ryan Mendoza Profile"></div>
+                <div class="current-user-img"><img src="/storage/cover_images/noimage.jpg" alt=""></div>
                 <div class="current-user-name" id="btn-profile" ><span> {{$current_user->name}} mendoza </span> <i id="myprofile" class="{{Request::is('profile') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
             </div>
             <div class="user-profile-settings {{Request::is('profile') ? 'active' : ''}}" >

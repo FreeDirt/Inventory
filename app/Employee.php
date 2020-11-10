@@ -3,23 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Stock;
 use App\Country;
 use App\Company;
 use App\Designation;
 use App\Department;
 use App\Ipaddress;
+use App\Stock;
 
 class Employee extends Model
 {
     protected $table = 'employees';
 
     protected $fillable = ['name', 'email','employee_no','gender','cover_image','user_id','created_at','updated_at'];
-
-    public function stocks()
-    {
-        return $this->belongsTo('App\Stock', 'stock_id');
-    }
 
     public function company()
     {
@@ -43,6 +38,10 @@ class Employee extends Model
     public function country()
     {
         return $this->belongsTo('App\Country', 'country_id');
+    }
+    public function stock()
+    {
+        return $this->belongsTo('App\Stock', 'stock_id');
     }
 }
 

@@ -104,7 +104,7 @@
                 <td>{{$stock->device->brand['name']}}</td>
                 <td>{{$stock->device->category['name']}}</td>
                 <td>{{$stock->serial}}</td>
-                <td>{{$stock->device->deviceCode}}-{{$stock->item_code}}</td>
+                <td>{{$stock->item_code}}</td>
                 <td>{{$stock->employee['name']}}</td>
                 <td><a href="/stock/{{$stock->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="/stock/{{$stock->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
@@ -141,14 +141,14 @@ of total {{$stocks->total()}} entries
             <th scope="col">ACTION</th>
             </tr>
         </thead>
-        @foreach ($devices->unique('category_id') as $device)
+        @foreach ($devCounts as $devCount)
+        @if($devCount->seCount)
             <tbody>
                 <tr>
-                <!-- <td>{{$stock->id}}</td> -->
-                <td>{{ ucfirst($device->category['name']) }}</td>
-                <td>{{ $device->phpStocks->count() }}</td>
-                <td>{{ $device->employee->count()}}</td>
-                <td>{{ $device->phpStocks->count() - $device->employee->count() }}</td>
+                <td>{{ ucfirst($devCount->catNames) }}</td>
+                <td>{{  $devCount->seCount }}</td>
+                <td>{{ $devCount->empTotal }}</td>
+                <td>{{ $devCount->seCount - $devCount->empTotal }}</td>
                 <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
                 {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
@@ -159,6 +159,7 @@ of total {{$stocks->total()}} entries
                 </td>
                 </tr>
             </tbody>
+            @endif
         @endforeach
         </table>
     </div>

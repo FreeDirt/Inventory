@@ -35,15 +35,39 @@ class StockController extends Controller
         $categories = Category::all();
         $employees = Employee::all();
         $stocks = Stock::all();
-        
-        foreach($devices as $device) {
 
-                $device->phpStocks = Stock::where('device_id', $device->id)->get();
-                $device->phpCategories =  Category::where('categories.id', $device->category_id)->get();
-                $device->employee = DB::table('stocks')->where('device_id', $device->id)
-                                    ->join('employees', 'employees.id', '=', 'stocks.employee_id')
-                                    ->get();
+        // dd($counter);
+
+        $devCounts = DB::table('devices')
+            ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
+            ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
+            ->select(DB::raw('ifnull(count(serial),0) as seCount, categories.name as catNames, count(employee_id) as empTotal'))
+            ->groupBy('category_id')
+            ->get();
+
+                    // dd($devCounts);
+
+        foreach($stocks as $stock) {
+            $stock->phpStocks = Device::where('id', $stock->device_id)->distinct()->get();
+            $stock->catcounts = Category::where('id', '=', $stock->device->category_id)->distinct()->count();
         }
+        
+        // foreach($devices as $device) {
+
+        //         $device->phpStocks = Stock::where('device_id', $device->id)->distinct()->get();
+        // //         // $deviceas =  Category::where('categories.id', $device->category_id)->distinct()->count();
+        //         $device->total = Device::where('category_id', $device->category_id)->pluck('name', 'id');
+        // //         // $device->test =  DB::table('stocks')->where('device_id', $device->id)
+        // //         //                 ->join('devices', 'devices.id', '=', 'stocks.device_id')
+        // //         //                 ->join('categories', 'categories.id', '=', 'devices.category_id')
+        // //         //                 ->distinct()->count();
+            
+        //         $device->employee = DB::table('stocks')->where('device_id', $device->id)
+        //                             ->join('employees', 'employees.id', '=', 'stocks.employee_id')
+        //                             ->distinct()->get();
+
+        //     // dd($device->employee);
+        // }
 
         // $items = $request->get('per_page');
         $items = $request->items ?? 10;
@@ -57,7 +81,7 @@ class StockController extends Controller
             'devices',
             'categories',
             'laststocks',
-            'employees'))->with('items', $items);
+            'employees', 'devCounts'))->with('items', $items);
         
 
         // $useDevices = DB::table('stocks')

@@ -49806,14 +49806,14 @@ function () {
       //   window.location = "{{URL::route('stock')}}?items=" + this.value;
       // };
       // PRINTTHIS
+      //   $(document).ready(function() {
+      //     $('#print').on('click', function(e) {
+      //       $('.printThis').printThis({
+      //         importStyle: $(this).hasClass('importStyle')
+      //       });
+      //     });
+      //   });
 
-      $(document).ready(function () {
-        $('#print').on('click', function (e) {
-          $('.printThis').printThis({
-            importStyle: $(this).hasClass('importStyle')
-          });
-        });
-      });
       /*
        * printThis v1.12.2
        * @desc Printing plug-in for jQuery
@@ -49834,7 +49834,7 @@ function () {
        *  $("#mySelector").printThis({
        *      debug: false,               // show the iframe for debugging
        *      importCSS: true,            // import page CSS
-       *      importStyle: false,         // import style tags
+       *      importStyle: true,         // import style tags
        *      printContainer: true,       // grab outer container as well as the contents of the selector
        *      loadCSS: "path/to/my.css",  // path to additional css file - us an array [] for multiple
        *      pageTitle: "",              // add title to print page
@@ -50074,7 +50074,7 @@ function () {
           // show the iframe for debugging
           importCSS: true,
           // import parent page css
-          importStyle: false,
+          importStyle: true,
           // import style tags
           printContainer: true,
           // print outer container/$.selector
@@ -50146,7 +50146,7 @@ function () {
             }
           }
         });
-      });
+      }); //   Checked if Class Exist
     }
   }]);
 

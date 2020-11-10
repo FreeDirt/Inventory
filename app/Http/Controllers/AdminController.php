@@ -53,12 +53,13 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         
@@ -69,7 +70,8 @@ class AdminController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
         $user->roles()->attach(Role::where('name', $request->input('roleId'))->first());
-        Auth::login($user);
+        // Auth::login($user);
+        
         return redirect('/admin')->with('success', 'Created a New User!');
     }
 

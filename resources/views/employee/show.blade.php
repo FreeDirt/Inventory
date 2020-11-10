@@ -54,11 +54,11 @@
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane in active" id="accountability">
           <div class="print-btn">
-              <button class="importStyle btn btn-primary">Print Me</button>
+              <button id="print" class="importStyle btn btn-primary">Print Me</button>
           </div>
     <div class="printThis">
         <div class="Accountability">
-            <div class="ctrl-number"><p>Control Number:___________</p></div>
+            <div class="ctrl-number"><p>Control Number: <span class="ctrl_underline"></span></p></div>
             <!-- //CTRL # -->
             <div class="logo-fca-kph">
                 <div class="the-logos fca-logs"><img src="https://floodcontrol.asia/fca-assets/uploads/fca-logo-300.png" alt="fca"></div>
@@ -68,10 +68,10 @@
             <h2>ACCOUNTABILITY FORM (I.T)</h2>
 
             <div class="emp-acc-detail">
-                <div class="acc-dt"><div class="acc-txt">Name:</div><div class="acc-input"><input type="text"></div></div>
-                <div class="acc-dt"><div class="acc-txt">Employee Number:</div><div class="acc-input"><input type="text"></div></div>
-                <div class="acc-dt"><div class="acc-txt">Department:</div><div class="acc-input"><input type="text"></div></div>
-                <div class="acc-dt"><div class="acc-txt">Position:</div><div class="acc-input"><input type="text"></div></div>
+                <div class="acc-dt"><div class="acc-txt">Name:</div><div class="acc-input"><input type="text" value="{{$employee->name}}" {{ $employee->name ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Employee Number:</div><div class="acc-input"><input type="text" value="{{$employee->employee_no}}" {{ $employee->employee_no ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Department:</div><div class="acc-input"><input type="text" value="{{$department}}" {{ $department ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Position:</div><div class="acc-input"><input type="text" value="{{$designation}}" {{ $designation ? 'disabled' : '' }}></div></div>
             </div>
 
             <!-- //ACCOUNTABILITY FORM (I.T) -->
@@ -80,317 +80,43 @@
                 <h6>ITEM ISSUED</h6>
 
                 <div class="the-form-grid">
-                <table class="table table-bordered">
-                  <!-- COMPUTER -->
-                  <thead>
-                    <tr>
-                      <th scope="col"><p>Computer</p></th>
-                      <th scope="col"><p>Unit Type</p></th>
-                      <th scope="col"><p>Serial Number</p></th>
-                      <th scope="col"><p>Date</p></th>
-                      <th scope="col"><p>Received by</p></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
+                <table class="table table-bordered w-border">
+                <?php $prevcat = "" ?>
+                  @foreach($employeeDevices as $key => $val)
+                    @if ($prevcat != $val->sub_cat) 
+                      <thead id="printed-article">
+                      <tr>
+                        <th scope="col"><p>{{$val->sub_cat}}</p></th>
+                        <th scope="col"><p>Unit Type</p></th>
+                        <th scope="col"><p>Serial Number</p></th>
+                        <th scope="col"><p>Date</p></th>
+                        <th scope="col"><p>Received by</p></th>
+                      </tr>
+                    </thead>
+                    <?php $prevcat = $val->sub_cat ?>
+                    @endif
+                    <tr> 
                       <td>
                         <div class="custom-control custom-checkbox">
-                          <input id="option" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option">&nbsp;&nbsp;<span>MAC PC</span></label>
+                          <input id="option_{{$key}}" type="checkbox" class="custom-control-input" {{ isset($val->catName) ? $val->catName : '' }}  {{ isset($val->deviceSerial) ? 'checked' : '' }}  >
+                          <label class="checkbox custom-control-label" for="option_{{$key}}">
+                            &nbsp;&nbsp;<span>{{ isset($val->catName) ? $val->catName : '' }} </span>
+                          </label>
                         </div>
                       </td>
-                      <td><input type="text" value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
+                      <td><input type="text" placeholder="N/A" value="{{ isset($val->devName) ? $val->devName : '' }}"></td>
+                      <td><input type="text"  placeholder="N/A" value="{{ isset($val->deviceSerial) ? $val->deviceSerial : '' }}"  {{ !isset($val->deviceSerial) ? 'disabled' : '' }} ></td>
+                      <td><input type="text"  placeholder="N/A" value="{{ isset($val->dateAdded) ? $val->dateAdded : '' }}" onclick="(this.type='date')"></td>
                       <td></td>
                     </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                        <input id="option2" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option2">&nbsp;&nbsp;Windows PC</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    
-                  </tbody>
-                  <!-- MONITOR -->
-                  <thead>
-                    <tr>
-                      <th scope="col"><p>Monitor</p></th>
-                      <th scope="col"><p>Unit Type</p></th>
-                      <th scope="col"><p>Serial Number</p></th>
-                      <th scope="col"><p>Date</p></th>
-                      <th scope="col"><p>Received by</p></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                            <input id="option3" type="checkbox" class="custom-control-input">
-                              <label class="checkbox custom-control-label" for="option3">&nbsp;&nbsp;Monitor 1</label>
-                        </div>
-                      </td>
-                      <td><input type="text" value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option4" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option4">&nbsp;&nbsp;Monitor 2</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                   <!-- Peripherals -->
-                   <thead>
-                    <tr>
-                      <th scope="col"><p>Peripherals</p></th>
-                      <th scope="col"><p>Unit Type</p></th>
-                      <th scope="col"><p>Serial Number</p></th>
-                      <th scope="col"><p>Date</p></th>
-                      <th scope="col"><p>Received by</p></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                            <input id="option5" type="checkbox" class="custom-control-input">
-                              <label class="checkbox custom-control-label" for="option5">&nbsp;&nbsp;Keyboard</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option6" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option6">&nbsp;&nbsp;Mouse</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option7" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option7">&nbsp;&nbsp;Headset</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option8" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option8">&nbsp;&nbsp;Webcam</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option9" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option9">&nbsp;&nbsp;External Hard Drive</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option10" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option10">&nbsp;&nbsp;USB Flash Disk</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option11" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option11">&nbsp;&nbsp;Laptop Bag</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option12" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option12">&nbsp;&nbsp;Power Bank</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option13" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option13">&nbsp;&nbsp;Video Cable</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option14" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option14">&nbsp;&nbsp;Video Adapter 1</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option15" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option15">&nbsp;&nbsp;Video Adapter 2</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option16" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option16">&nbsp;&nbsp;USB Adapter 1</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option17" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option17">&nbsp;&nbsp;USB Adapter 2</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option18" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option18">&nbsp;&nbsp;Other</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                   <!-- Mobile Devices -->
-                   <thead>
-                    <tr>
-                      <th scope="col"><p>Mobile Devices</p></th>
-                      <th scope="col"><p>Unit Type</p></th>
-                      <th scope="col"><p>Serial Number</p></th>
-                      <th scope="col"><p>Date</p></th>
-                      <th scope="col"><p>Received by</p></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                            <input id="option19" type="checkbox" class="custom-control-input">
-                              <label class="checkbox custom-control-label" for="option19">&nbsp;&nbsp;device 1</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option20" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option20">&nbsp;&nbsp;device 2</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="custom-control custom-checkbox">
-                          <input id="option21" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option21">&nbsp;&nbsp;device 3</label>
-                        </div>
-                      </td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td><input type="text"  value="N/A"></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
+                  @endforeach
                 </table>
                 </div>
             </div>
 
-            <!-- // ITEM ISSUED -->
-
-             <!-- // System Access -->
+              <!-- // System Access -->
             
-             <div class="the-form sys-access">
+             <div class="the-form sys-access the-border">
                 <h6>System Access</h6>
 
                 <div class="the-form-grid">
@@ -461,7 +187,7 @@
                       <td>
                         <div class="custom-control custom-checkbox">
                           <input id="option29" type="checkbox" class="custom-control-input">
-                          <label class="checkbox custom-control-label" for="option29">&nbsp;&nbsp;@klipp.tv</label>
+                          <label class="checkbox custom-control-label" for="option29">&nbsp;&nbsp;MIS System</label>
                         </div>
                       </td>
                       <td>
@@ -469,7 +195,7 @@
                       <td>
                         <div class="custom-control custom-checkbox">
                             <input id="option30" type="checkbox" class="custom-control-input">
-                              <label class="checkbox custom-control-label" for="option30">&nbsp;&nbsp;apple@acc.dr-klippe.de</label>
+                              <label class="checkbox custom-control-label" for="option30">&nbsp;&nbsp;CRM System</label>
                         </div>
                       </td>
                       <td></td>
@@ -489,21 +215,21 @@
                     <tr>
                       <td><p><strong>Checked & verified by:</strong><br><span>(Systems)</span></p>
                       </td>
-                      <td><hr>Signature Over Printed Name
+                      <td><div class="acc-input"><input type="text" class="sign-over-name"><hr>Signature Over Printed Name
                       </td>
-                      <td><p><strong>Checked & verified by:</strong><br><span> &nbsp;</span></p>
+                      <td><p><strong>Employee:</strong><br><span> &nbsp;</span></p>
                       </td>
-                      <td><hr>Signature Over Printed Name
+                      <td><div class="acc-input"><input type="text" class="sign-over-name"><hr>Signature Over Printed Name
                       </td>
                     </tr>
                     <tr>
                       <td>
                       </td>
-                      <td><hr>Date Signed
+                      <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed
                       </td>
                       <td>
                       </td>
-                      <td><hr>Date Signed</td>
+                      <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed</td>
                     </tr>
                   </tbody>
                 </table>
@@ -515,7 +241,9 @@
     </div>
   </div>
 
-  <div role="tabpanel" class="tab-pane fade" id="buzz">bbb</div>
+  <div role="tabpanel" class="tab-pane fade" id="buzz">
+  asdasd
+  </div>
   <div role="tabpanel" class="tab-pane fade" id="references">ccc</div>
 </div>
 </div>

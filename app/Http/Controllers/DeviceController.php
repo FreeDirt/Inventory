@@ -131,7 +131,8 @@ class DeviceController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $companies = Company::all();
-        return view('device.edit')->with(compact('device', 'categories', 'brands', 'current_user', 'companies'));
+        $countries = Country::all();
+        return view('device.edit')->with(compact('device', 'categories', 'brands', 'current_user', 'companies', 'countries'));
     }
 
     /**
