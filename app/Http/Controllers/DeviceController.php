@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use App\Exports\DevicesExport;
+use App\Imports\DevicesImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Device;
 use App\Category;
 use App\Country;
 use App\Company;
 use App\Brand;
 use App\User;
+use DB;
 
 class DeviceController extends Controller
 {
@@ -32,6 +37,7 @@ class DeviceController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $devices = Device::orderBy('created_at', 'desc')->paginate(10);
+        $importdevices = Device::orderBy('id', 'desc')->get();
 
         // $inventories = Inventory::all();
         // $inventories = Inventory::where('title', '*name of the item')->get();
@@ -47,7 +53,27 @@ class DeviceController extends Controller
         //     dd($user);
         //  }
 
-        return view('device.index', compact('devices', 'current_user'));
+        return view('device.index', compact('devices', 'current_user','importdevices'));
+    }
+
+     /**
+     * Import function
+     */
+    public function import(Request $request)
+    {
+        if ($request->file('imported_file')) {
+            Excel::import(new DevicesImport(), request()->file('imported_file'));
+            return back();
+        }
+    }
+
+
+    /**
+     * Export function
+     */
+    public function export()
+    {
+        return Excel::download(new DevicesExport(), 'devices.xlsx');
     }
 
     /**

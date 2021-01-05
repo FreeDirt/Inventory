@@ -23,8 +23,16 @@
             <div class="input-group">
                     {{ Form::label('name', ' ') }}
                     {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Category name']) }}    
+                    
+                    <select class="form-control" name="sub_cat" id="">
+                        <option value="Monitor">Monitor</option>
+                        <option value="Peripherals">Peripherals</option>
+                        <option value="Computer">Equip</option>
+                        <option value="Mobile devices">Mobile devices</option>
+                        <option value="Electronics">Electronics</option>
+                    </select>
                     {{ Form::submit('Add Category', ['class' => 'btn btn-primary']) }}
-                    </div>    
+                    </div>
             {!! Form::close() !!}
             
         </div>

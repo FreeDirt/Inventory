@@ -131,25 +131,25 @@
                     <tr>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option22" type="checkbox" class="custom-control-input">
+                            <input id="option22" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option22">&nbsp;&nbsp;@dr-klippe.com</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option23" type="checkbox" class="custom-control-input">
+                            <input id="option23" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option23">&nbsp;&nbsp;@dr-klippe.de</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option24" type="checkbox" class="custom-control-input">
+                            <input id="option24" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option24">&nbsp;&nbsp;@acc.dr-klippe.de</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option25" type="checkbox" class="custom-control-input">
+                            <input id="option25" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option25">&nbsp;&nbsp;@floodcontrol.asia</label>
                         </div>
                       </td>
@@ -157,19 +157,19 @@
                     <tr>
                       <td>
                         <div class="custom-control custom-checkbox">
-                          <input id="option26" type="checkbox" class="custom-control-input">
+                          <input id="option26" type="checkbox" class="custom-control-input" checked>
                           <label class="checkbox custom-control-label" for="option26">&nbsp;&nbsp;@klipp.tv</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option27" type="checkbox" class="custom-control-input">
+                            <input id="option27" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option27">&nbsp;&nbsp;google@acc.dr-klippe.de</label>
                         </div>
                       </td>
                       <td>
                         <div class="custom-control custom-checkbox">
-                            <input id="option28" type="checkbox" class="custom-control-input">
+                            <input id="option28" type="checkbox" class="custom-control-input" checked>
                               <label class="checkbox custom-control-label" for="option28">&nbsp;&nbsp;apple@acc.dr-klippe.de</label>
                         </div>
                       </td>

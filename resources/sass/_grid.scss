@@ -8,6 +8,8 @@
 
 .grid {
     display: grid;
+    grid-gap: 1em;
+    box-sizing: border-box;
 }
 
 .twofr1 {
@@ -16,6 +18,10 @@
 
 .onefr2fr1 {
     grid-template-columns: 1fr 2fr 1fr;
+}
+
+.repeat3 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .align-items-start {
@@ -27,4 +33,13 @@
 }
 .grid-1em-gap {
     grid-column-gap: 1em;
+}
+
+.grid-template {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }

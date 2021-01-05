@@ -8,7 +8,7 @@
     <div class="grid-container">
         <div class="grid-content column-2">
             <div>
-                <h3>Device Code: {{$device->deviceCode}}</h3><br>
+                <!-- <h3>Device Code: {{$device->deviceCode}}</h3><br> -->
                 <h3>Device Name: {{$device->name}}</h3><br>
                 <h3>Brand: {{$device->brand['name']}}</h3><br>
                 <h3>Category: {{$device->category['name']}}</h3><br>

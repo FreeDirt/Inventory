@@ -36,16 +36,14 @@ class StockController extends Controller
         $employees = Employee::all();
         $stocks = Stock::all();
 
-        // dd($counter);
-
         $devCounts = DB::table('devices')
             ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
             ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
-            ->select(DB::raw('ifnull(count(serial),0) as seCount, categories.name as catNames, count(employee_id) as empTotal'))
+            ->select(DB::raw('ifnull(count(serial),0) as seCount, categories.name as catNames, count(employee_id) as empTotal, categories.id as items'))
             ->groupBy('category_id')
             ->get();
 
-                    // dd($devCounts);
+        // dd($devCounts);
 
         foreach($stocks as $stock) {
             $stock->phpStocks = Device::where('id', $stock->device_id)->distinct()->get();
@@ -53,7 +51,6 @@ class StockController extends Controller
         }
         
         // foreach($devices as $device) {
-
         //         $device->phpStocks = Stock::where('device_id', $device->id)->distinct()->get();
         // //         // $deviceas =  Category::where('categories.id', $device->category_id)->distinct()->count();
         //         $device->total = Device::where('category_id', $device->category_id)->pluck('name', 'id');
@@ -61,19 +58,16 @@ class StockController extends Controller
         // //         //                 ->join('devices', 'devices.id', '=', 'stocks.device_id')
         // //         //                 ->join('categories', 'categories.id', '=', 'devices.category_id')
         // //         //                 ->distinct()->count();
-            
         //         $device->employee = DB::table('stocks')->where('device_id', $device->id)
         //                             ->join('employees', 'employees.id', '=', 'stocks.employee_id')
         //                             ->distinct()->get();
-
         //     // dd($device->employee);
         // }
-
         // $items = $request->get('per_page');
+        
         $items = $request->items ?? 10;
         $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
         $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
-
 
         return view('stock.index', compact(
             'stocks',
@@ -83,12 +77,10 @@ class StockController extends Controller
             'laststocks',
             'employees', 'devCounts'))->with('items', $items);
         
-
         // $useDevices = DB::table('stocks')
         // ->join('employees', 'stocks.employee_id', '=', 'employees.id')
         // ->where('employees.id', '=', 1)
         // ->sum('stocks.id');
-
         // $catNames = DB::table('stocks')
         // ->join('devices', 'devices.id', 'device_id')
         // ->join('categories', 'categories.id', 'category_id')
@@ -105,12 +97,91 @@ class StockController extends Controller
         // return response()->json($result);
     }
 
+    public function allItems()
+    {
+        $userId = auth()->user()->id;
+        $current_user = User::find($userId);
+
+        $allItems = DB::table('devices')
+        ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
+        ->leftJoin('employees', 'employees.id', '=', 'stocks.employee_id')
+        ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
+        ->leftJoin('brands', 'brands.id', '=', 'devices.brand_id')
+        ->select(DB::raw('devices.name as device,
+                        categories.name as category,
+                        brands.name as brand,
+                        employees.name as user,
+                        employees.id as empId,
+                        stocks.id as stockId,
+                        serial as serial,
+                        description as description,
+                        model_year as model_year,
+                        cost as cost'))
+        // ->groupBy('category_id')
+        // ->orderBy('employees.id')
+        ->orderBy('category', 'desc')
+        ->get();
+
+    // dd($items);
+    
+    return view('stock.allitems', compact('current_user', 'allItems'));
+
+    }
+
+    public function getItems($items)
+    {
+        $userId = auth()->user()->id;
+        $current_user = User::find($userId);
+
+        // dd( $current_user );
+
+        // $catID = Category::find($id);
+        
+        // // $inventories = Inventory::where('title', '*name of the item')->get();
+        // dd($catID);
+
+
+        // $cats = DB::table('categories')->where('id', $id)
+        // ->leftJoin('devices', 'devices.id', '=', 'stocks.device_id')
+        // ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
+        // ->select(DB::raw('categories.name as catName, categories.sub_cat as sub_cat, employee_id as empID, devices.name as devName, serial as deviceSerial, stocks.created_at as dateAdded'))
+        // ->orderBy('categories.sub_cat', 'asc')
+        // ->groupBy('stocks.device_id')
+        // ->get()->toArray();
+
+        $cats = DB::table('devices')->where('category_id', $items)
+            ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
+            ->leftJoin('employees', 'employees.id', '=', 'stocks.employee_id')
+            ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
+            ->leftJoin('brands', 'brands.id', '=', 'devices.brand_id')
+            ->select(DB::raw('devices.name as device,
+                            categories.name as category,
+                            brands.name as brand,
+                            employees.name as user,
+                            employees.id as empId,
+                            stocks.id as stockId,
+                            serial as serial,
+                            description as description,
+                            model_year as model_year,
+                            cost as cost'))
+            // ->groupBy('category_id')
+            ->orderBy('employees.id', 'desc')
+            ->get();
+
+        // dd($cats);
+        
+        return view('stock.items', compact('current_user', 'cats'));
+    }
+
+   
     public function search(Request $request)
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $search = $request->get('search');
         $categories = Category::all();
+        $devices = Device::all();
+        $employees = Employee::all();
         
         $items = $request->items ?? 10;
         $stocks = Stock::where('id', 'like', '%' .$search. '%')
@@ -120,24 +191,12 @@ class StockController extends Controller
         ->orWhere('created_at', 'like', '%' .$search. '%')
         ->orWhere('updated_at', 'like', '%' .$search. '%')->paginate($items);
 
-        $devices = Device::where('id', 'like', '%' .$search. '%')
-        ->orWhere('deviceCode', 'like', '%' .$search. '%')
-        ->orWhere('brand_id', 'like', '%' .$search. '%')
-        ->orWhere('category_id', 'like', '%' .$search. '%')
-        ->orWhere('user_id', 'like', '%' .$search. '%')
-        ->orWhere('model_no', 'like', '%' .$search. '%')
-        ->orWhere('model_year', 'like', '%' .$search. '%')
-        ->orWhere('cost', 'like', '%' .$search. '%')
-        ->orWhere('created_at', 'like', '%' .$search. '%')
-        ->orWhere('updated_at', 'like', '%' .$search. '%')->paginate($items);
-
         $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
 
-        return view('stock.search', compact('stocks', 'current_user', 'devices', 'categories','laststocks'));
+        return view('stock.search', compact('stocks', 'current_user', 'devices', 'categories','laststocks','employees','search'));
         // return view('inventory.index')->with('inventories', $inventories);
 
     }
-
 
 
     /**
@@ -162,12 +221,14 @@ class StockController extends Controller
     {
         $this->validate($request, [
             'serial' => 'required',
+            'description' => 'nullable',
             'item_code' => 'required',
         ]);
 
         // Create New Message
         $stock = new Stock;
         $stock->name = $request->input('serial');
+        $stock->description = $request->input('description');
         $stock->item_code = $request->input('item_code');
         $stock->employee_id = $request->input('employee_id');
         
@@ -189,6 +250,7 @@ class StockController extends Controller
         $this->validate($request, [
             'device_id' => 'required',
             'serial' => 'required|unique:stocks|max:255',
+            'description' => 'nullable',
             'item_code' => 'required',
         ]);
 
@@ -196,6 +258,7 @@ class StockController extends Controller
         $stock = new Stock;
         $stock->device_id = $request->input('device_id');
         $stock->serial = $request->input('serial');
+        $stock->description = $request->input('description');
         $stock->item_code = $request->input('item_code');
         $stock->employee_id = $request->input('employee_id');
         // $stock->user_id = auth()->user()->id;
@@ -219,6 +282,10 @@ class StockController extends Controller
         return view('stock.show', compact('stock', 'current_user'));
     }
 
+   
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -229,10 +296,14 @@ class StockController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
+        $categories = Category::all();
+        $stocks = Stock::all();
         $stock = Stock::find($id);
         $devices = Device::all();
         $employees = Employee::all();
-        return view('stock.edit')->with(compact('stock','current_user','devices','employees'));
+        
+
+        return view('stock.edit')->with(compact('stocks', 'stock','current_user','categories','devices','employees'));
     }
 
     /**
@@ -247,6 +318,7 @@ class StockController extends Controller
         $this->validate($request, [
             'device_id' => 'required',
             'serial' => 'required',
+            'description' => 'nullable',
             'item_code' => 'required',
         ]);
 
@@ -254,6 +326,7 @@ class StockController extends Controller
         $stock = Stock::find($id);
         $stock->device_id = $request->input('device_id');
         $stock->serial = $request->input('serial');
+        $stock->description = $request->input('description');
         $stock->item_code = $request->input('item_code');
         $stock->employee_id = $request->input('employee_id');
 

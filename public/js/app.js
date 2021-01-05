@@ -50147,6 +50147,7 @@ function () {
           }
         });
       }); //   Checked if Class Exist
+      // DROPZONE - Drag and Drop Upload
     }
   }]);
 

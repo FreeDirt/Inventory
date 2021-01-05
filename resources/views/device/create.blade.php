@@ -8,9 +8,9 @@
 
 <div class="tablebg">
 
-{!! Form::open(['action' => 'DeviceController@store', 'method' => 'POST']) !!}
+{!! Form::open(['action' => 'DeviceController@store', 'class' => 'grid-template', 'method' => 'POST']) !!}
     <div class="form-group">
-        {{ Form::label('deviceCode', 'Device Code') }}
+        <!-- {{ Form::label('deviceCode', 'Device Code') }} -->
         <select class="form-control" name="deviceCode" id="">
         @foreach ($companies as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
@@ -18,16 +18,16 @@
         </select>
     </div>
     <div class="form-group">
-        {{ Form::label('name', 'Device Name') }}
+        <!-- {{ Form::label('name', 'Device Name') }} -->
         {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Device Name']) }}
     </div>
     <div class="form-group">
-        {{ Form::label('model_no', 'Model no.') }}
+        <!-- {{ Form::label('model_no', 'Model no.') }} -->
         {{ Form::text('model_no', '', ['class' => 'form-control', 'placeholder' => 'Enter Model No.']) }}
     </div>
 
     <div class="form-group">
-        {{ Form::label('brand_id', 'Brand') }}
+        <!-- {{ Form::label('brand_id', 'Brand') }} -->
         <select class="form-control" name="brand_id" id="">
         @foreach ($brands as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
@@ -35,7 +35,7 @@
         </select>
     </div>
     <div class="form-group">
-        {{ Form::label('category_id', 'Category') }}
+        <!-- {{ Form::label('category_id', 'Category') }} -->
         <select class="form-control" name="category_id" id="">
         @foreach ($categories as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
@@ -44,15 +44,15 @@
     </div>
     
     <div class="form-group">
-        {{ Form::label('model_year', 'Model Year') }}
+        <!-- {{ Form::label('model_year', 'Model Year') }} -->
         {{ Form::text('model_year', '', ['class' => 'form-control', 'placeholder' => 'Enter Model Year']) }}
     </div>
     <div class="form-group">
-        {{ Form::label('cost', 'Cost') }}
+        <!-- {{ Form::label('cost', 'Cost') }} -->
         {{ Form::text('cost', '', ['class' => 'form-control', 'placeholder' => 'Cost']) }}
     </div>
     <div class="form-group">
-        {{ Form::label('country', 'Country Purchased') }}
+        <!-- {{ Form::label('country', 'Country Purchased') }} -->
         <select class="form-control" name="country_id">
         <option value="">--- Select Country ---</option>
         @foreach ($countries as $key => $value)
@@ -60,7 +60,7 @@
         @endforeach
         </select>
     </div>
-    <div>
+    <div class="form-group">
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
     </div>
 {!! Form::close() !!}

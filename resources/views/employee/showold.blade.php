@@ -98,12 +98,12 @@
                     
                       <td>
                         <div class="custom-control custom-checkbox">
-                        <input id="option" type="checkbox" class="custom-control-input" >
+                        <input id="option" type="checkbox" class="custom-control-input" {{ $empDev ? 'checked' : ' ' }}>
                         <label class="checkbox custom-control-label" for="option">&nbsp;&nbsp;<span>MAC PC</span></label>
                         </div>
                       </td>
                       <td><input type="text" placeholder="N/A"></td>
-                      <td><input type="text"  placeholder="{{ !$key ? 'N/A' : $key }}" ></td>
+                      <td><input type="text"  placeholder="{{ !$key ? 'N/A' : $key }}" {{ $key? 'Disabled' : ' ' }}></td>
                       <td><input type="text"  placeholder="N/A" onclick="(this.type='date')"></td>
                       <td></td>
                     </tr>

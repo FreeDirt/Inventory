@@ -33,10 +33,13 @@
 }
 
 .emp-tbl-lst {
-    tr {
+    
 
+    tr {
+        
         td {
             vertical-align: 0;
+            
 
             img {
                 width: 50px;
@@ -44,6 +47,12 @@
             }
         }
     }
+
+    &:nth-child(even) {
+        background-color: #f8fbfc!important;
+    }
+
+   
 }
 
 .modalImport {

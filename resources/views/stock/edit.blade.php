@@ -8,23 +8,24 @@
 
 {!! Form::open(['action' => ['StockController@update', $stock->id], 'method' => 'POST']) !!}
     <div class="form-group">
-        {{ Form::label('category', 'category') }}
+        {{ Form::label('category_id', 'Category') }}
         <select name="devcat" class="form-control">
-            @foreach ($devices as $device)
-                <option value="{{$device->category['id']}}">{{ucfirst($device->category['name'])}}</option>
+        <?php $selectedvalue = $stock->device->category['id']; ?>
+            @foreach ($categories as $cat)
+            <option value="{{$cat->id}}" {{ $selectedvalue == $cat->id ? 'selected="selected"' : ''}}>{{$cat->name}}</option>
             @endforeach
         </select>
     </div>
     <div class="form-group">
-        {{ Form::label('Name', 'Name') }}
+        {{ Form::label('device_id', 'Device') }}
         <select id="device_id" class="form-control" name="device_id">
-                <?php $selectedvalue = $stock->device_id ?>
-                @foreach ($devices as $key => $value)
-                <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$stock->device['name']}}</option>
-                @endforeach
+        <?php $selectedvalue = $stock->device['id'] ?>
+        @foreach ($devices->unique('category_id') as $device)
+            <option value="{{$device->id}}" {{ $selectedvalue == $device->id ? 'selected="selected"' : ''}}>{{ucfirst($stock->device['name'])}}</option>
+        @endforeach
         </select>
-        
     </div>
+
     <div class="form-group">
         {{ Form::label('employee_id', 'Employee') }}
         <select class="form-control" name="employee_id" id="">
@@ -38,6 +39,10 @@
     <div class="form-group">
         {{ Form::label('serial', 'Serial') }}
         {{ Form::text('serial', $stock->serial, ['class' => 'form-control', 'placeholder' => 'Enter Serial']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('description', 'Description') }}
+        {{ Form::text('description', $stock->description, ['class' => 'form-control', 'placeholder' => 'Enter Description']) }}
     </div>
     <div class="form-group">
         {{ Form::label('item_code', 'Item Code') }}

@@ -42,7 +42,7 @@
         </select>
     </div>
     <div class="form-group">
-        {{ Form::label('designation_id', 'Company') }}
+        {{ Form::label('designation_id', 'Designation') }}
         <select class="form-control" name="designation_id" id="">
         <?php $selectedvalue = $employee->designation_id ?>
         @foreach ($designations as $key => $value)

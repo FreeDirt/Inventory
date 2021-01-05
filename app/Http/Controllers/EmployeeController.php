@@ -188,7 +188,12 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $categories = Category::all()->pluck('name');
         $department = Department::where('id', $employee->department_id)->pluck('name')->first();
-        $designation = Department::where('id', $employee->designation_id)->pluck('name')->first();
+        $designation = Designation::where('id', $employee->designation_id)->pluck('name')->first();
+
+        // $designation = $employee->designation_id;
+
+        // dd($designation);
+
         $stocks = Stock::all();
 
         $employeeDevices = DB::table('stocks')->where('employee_id', $id)

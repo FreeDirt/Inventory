@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UploadController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +16,9 @@
 // Home Page
 Route::get('/', 'PagesController@gethome');
 // Search Inventory
-Route::get('/search', 'stockController@search');
+Route::get('/search', 'StockController@search');
+// items
+Route::get('/stock/allitems/', 'StockController@allItems');
 // Table Controller List
 Route::get('/tblist', 'PagesController@tblist');
 // Contact Message
@@ -27,9 +31,19 @@ Route::resource('category', 'CategoryController');
 Route::resource('brand', 'BrandController');
 // DeviceController CRUD
 Route::resource('device', 'DeviceController');
+
+// StocksController CRUD
+Route::resource('media', 'MediaController');
+
 // StocksController CRUD
 Route::resource('stock', 'StockController');
 Route::get('stock/ajax/{id}',array('as'=>'stock.ajax','uses'=>'StockController@stockAjax'));
+Route::get('stock/items/{items}',array('as'=>'stock.items','uses'=>'StockController@getItems'));
+Route::get('stock/allitems/',array('as'=>'stock.allitems','uses'=>'StockController@allItems'));
+
+Route::get('ui', [ UploadController::class, 'upload' ]);
+Route::post('upload', [ UploadController::class, 'uploadFile' ])->name('uploadFile');
+
 // Role Controller CRUD
 Route::resource('role', 'RoleController');
 // Profile Controller CRUD
@@ -68,6 +82,10 @@ Route::get('/dashboard', 'DashboardController@index');
 // Import / Export Employee
 Route::post('employees/import', 'EmployeeController@import');
 Route::get('employees/export', 'EmployeeController@export');
+
+// Import / Export Device
+Route::post('devices/import', 'DeviceController@import');
+Route::get('devices/export', 'DeviceController@export');
 
 
 // Route::get('/admin/edit', 'UsersController@edit');

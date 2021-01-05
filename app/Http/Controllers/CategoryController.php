@@ -53,12 +53,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories|max:255'
+            'name' => 'required|unique:categories|max:255',
+            'sub_cat' => 'required'
         ]);
 
         // Create New List
         $category = new Category;
         $category->name = $request->input('name');
+        $category->sub_cat = $request->input('sub_cat');
         // $category->category = auth()->category()->category;
         $category->save();
         
@@ -91,7 +93,10 @@ class CategoryController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         $category = Category::find($id);
-        return view('category.edit', compact('category', 'current_user'));
+        $categories = Category::all();
+
+        // dd( $category);
+        return view('category.edit', compact('category', 'current_user','categories'));
     }
 
     /**
@@ -104,12 +109,14 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'sub_cat' => 'required'
         ]);
 
         // Create New List
         $category = Category::find($id);
         $category->name = $request->input('name');
+        $category->sub_cat = $request->input('sub_cat');
 
         $category->save();
         

@@ -9,7 +9,7 @@
         </div>
 
         {!! Form::open(['action' => 'StockController@store', 'method' => 'POST']) !!}
-        <div class="row">
+        <div class="row grid repeat3">
         <div class="col-sm">
                 <select name="devcat" class="form-control">
                     <option value="">--- Select Category ---</option>
@@ -33,6 +33,9 @@
             </div>
             <div class="col-sm">
                 {{ Form::text('serial', '', ['class' => 'form-control', 'placeholder' => 'Enter serial']) }}
+            </div>
+            <div class="col-sm">
+                {{ Form::text('description', '', ['class' => 'form-control', 'placeholder' => 'Enter description']) }}
             </div>
             <div class="col-sm">
             @if(count($laststocks) > 0)
@@ -84,11 +87,11 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-            <!-- <th scope="col">Id</th> -->
-            <th scope="col">ID</th>
+            <!-- <th scope="col">ID</th> -->
             <th scope="col">Device</th>
             <th scope="col">Brand</th>
             <th scope="col">Category</th>
+            <th scope="col">Description</th>
             <th scope="col">Serial</th>
             <th scope="col">Item Code</th>
             <th scope="col">User Employee</th>
@@ -99,10 +102,10 @@
             <tbody>
                 <tr>
                 <!-- <td>{{$stock->id}}</td> -->
-                <td>{{$stock->id}}</td>
                 <td>{{$stock->device['name']}}</td>
                 <td>{{$stock->device->brand['name']}}</td>
                 <td>{{$stock->device->category['name']}}</td>
+                <td>{{$stock->description ? $stock->description : 'none' }}</td>
                 <td>{{$stock->serial}}</td>
                 <td>{{$stock->item_code}}</td>
                 <td>{{$stock->employee['name']}}</td>
@@ -129,6 +132,8 @@ of total {{$stocks->total()}} entries
 
     </div><br>
 
+    <div><a href="/stock/allitems/">View All</a></div>
+
     <div class="body-theme">
     <table class="table">
         <thead class="thead-dark">
@@ -144,18 +149,14 @@ of total {{$stocks->total()}} entries
         @foreach ($devCounts as $devCount)
         @if($devCount->seCount)
             <tbody>
+                
                 <tr>
-                <td>{{ ucfirst($devCount->catNames) }}</td>
+                <!-- <td>{{ ucfirst($devCount->items) }}</td> -->
+                <td><a href="/stock/items/{{$devCount->items}}">{{ ucfirst($devCount->catNames) }}</a></td>
                 <td>{{  $devCount->seCount }}</td>
                 <td>{{ $devCount->empTotal }}</td>
                 <td>{{ $devCount->seCount - $devCount->empTotal }}</td>
-                <td><a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
-
-                {!!Form::close()!!}
+                <td><a href="/stock/items/{{$devCount->items}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 </td>
                 </tr>
             </tbody>

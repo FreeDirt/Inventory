@@ -11294,6 +11294,8 @@ hr {
 
 .grid {
   display: grid;
+  grid-gap: 1em;
+  box-sizing: border-box;
 }
 
 .twofr1 {
@@ -11302,6 +11304,10 @@ hr {
 
 .onefr2fr1 {
   grid-template-columns: 1fr 2fr 1fr;
+}
+
+.repeat3 {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .align-items-start {
@@ -11314,6 +11320,15 @@ hr {
 
 .grid-1em-gap {
   grid-column-gap: 1em;
+}
+
+.grid-template {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .emp-prof-banner {
@@ -11358,6 +11373,10 @@ hr {
 .emp-tbl-lst tr td img {
   width: 50px;
   border-radius: 100%;
+}
+
+.emp-tbl-lst:nth-child(even) {
+  background-color: #f8fbfc !important;
 }
 
 .modalImport {
@@ -11600,6 +11619,7 @@ hr {
   width: 90%;
   border-bottom: 2px solid #000000;
   font-size: 1.2em;
+  background-color: #ffffff;
 }
 
 .printThis .the-form h6 {
@@ -11836,6 +11856,17 @@ hr {
 .select-items div:hover,
 .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropzone {
+  background: white;
+  border-radius: 5px;
+  border: 2px dashed #0087f7;
+  -o-border-image: none;
+     border-image: none;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*!

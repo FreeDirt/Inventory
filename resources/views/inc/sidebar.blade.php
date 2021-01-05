@@ -67,7 +67,7 @@
 
             
 
-            <li><a class="" href="/profile">
+            <li><a class="" href="/media">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-photo-video fa-2x"></i></div> 
                         <div class="fl-item-text"><span>Media</span></div>
@@ -118,7 +118,7 @@
                 </div>
             </li>
 
-            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'ipaddress','company','department') ? 'activebtn' : ''}}">
+            <li><div class="toggle-btn-menu-emp {{Request::is('employee', 'ipaddress','company','department','designation') ? 'activebtn' : ''}}">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-users fa-2x"></i></div> 
                         <div class="fl-item-text"><span>Employees</span><i id="emp-tog-icon" class="{{Request::is('employee', 'ipaddress') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>

@@ -8,10 +8,11 @@
     <div class="grid-container">
         <div class="grid-content column-2 body-theme">
             <div>
-                <h3>ID: {{$stock->id}}</h3><br>
+                <!-- <h3>ID: {{$stock->id}}</h3><br> -->
                 <h3>Device Name: {{$stock->device['name']}}</h3><br>
                 <h3>Brand: {{$stock->device->brand['name']}}</h3><br>
                 <h3>Category: {{$stock->device->category['name']}}</h3><br>
+                <h3>Description: {{ $stock->description ? $stock->description : 'none' }}</h3><br>
                 <h3>Serial No.: {{$stock->serial}}</h3><br>
                 <h3>Item Code: {{$stock->device->deviceCode}}-{{$stock->item_code}}</h3><br>
             </div>
