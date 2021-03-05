@@ -16,6 +16,7 @@ use App\Department;
 use App\Device;
 use App\Employee;
 use App\Ipaddress;
+use App\Image;
 use App\User;
 use App\Stock;
 use DB;
@@ -48,11 +49,12 @@ class EmployeeController extends Controller
     // }
 
 
-    public function index()
+    public function index(Request $request)
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        // $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        $employees = Employee::all();
         $importemployees = Employee::orderBy('id', 'desc')->get();
 
         // $employee->device = Stock::where('employee_id', $employee)->get();
@@ -63,6 +65,9 @@ class EmployeeController extends Controller
         //                     ->get();
 
         // dd($employee->device);
+        if ($request->ajax()) {
+            return view('employee.index', compact('employees', 'current_user','importemployees'));
+        }
 
         return view('employee.index', compact('employees', 'current_user','importemployees'));
     }
@@ -101,7 +106,8 @@ class EmployeeController extends Controller
         $departments = Department::all();
         $ipaddresses = Ipaddress::all();
         $countries = Country::all();
-        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses','countries'));
+        $images = Image::all();
+        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses','countries', 'images'));
     }
 
     /**
@@ -129,7 +135,7 @@ class EmployeeController extends Controller
             'postal_code' => 'nullable',
             'employee_no' => 'required',
             'gender' => 'required',
-            'cover_image' => 'image|nullable|max:1999',
+            'cover_image' => 'sometimes|nullable|max:1999',
         ]);
 
         // Handle File Upload
@@ -144,7 +150,11 @@ class EmployeeController extends Controller
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        } else {
+            
+        } elseif($request->has('cover_image'))  {
+            $fileNameToStore = $request->input('cover_image');
+        }
+        else {
             $fileNameToStore = 'noimage.jpg';
         }
 
@@ -290,8 +300,10 @@ class EmployeeController extends Controller
         $designations = Designation::all();
         $departments = Department::all();
         $ipaddresses = Ipaddress::all();
+        $images = Image::all();
         $countries = Country::all();
-        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','countries'));
+        
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','images','countries'));
     }
 
     /**

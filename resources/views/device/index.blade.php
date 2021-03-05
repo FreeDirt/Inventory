@@ -34,7 +34,7 @@
                 <br/>
 
                 @if(count($importdevices))
-                    <table class="table table-bordered">
+                    <table class="table table-bordered display" id="myTable">
                         <thead>
                         <tr>
                             <td>ID</td>
@@ -50,6 +50,7 @@
                             <td>Updated</td>
                         </tr>
                         </thead>
+                        <tbody>
                         @foreach($importdevices as $device)
                             <tr>
                                 <td>{{$device->id }}</td>
@@ -65,6 +66,7 @@
                                 <td>{{$device->updated_at}}</td>
                             </tr>
                         @endforeach
+                        </tbody>
                     </table>
                 @endif
 
@@ -90,7 +92,7 @@
             </form>
         </div>
     </div><br>
-        <table class="table">
+        <table class="table display" id="table_id">
         <thead class="thead-dark">
             <tr>
             <!-- <th scope="col">Id</th> -->
@@ -104,8 +106,8 @@
             <th scope="col">Action</th>
             </tr>
         </thead>
-        @foreach($devices as $device)
             <tbody>
+            @foreach($devices as $device)
                 <tr>
                 <!-- <td>{{$device->id}}</td> -->
                 <!-- <td>{{$device->deviceCode}}</td> -->
@@ -117,35 +119,25 @@
                 <td>₱{{ number_format($device->cost, 2, '.', ',') }}</td>
                 
                 <td>
-                <a href="/device/{{$device->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/device/{{$device->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['DeviceController@destroy', $device->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <div class="flex gap-03em">
+                    <a href="/device/{{$device->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="/device/{{$device->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    {!!Form::open(['action' => ['DeviceController@destroy', $device->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                    {!!Form::close()!!}</div>
                 </td>
                 </tr>
+                @endforeach
             </tbody>
-        @endforeach
-        {{$devices->links()}}
+        <!-- {{$devices->links()}} -->
         </table>
         </div>
     
     @else
         <p>No device List is listed!</p>
     @endif
-
-
-    <div class="grid-container">
-        @foreach ($devices->unique('category_id') as $device)
-        <div class="body-theme">
-                <p>{{  $device->category['name']}}</p>
-                <p>Created_at: {{date('M j, Y h:ia', strtotime($device->created_at))}}</p>
-                <p>Updated_at: {{date('M j, Y h:ia', strtotime($device->updated_at))}}</p>
-        </div>
-        @endforeach
-    </div><br>
 
 
 @endsection

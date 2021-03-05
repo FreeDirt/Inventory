@@ -6,7 +6,7 @@
 <h1>{{$current_user->name}} Profile</h1>
 </div> <br>
 
-
+@if(count($inventories) > 0)
 <div class="container body-theme">
     <h2>{{$current_user->name}} Post</h2>
 <table class="table">
@@ -22,8 +22,9 @@
             <th scope="col">Action</th>
             </tr>
         </thead>
-        @foreach($inventories as $inventory)
+        
             <tbody>
+            @foreach($inventories as $inventory)
                 <tr>
                 <!-- <td>{{$inventory->id}}</td> -->
                 <td>{{$inventory->description}}</td>
@@ -33,19 +34,20 @@
                 <td>{{$inventory->serial_number}}</td>
                 <td>{{$inventory->user}}</td>
                 <td>
-                <a href="/inventory/{{$inventory->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                <div class="grid repeat3"><a href="/inventory/{{$inventory->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
                 <a href="/inventory/{{$inventory->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
                 {!!Form::open(['action' => ['InventoryController@destroy', $inventory->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
                     {{Form::hidden('_method', 'DELETE')}}
                     {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                {!!Form::close()!!}</div>
                 </td>
                 </tr>
+                @endforeach
             </tbody>
-        @endforeach
+        
         </table>
 </div>
 
-
+@endif
 @endsection

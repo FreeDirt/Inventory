@@ -532,15 +532,190 @@ class Myscript {
           });
           });
 
+
+          // ONCLICK GET VALUE
+
+          $(function(){
+            $(".asdbutton").click(function() {
+                var fired_button = $(this).val();
+                alert(fired_button);
+            });
+        });
+          
+
         //   Checked if Class Exist
         
 
         // DROPZONE - Drag and Drop Upload
+    //     var dropzone = new Dropzone('#demo-upload', {
+    //     previewTemplate: document.querySelector('#preview-template').innerHTML,
+    //     parallelUploads: 2,
+    //     thumbnailHeight: 120,
+    //     thumbnailWidth: 120,
+    //     maxFilesize: 3,
+    //     filesizeBase: 1000,
+    //     thumbnail: function(file, dataUrl) {
+    //         if (file.previewElement) {
+    //         file.previewElement.classList.remove("dz-file-preview");
+    //         var images = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+    //         for (var i = 0; i < images.length; i++) {
+    //             var thumbnailElement = images[i];
+    //             thumbnailElement.alt = file.name;
+    //             thumbnailElement.src = dataUrl;
+    //         }
+    //         setTimeout(function() { file.previewElement.classList.add("dz-image-preview"); }, 1);
+    //         }
+    //     }
 
-          
+    //     });
 
 
-      
+    //     // Now fake the file upload, since GitHub does not handle file uploads
+    //     // and returns a 404
+
+    //     var minSteps = 6,
+    //         maxSteps = 60,
+    //         timeBetweenSteps = 100,
+    //         bytesPerStep = 100000;
+
+    //     dropzone.uploadFiles = function(files) {
+    //     var self = this;
+
+    //     for (var i = 0; i < files.length; i++) {
+
+    //         var file = files[i];
+    //         totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+
+    //         for (var step = 0; step < totalSteps; step++) {
+    //         var duration = timeBetweenSteps * (step + 1);
+    //         setTimeout(function(file, totalSteps, step) {
+    //             return function() {
+    //             file.upload = {
+    //                 progress: 100 * (step + 1) / totalSteps,
+    //                 total: file.size,
+    //                 bytesSent: (step + 1) * file.size / totalSteps
+    //             };
+
+    //             self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
+    //             if (file.upload.progress == 100) {
+    //                 file.status = Dropzone.SUCCESS;
+    //                 self.emit("success", file, 'success', null);
+    //                 self.emit("complete", file);
+    //                 self.processQueue();
+    //                 //document.getElementsByClassName("dz-success-mark").style.opacity = "1";
+    //             }
+    //             };
+    //         }(file, totalSteps, step), duration);
+    //         }
+    //     }
+    // }
+
+
+
+    // DYNAMIC ON CHANGE STOCK / Disable for now bcuz using dataTables
+    // $('body').on('keyup', '#livesearch', function() {
+    //     var searchQue = this.value
+    //     // console.log(searchQue);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: '/stock/index',
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         },
+    //         data: {
+    //             _token: $('meta[name="csrf-token"]').attr('content'),
+    //             searchQue: searchQue
+    //         },
+    //         success: function (res) {
+    //            console.log(res);
+    //             var tableRow = '';
+
+    //             // empty table raw
+    //             $('#slsearch').empty();
+
+    //             $.each(JSON.parse(res), function(index, value) {
+
+    //                 tableRow = `
+    //                 <tr>
+    //                 <td>${value.device}</td>
+    //                 <td>${value.brand}</td>
+    //                 <td>${value.category}</td>
+    //                 <td>${value.description}</td>
+    //                 <td>${value.serial}</td>
+    //                 <td>${value.item_code}</td>
+    //                 <td>${value.user}</td>
+    //                 <td><a href="/stock/${value.stockId}" class="btn btn-primary"><i class="fas fa-eye"></i></a></td>
+    //                 `;
+    //                 $('#slsearch').append(tableRow);
+    //             });
+
+                
+    //         },
+    //         // error: function (res, textStatus, errorThrown) {
+    //         //     console.log(res);
+        
+    //         // },
+    //     });
+    // });
+
+    // Confirm Delete
+    $('.show_confirm').click(function(e) {
+        if(!confirm('Are you sure you want to delete this?')) {
+            e.preventDefault();
+        }
+    });
+
+    //
+
+    $('#toggle-tblempv').click( function() {
+        $('#grid-view').toggleClass('fa-th-list');
+        $('#table_id_wrapper').toggleClass('dt-grid-view');
+      });
+
+
+       $(window).on('hashchange', function() {
+            if (window.location.hash) {
+                var page = window.location.hash.replace('#', '');
+                if (page == Number.NaN || page <= 0) {
+                    return false;
+                }else{
+                    getData(page);
+                }
+            }
+        });
+
+        // $(document).ready(function()
+        // {
+        //     $(document).on('click', '.pagination a',function(event)
+        //     {
+        //         event.preventDefault();
+
+        //         $('li').removeClass('active');
+        //         $(this).parent('li').addClass('active');
+
+        //         var myurl = $(this).attr('href');
+        //         var page=$(this).attr('href').split('page=')[1];
+
+        //         getData(page);
+        //     });
+
+        // });
+
+        // function getData(page){
+        //     $.ajax(
+        //     {
+        //         url: '?page=' + page,
+        //         type: "get",
+        //         datatype: "html"
+        //     }).done(function(data){
+        //         $("#tag_container").empty().html(data);
+        //         location.hash = page;
+        //     }).fail(function(jqXHR, ajaxOptions, thrownError){
+        //           alert('No response from server');
+        //     });
+        // }
+
+    //END  
     }
    }
    

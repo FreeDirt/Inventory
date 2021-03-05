@@ -6,19 +6,29 @@
     <div class="container">
         <h1>MEDIA LIBRARY</h1>
 
-        <SECTION>
-        <DIV id="dropzone">
-            <FORM class="dropzone needsclick" id="demo-upload" action="/upload">
-            <DIV class="dz-message needsclick">    
-                Drop files here or click to upload.<BR>
-                <SPAN class="note needsclick">(This is just a demo dropzone. Selected 
-                files are <STRONG>not</STRONG> actually uploaded.)</SPAN>
-            </DIV>
-            </FORM>
-        </DIV>
-        </SECTION>
+            {!! Form::open(['action' => 'MediaController@store', 'method' => 'POST', 'class' => 'dropzone needsclick']) !!}
+            <div class="needsclick"><br>
+            </div>
+            <!-- {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }} -->
+            {!! Form::close() !!}
     </div>
 </div>
+
+
+@if(count($images) > 0)
+<div class="body-theme">
+    <div class="media_images grid repeat5">
+        @foreach($images as $image)
+        <div>
+            <img src="/storage/cover_images/{{$image->image_name}}" alt="prifile picture">
+            <a href="" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+            <a href="" class="btn btn-success"><i class="fas fa-edit"></i></a>
+        </div>
+        @endforeach
+        </div>
+</div>
+
+@endif
 
 
 @endsection

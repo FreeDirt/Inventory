@@ -72,7 +72,8 @@
         height: 600px;
         margin: auto;
         padding: 20px;
-        box-shadow: 0 5px 8px 0 rgba($color: #000000, $alpha: 0.2), 0 7px 20px 0 rgba($color: #000000, $alpha: 0.2);
+        box-shadow: 0 5px 8px 0 rgba($color: #000000, $alpha: 0.2),
+                    0 7px 20px 0 rgba($color: #000000, $alpha: 0.2);
         overflow: scroll;
 
 
@@ -89,4 +90,154 @@
         }
     }
 }
+
+// MODAL
+
+.modal-window {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  .modal-window:target {
+    visibility: visible;
+    opacity: 1;
+    background: rgba($color: #000000, $alpha: 0.7);
+    pointer-events: auto;
+  }
+  .modal-window > div {
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: auto;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+  }
+  .modal-window header {
+    font-weight: bold;
+  }
+  .modal-window h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+  
+  .modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+  }
+  .modal-close:hover {
+    color: black;
+  }
+
+  .selectedImage {
+      border: 0px;
+      text-overflow: ellipsis;
+  }
+
+  .clickMe {
+     cursor: pointer;
+  }
+
+  // CK BTN
+  #toggle-tblempv {
+        display: none;
+  }
+  
+  .tog-label {
+      text-align: right;
+  }
+ 
+//   .fa-th:hover:before {
+//       content: 'text';
+//       position: relative;
+//   }
+
+ // EMPLOYEE TABLE VIEW
+  .empCont {
+    
+    .emp-card {
+        display: flex;
+
+        p {
+            margin: auto 0;
+        }
+    }
+
+    .emp-view:nth-of-type(odd) {
+        background-color: #ffffff;
+    }
+
+    .emp-view {
+        // margin: auto;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+    }
+  }
+
+
+  
+  input:checked + .empCont{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 1em;
+
+      .emp-card {
+        display: block;
+
+        p {
+            margin: 0;
+        }
+    }
+
+      .emp-view {
+        box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5), inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+        color: #00408e;
+        background: #eeeeee;
+        padding: 10px;
+        border-radius: 10%;
+        text-align: center;
+    
+        &:hover {
+            opacity: 1;
+            box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8), 6px 6px 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+        }
+    
+        a {
+            text-decoration: none;
+        }
+    
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+        }
+      }
+  }
+  
+  
 

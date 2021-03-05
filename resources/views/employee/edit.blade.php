@@ -6,9 +6,27 @@
 <a href="/employee" class="btn btn-info">Go Back</a><br><br>
 <h1>employee Edit</h1>
 
-{!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+<!-- <div class="input-container">
+        <div class="employee-input">
+            {{ Form::label('name', 'Name') }}
+            {{ Form::text('name', $employee->name, ['class' => 'form-control', 'placeholder' => 'Enter employee Name']) }}
+        </div>
+        <div class="employee-input">
+            {{ Form::label('email', 'Email') }}
+            {{ Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'EnterEmail']) }}
+        </div>
+        <div class="employee-input">
+            {{ Form::label('company_no', 'Company Number') }}
+            {{ Form::text('company_no', $employee->company_no, ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
+        </div>
+        <div class="employee-input">
+
+        </div>
+</div> -->
+
+{!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'class' => 'grid repeat3', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
-        {{ Form::label('name', 'employee Name') }}
+        {{ Form::label('name', 'Name') }}
         {{ Form::text('name', $employee->name, ['class' => 'form-control', 'placeholder' => 'Enter employee Name']) }}
     </div>
     <div class="form-group">
@@ -16,7 +34,7 @@
         {{ Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'EnterEmail']) }}
     </div>
     <div class="form-group">
-        {{ Form::label('bday', 'Model Year') }}
+        {{ Form::label('bday', 'Birthday') }}
         {{ Form::text('bday', $employee->bday, ['class' => 'form-control', 'placeholder' => 'Enter Birthday']) }}
     </div>
     <div class="form-group">
@@ -46,6 +64,15 @@
         <select class="form-control" name="designation_id" id="">
         <?php $selectedvalue = $employee->designation_id ?>
         @foreach ($designations as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        {{ Form::label('department_id', 'department') }}
+        <select class="form-control" name="department_id" id="">
+        <?php $selectedvalue = $employee->department_id ?>
+        @foreach ($departments as $key => $value)
             <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
         @endforeach
         </select>
@@ -89,6 +116,23 @@
     </div>
     <div class="form-group">
         {{ Form::file('cover_image')}}
+    </div>
+    <div class="form-group">
+        <a class="btn btn-primary" href="#open-modal" id="mdlopen">Select Image</a> <span>{{ Form::text('cover_image', '', ['class' => 'selectedImage', 'id' => 'img-id', 'readonly']) }}</span>
+        <div id="open-modal" class="modal-window">
+            <a href="#" title="Close" class="modal-close">Close</a>
+            
+            @if(count($images) > 0)
+            <div class="body-theme">
+                <div class="media_images grid repeat7">
+                    @foreach($images as $image)
+                    <img src="/storage/cover_images/{{$image->image_name}}" class="clickMe" id="{{$image->image_name}}">
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
+        </div>
     </div>
     <div>
         {{ Form::hidden('_method', 'PUT')}}

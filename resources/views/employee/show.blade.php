@@ -40,10 +40,10 @@
     <a class="nav-link active" href="#accountability" role="tab" data-toggle="tab">Accountability</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Settings</a>
+    <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Access Form</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#references" role="tab" data-toggle="tab">references</a>
+    <a class="nav-link" href="#references" role="tab" data-toggle="tab">PDF</a>
   </li>
 </ul>
 
@@ -104,8 +104,8 @@
                           </label>
                         </div>
                       </td>
-                      <td><input type="text" placeholder="N/A" value="{{ isset($val->devName) ? $val->devName : '' }}"></td>
-                      <td><input type="text"  placeholder="N/A" value="{{ isset($val->deviceSerial) ? $val->deviceSerial : '' }}"  {{ !isset($val->deviceSerial) ? 'disabled' : '' }} ></td>
+                      <td><input type="text" placeholder="N/A" value="{{ isset($val->devName) ? $val->devName : '' }}" {{ isset($val->devName) ? 'disabled' : '' }}></td>
+                      <td><input type="text"  placeholder="N/A" value="{{ isset($val->deviceSerial) ? $val->deviceSerial : '' }}"  {{ isset($val->deviceSerial) ? 'disabled' : '' }} ></td>
                       <td><input type="text"  placeholder="N/A" value="{{ isset($val->dateAdded) ? $val->dateAdded : '' }}" onclick="(this.type='date')"></td>
                       <td></td>
                     </tr>

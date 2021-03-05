@@ -32,7 +32,7 @@
                 </div>
                 <br/>
 
-                @if(count($importemployees))
+                @if(count($importemployees) > 0)
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -57,7 +57,7 @@
 </div><br><br>
 
 @if(count($employees) > 0)
-    <div class="body-theme">
+    <div class="">
     <div class="search-field">
         <div class="search-by-categories">
             <div><p>Select by Categories: drop down     |    show: 10</p></div>
@@ -73,39 +73,69 @@
             </form>
         </div>
     </div><br>
-        <table class="table mytable">
+        <div class="tog-label">
+            <label for="toggle-tblempv">
+                <i id="grid-view" class="fas fa-th fa-2x {{Request::has('employee/*') ? 'fa-th-list' : 'fa-th-list'}}"></i>
+            </label>
+        </div>
+        <input type="checkbox" name="mycheckbox" id="toggle-tblempv">
+        <table class="table mytable" id="table_id">
         <thead class="thead-dark">
             <tr>
             <th scope="col">Photo</th>
-            <th scope="col" onclick="sortTable(0)">Name</th>
+            <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Company No.</th>
-            <th scope="col">Serial.</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
-        @foreach($employees as $employee)
+        
             <tbody class="emp-tbl-lst">
+            @foreach($employees as $employee)
                 <tr>
                 <td><img src="/storage/cover_images/{{$employee->cover_image}}" alt="prifile picture"></td>
                 <td>{{$employee->name}}</td>
                 <td>{{$employee->email}}</td>
                 <td>{{$employee->company_no}}</td>
-                <td>{{$employee->stock['name']}}</td>
                 <td>
-                <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/employee/{{$employee->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['EmployeeController@destroy', $employee->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <div class="flex gap-03em">
+                    <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="/employee/{{$employee->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    {!!Form::open(['action' => ['EmployeeController@destroy', $employee->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                    {!!Form::close()!!}
+                </div>
                 </td>
                 </tr>
+                @endforeach
             </tbody>
-        @endforeach
-        {{$employees->links()}}
         </table>
+        </div>
+        
+        <!-- <div class="tog-label">
+            <label for="toggle-tblempv">
+                <i id="grid-view" class="fas fa-th fa-2x {{Request::has('employee/*') ? 'fa-th-list' : 'fa-th-list'}}"></i>
+            </label>
+        </div>
+        <input type="checkbox" name="mycheckbox" id="toggle-tblempv">
+        <div class="empCont control-me" id="id">
+        @foreach($employees as $employee)
+            <div class="emp-view">
+            <a href="/employee/{{$employee->id}}">
+                <div class="emp-card">
+                    <p> <img src="/storage/cover_images/{{$employee->cover_image}}" class="img-global-class" alt="prifile picture"></p>
+                    <p>{{$employee->name}}</p>
+                    <p>{{$employee->email}}</p>
+                    <p>{{$employee->company_no}}</p>
+                    <p>{{$employee->stock['name']}}</p>
+                </div>
+            </a>
+            </div>
+        @endforeach -->
+        
+        
         </div>
     
     @else

@@ -25,7 +25,7 @@
         <!-- {{ Form::label('model_no', 'Model no.') }} -->
         {{ Form::text('model_no', '', ['class' => 'form-control', 'placeholder' => 'Enter Model No.']) }}
     </div>
-
+    
     <div class="form-group">
         <!-- {{ Form::label('brand_id', 'Brand') }} -->
         <select class="form-control" name="brand_id" id="">

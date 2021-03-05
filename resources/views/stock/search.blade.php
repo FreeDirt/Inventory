@@ -59,7 +59,6 @@
 </div><br>
 
 
-<!-- <a href="/stock/create" class="btn btn-info float-right">Create New</a><br><br> -->
 @if(count($stocks) > 0)
     <div class="body-theme">
     <h1>stock List</h1>
@@ -82,7 +81,6 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-            <!-- <th scope="col">Id</th> -->
             <th scope="col">ID</th>
             <th scope="col">Device</th>
             <th scope="col">Brand</th>
@@ -96,7 +94,6 @@
         @foreach($stocks as $stock)
             <tbody>
                 <tr>
-                <!-- <td>{{$stock->id}}</td> -->
                 <td>{{$stock->id}}</td>
                 <td>{{$stock->device['name']}}</td>
                 <td>{{$stock->device->brand['name']}}</td>

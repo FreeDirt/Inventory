@@ -65,8 +65,12 @@ class StockController extends Controller
         // }
         // $items = $request->get('per_page');
         
-        $items = $request->items ?? 10;
-        $stocks = Stock::orderBy('created_at', 'asc')->paginate($items);
+        // $items = $request->items ?? 10;
+
+        // {!! Form::open([ 'url' => route('stock.index'), 'method' => 'get' ]) !!}
+//             {{ Form::label('items', 'Show') }} {!! Form::select( 'items', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('items', 'Entries') }}
+//         {!! Form::close() !!}
+        $stocks = Stock::orderBy('created_at', 'asc')->get();
         $laststocks = Stock::orderBy('created_at', 'desc')->take(1)->get();
 
         return view('stock.index', compact(
@@ -75,26 +79,8 @@ class StockController extends Controller
             'devices',
             'categories',
             'laststocks',
-            'employees', 'devCounts'))->with('items', $items);
-        
-        // $useDevices = DB::table('stocks')
-        // ->join('employees', 'stocks.employee_id', '=', 'employees.id')
-        // ->where('employees.id', '=', 1)
-        // ->sum('stocks.id');
-        // $catNames = DB::table('stocks')
-        // ->join('devices', 'devices.id', 'device_id')
-        // ->join('categories', 'categories.id', 'category_id')
-        // ->select('categories.name', )
-        // ->get();
-
-        // JSON
-        // $result = $stocks->getCollection()->transform(function($stock, $key){
-        //     return [
-        //         'id' => $stock->id,
-        //         'serial' => $stock->serial,
-        //     ];
-        // });
-        // return response()->json($result);
+            'employees', 'devCounts'));
+            // 'employees', 'devCounts'))->with('items', $items);
     }
 
     public function allItems()
@@ -132,23 +118,6 @@ class StockController extends Controller
     {
         $userId = auth()->user()->id;
         $current_user = User::find($userId);
-
-        // dd( $current_user );
-
-        // $catID = Category::find($id);
-        
-        // // $inventories = Inventory::where('title', '*name of the item')->get();
-        // dd($catID);
-
-
-        // $cats = DB::table('categories')->where('id', $id)
-        // ->leftJoin('devices', 'devices.id', '=', 'stocks.device_id')
-        // ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
-        // ->select(DB::raw('categories.name as catName, categories.sub_cat as sub_cat, employee_id as empID, devices.name as devName, serial as deviceSerial, stocks.created_at as dateAdded'))
-        // ->orderBy('categories.sub_cat', 'asc')
-        // ->groupBy('stocks.device_id')
-        // ->get()->toArray();
-
         $cats = DB::table('devices')->where('category_id', $items)
             ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
             ->leftJoin('employees', 'employees.id', '=', 'stocks.employee_id')
@@ -196,6 +165,40 @@ class StockController extends Controller
         return view('stock.search', compact('stocks', 'current_user', 'devices', 'categories','laststocks','employees','search'));
         // return view('inventory.index')->with('inventories', $inventories);
 
+    }
+
+    public function livesearch(Request $request)
+    {
+
+        $stocks = DB::table('devices')
+        ->leftJoin('stocks', 'devices.id', '=', 'stocks.device_id')
+        ->leftJoin('employees', 'employees.id', '=', 'stocks.employee_id')
+        ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
+        ->leftJoin('brands', 'brands.id', '=', 'devices.brand_id')
+        ->where('devices.name', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('serial', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('employees.name', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('brands.name', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('categories.name', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('description', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('item_code', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('stocks.created_at', 'like', '%' .$request->get('searchQue'). '%')
+        ->orWhere('stocks.updated_at', 'like', '%' .$request->get('searchQue'). '%')
+        ->select(DB::raw('devices.name as device,
+                        categories.name as category,
+                        brands.name as brand,
+                        employees.name as user,
+                        employees.id as empId,
+                        stocks.id as stockId,
+                        serial as serial,
+                        description as description,
+                        model_year as model_year,
+                        item_code as item_code,
+                        cost as cost'))
+        ->get();
+
+
+        return json_encode($stocks);
     }
 
 

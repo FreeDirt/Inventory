@@ -8,7 +8,6 @@
     <div class="grid-container">
         <div class="grid-content column-2 body-theme">
             <div>
-                <!-- <h3>ID: {{$stock->id}}</h3><br> -->
                 <h3>Device Name: {{$stock->device['name']}}</h3><br>
                 <h3>Brand: {{$stock->device->brand['name']}}</h3><br>
                 <h3>Category: {{$stock->device->category['name']}}</h3><br>
@@ -25,7 +24,7 @@
                 </div>
             <a href="/stock/{{$stock->id}}/edit" class="btn btn-success">Edit</a>
 
-            {!!Form::open(['action' => ['StockController@destroy', $stock->id], 'method' => 'POST', 'class' => 'float-right'])!!}
+            {!!Form::open(['action' => ['StockController@destroy', $stock->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {!!Form::close()!!}

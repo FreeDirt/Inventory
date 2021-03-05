@@ -24,7 +24,7 @@ html, body {
         background-attachment: fixed;
         background: linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,.5)),url(https://pbs.twimg.com/media/C5av3QbWMAQahzV.jpg) no-repeat 43% 37%;
         top:0;
-        overflow-y:scroll;
+        overflow-y:auto;
         overflow-x:hidden;
         height: 100%;
         left: 0px;
@@ -100,7 +100,7 @@ html, body {
     .right-content {
         float: left;
         width: 100%;
-        padding: 80px 80px 80px 300px;
+        padding: 20px 80px 80px 300px;
         box-sizing: border-box;
         transition: all 500ms linear;
         // background: linear-gradient(60deg, rgba(255, 255, 255,1) 0%, rgba(0, 64, 142,1) 100%);
@@ -108,10 +108,6 @@ html, body {
     .right-content.active {
         padding: 80px;
     }
-}
-
-.table-title {
-    position: relative;
 }
 
 .select-hidden {

@@ -16,7 +16,7 @@ class CreateIpaddressesTable extends Migration
         Schema::create('ipaddresses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ip');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->timestamps();
         });
     }

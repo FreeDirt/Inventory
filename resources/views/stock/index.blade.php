@@ -1,16 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+<input type="checkbox" name="add-new" class="open-form" id="add-new">
+    <div class="add-stock">
+        <label for="add-new"><span class="add-new"></span></label>
+    </div>
 
-<div class="body-theme">
-    <div class="container">
+    
+
+    <div class="body-theme">
+    <table class="table" id="tabledata">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">DEVICE</th>
+            <th scope="col">TOTAL</th>
+            <th scope="col">USED</th>
+            <th scope="col">STOCKS</th>
+            <th scope="col">ACTION</th>
+            </tr>
+        </thead>
+            <tbody>
+            @foreach ($devCounts as $devCount)
+                @if($devCount->seCount)
+                <tr>
+                <td><a href="/stock/items/{{$devCount->items}}">{{ ucfirst($devCount->catNames) }}</a></td>
+                <td>{{  $devCount->seCount }}</td>
+                <td>{{ $devCount->empTotal }}</td>
+                <td>{{ $devCount->seCount - $devCount->empTotal }}</td>
+                <td><a href="/stock/items/{{$devCount->items}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                </td>
+                </tr>
+                @endif
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
+    <div class="all-stock-items-container"><a class="all-stock-items" href="/stock/allitems/">View All</a></div>
+
+
+    <div class="body-theme add-item-form">
+      <div class="form-item">
         <div class="table-title">
             <h1>Add Stocks</h1>
         </div>
 
         {!! Form::open(['action' => 'StockController@store', 'method' => 'POST']) !!}
-        <div class="row grid repeat3">
-        <div class="col-sm">
+        <div class="stock-form-container">
+            <div class="stock-form-content">
                 <select name="devcat" class="form-control">
                     <option value="">--- Select Category ---</option>
                     @foreach ($devices->unique('category_id') as $device)
@@ -18,12 +55,12 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
                 <select id="device_id" class="form-control" name="device_id">
                         <option value="">--- Select Device ---</option>
                 </select>
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
                 <select id="employee_id" class="form-control" name="employee_id">
                     <option value="">-- Select Employee --</option>
                     @foreach ($employees as $key => $employee)
@@ -31,13 +68,13 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
                 {{ Form::text('serial', '', ['class' => 'form-control', 'placeholder' => 'Enter serial']) }}
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
                 {{ Form::text('description', '', ['class' => 'form-control', 'placeholder' => 'Enter description']) }}
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
             @if(count($laststocks) > 0)
                 @foreach ($laststocks as $laststock)
                     {{ Form::text('item_code', '', ['class' => 'form-control', 'placeholder' => $laststock->device['name'] . ' ' . $laststock['item_code']]) }}
@@ -48,7 +85,7 @@
             @endif
                 
             </div>
-            <div class="col-sm">
+            <div class="stock-form-content">
                 {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
             </div>
         </div>
@@ -58,18 +95,11 @@
     </div>
 </div><br>
 
-
-<!-- <a href="/stock/create" class="btn btn-info float-right">Create New</a><br><br> -->
 @if(count($stocks) > 0)
     <div class="body-theme">
-    <h1>stock List</h1>
-    <div class="search-field">
+    <!-- <div class="search-field">
         <div class="search-by-categories">
-            <div>
-                {!! Form::open([ 'url' => route('stock.index'), 'method' => 'get' ]) !!}
-                    {{ Form::label('items', 'Show') }} {!! Form::select( 'items', [ '10' => '10', '20' => '20', '50' => '50', '100' => '100'], $items, array('onchange' => "submit()") ) !!} {{ Form::label('items', 'Entries') }}
-                {!! Form::close() !!}
-            </div>
+            
         </div>
         <div class="search-btn-form">
             <form action="/search" method="get">
@@ -81,13 +111,17 @@
                 </div>
             </form>
         </div>
-    </div><br>
-   
 
-    <table class="table">
+        
+    </div> -->
+    <!-- <div class="search-btn-form">
+        @csrf
+        <input type="text" id="livesearch" class="form-control" placeholder="Advance Search">
+    </div><br> -->
+        
+    <table class="table display" id="table_id">
         <thead class="thead-dark">
             <tr>
-            <!-- <th scope="col">ID</th> -->
             <th scope="col">Device</th>
             <th scope="col">Brand</th>
             <th scope="col">Category</th>
@@ -98,71 +132,44 @@
             <th scope="col">Action</th>
             </tr>
         </thead>
-        @foreach($stocks as $stock)
-            <tbody>
+        
+            <tbody id="slsearch">
+            @foreach($stocks as $stock)
+                
                 <tr>
-                <!-- <td>{{$stock->id}}</td> -->
                 <td>{{$stock->device['name']}}</td>
                 <td>{{$stock->device->brand['name']}}</td>
                 <td>{{$stock->device->category['name']}}</td>
                 <td>{{$stock->description ? $stock->description : 'none' }}</td>
                 <td>{{$stock->serial}}</td>
                 <td>{{$stock->item_code}}</td>
-                <td>{{$stock->employee['name']}}</td>
-                <td><a href="/stock/{{$stock->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/stock/{{$stock->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['StockController@destroy', $stock->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <td>@if(!empty($stock->employee['name']))
+                    <a href="/employee/{{$stock->employee['id']}}">{{$stock->employee['name']}}</a>
+                    @else 
+                        <div>-</div>
+                    @endif
+                </td>
+                <!-- <td><a href="/employee/{{$stock->employee['id']}}">{{$stock->employee['name']}}</a></td> -->
+                <td>
+                    <div class="flex gap-03em">
+                        <a href="/stock/{{$stock->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                        <a href="/stock/{{$stock->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                        {!!Form::open(['action' => ['StockController@destroy', $stock->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                            {{Form::hidden('_method', 'DELETE')}}
+                            {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                        {!!Form::close()!!}
+                    </div>
                 </td>
                 </tr>
+                @endforeach
             </tbody>
-        @endforeach
-        {{$stocks->links()}}
         </table>
-
         <div>
-        Showing {{ $stocks->firstItem() }} to {{ $stocks->lastItem() }}
-of total {{$stocks->total()}} entries
         </div>
         <div>
         </div>
 
-    </div><br>
-
-    <div><a href="/stock/allitems/">View All</a></div>
-
-    <div class="body-theme">
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-            <!-- <th scope="col">Id</th> -->
-            <th scope="col">DEVICE</th>
-            <th scope="col">TOTAL</th>
-            <th scope="col">USED</th>
-            <th scope="col">STOCKS</th>
-            <th scope="col">ACTION</th>
-            </tr>
-        </thead>
-        @foreach ($devCounts as $devCount)
-        @if($devCount->seCount)
-            <tbody>
-                
-                <tr>
-                <!-- <td>{{ ucfirst($devCount->items) }}</td> -->
-                <td><a href="/stock/items/{{$devCount->items}}">{{ ucfirst($devCount->catNames) }}</a></td>
-                <td>{{  $devCount->seCount }}</td>
-                <td>{{ $devCount->empTotal }}</td>
-                <td>{{ $devCount->seCount - $devCount->empTotal }}</td>
-                <td><a href="/stock/items/{{$devCount->items}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                </td>
-                </tr>
-            </tbody>
-            @endif
-        @endforeach
-        </table>
     </div>
 
 

@@ -14,9 +14,10 @@ class IpTableSeeder extends Seeder
      */
     public function run()
     {
-        $rysip = new Ipaddress();
-        $rysip->ip = '192.168.88.32';
-        $rysip->description = 'Ryan Mendoza Currently use this IP.';
-        $rysip->save();
+        for ($i=0; $i < 255; $i++) { 
+            DB::table('ipaddresses')->insert([
+               'ip' => '192.168.88' . '+' . $i
+           ]);
+       }
     }
 }

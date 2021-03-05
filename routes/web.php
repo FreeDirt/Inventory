@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UploadController;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +40,12 @@ Route::resource('stock', 'StockController');
 Route::get('stock/ajax/{id}',array('as'=>'stock.ajax','uses'=>'StockController@stockAjax'));
 Route::get('stock/items/{items}',array('as'=>'stock.items','uses'=>'StockController@getItems'));
 Route::get('stock/allitems/',array('as'=>'stock.allitems','uses'=>'StockController@allItems'));
+Route::post('stock/index',array('as'=>'stock.index','uses'=>'StockController@livesearch'));
+Route::get('stock/index',array('as'=>'stock.index','uses'=>'StockController@index'));
 
-Route::get('ui', [ UploadController::class, 'upload' ]);
-Route::post('upload', [ UploadController::class, 'uploadFile' ])->name('uploadFile');
+
+// Route::get('ui', [ MediaController::class, 'upload' ]);
+// Route::post('upload', [ MediaController::class, 'uploadFile' ])->name('uploadFile');
 
 // Role Controller CRUD
 Route::resource('role', 'RoleController');
