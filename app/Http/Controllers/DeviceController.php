@@ -12,12 +12,13 @@ use App\Category;
 use App\Country;
 use App\Company;
 use App\Brand;
+use App\Image;
 use App\User;
+use App\Parentcat;
 use DB;
 
 class DeviceController extends Controller
 {
-
       /**
      * Create a new controller instance.
      *
@@ -36,24 +37,24 @@ class DeviceController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $devices = Device::orderBy('created_at', 'desc')->paginate(10);
+        $devices = Device::orderBy('created_at', 'desc')->get();
         $importdevices = Device::orderBy('id', 'desc')->get();
 
-        // $inventories = Inventory::all();
-        // $inventories = Inventory::where('title', '*name of the item')->get();
-        // $inventories = DB::select('SELECT * FROM inventories');
-        // $inventories = Inventory::orderBy('description', 'desc')->get();
-        // $inventories = Inventory::orderBy('description', 'desc')->take(1)->get();
-        // $categories = Category::all();
-        //  foreach($categories as $category) {
-        //     $category->monitor = Device::orderBy('name', 'desc')->where('category_id', $category->id)->get();
-        // }
-
-        // if ($user = Device::where('category_id', '=', Category::get('id'))->exists()) {
-        //     dd($user);
-        //  }
 
         return view('device.index', compact('devices', 'current_user','importdevices'));
+    }
+
+    /**
+     * Get Ajax Request and restun Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function stockAjax($id)
+    {
+        $pcategories = DB::table("categories")
+                    ->where("parent_cat",$id)
+                    ->pluck("name","id");
+        return json_encode($pcategories);
     }
 
      /**
@@ -89,7 +90,9 @@ class DeviceController extends Controller
         $brands = Brand::all();
         $countries = Country::all();
         $companies = Company::all();
-        return view('device.create', compact('categories', 'brands', 'current_user','countries','companies'))->with('success', 'device successfuly created!');
+        $images = Image::all();
+        $parentcats = Parentcat::all();
+        return view('device.create', compact('categories', 'brands', 'current_user','countries','companies','parentcats', 'images'))->with('success', 'device successfuly created!');
     }
 
     /**
@@ -109,7 +112,20 @@ class DeviceController extends Controller
             'model_year' => 'required',
             'cost' => 'required',
             'country_id' => 'required',
+            'device_img' => 'image|nullable|max:1999',
         ]);
+
+        if($request->hasFile('device_img')){
+            $filenameWithExt = $request->file('device_img')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('device_img')->getClientOriginalExtension();
+            $filenameToStore = $filename.'_'.time().'.'.$extension;
+            $path = $request->file('device_img')->storeAs('public/cover_images', $filenameToStore);
+        } elseif($request->has('device_img')) {
+            $filenameToStore = $request->input('device_img');
+        } else {
+            $filenameToStore = 'noimage.jpg';
+        }
 
         // Create New List
         $device = new Device;
@@ -122,7 +138,7 @@ class DeviceController extends Controller
         $device->model_year = $request->input('model_year');
         $device->cost = $request->input('cost');
         $device->country_id = $request->input('country_id');
-        // $device->category = auth()->category()->category;
+        $device->device_img = $filenameToStore;
         $device->save();
         
         // Return Back
@@ -181,6 +197,21 @@ class DeviceController extends Controller
             'country_id' => 'required',
         ]);
 
+        // Handle File Upload
+        if($request->hasFile('device_img')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('device_img')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // GEt just Extension
+            $extension = $request->file('device_img')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('device_img')->storeAs('public/cover_images', $fileNameToStore);
+        } 
+
+      
         // Create New List
         $device = Device::find($id);
         $device->deviceCode = $request->input('deviceCode');
@@ -190,7 +221,9 @@ class DeviceController extends Controller
         $device->category_id = $request->input('category_id');
         $device->model_year = $request->input('model_year');
         $device->country_id = $request->input('country_id');
-
+        if($request->hasFile('device_img')){
+            $device->device_img = $fileNameToStore;
+        }
         $device->save();
         
         // Return Back

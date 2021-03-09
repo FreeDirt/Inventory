@@ -50,13 +50,14 @@
                 <td>{{$ipaddress->ip}}</td>
                 <td style="width: 50%;">{{$ipaddress->description}}</td>
                 <td>
-                <a href="/ipaddress/{{$ipaddress->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/ipaddress/{{$ipaddress->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['IpaddressController@destroy', $ipaddress->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <div class="flex gap-03em">
+                    <a href="/ipaddress/{{$ipaddress->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="/ipaddress/{{$ipaddress->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    {!!Form::open(['action' => ['IpaddressController@destroy', $ipaddress->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                    {!!Form::close()!!}</div>
                 </td>
                 </tr>
             </tbody>

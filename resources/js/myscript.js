@@ -110,6 +110,33 @@ class Myscript {
                     }
                 });
             });
+
+
+             // DYNAMIC ON CHANGE CATEGORY Device
+             $(document).ready(function() {
+                $('select[name="pcats"]').on('change', function() {
+                    var pcatID = $(this).val();
+                    if(pcatID) {
+                        $.ajax({
+                            url: '/device/ajax/'+pcatID,
+                            type: "GET",
+                            dataType: "json",
+                            success:function(data) {
+
+                                
+                                $('select[name="category_id"]').empty();
+                                $.each(data, function(key, value) {
+                                    $('select[name="category_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                                });
+
+
+                            }
+                        });
+                    }else{
+                        $('select[name="category_id"]').empty();
+                    }
+                });
+            });
           // $('#deviceCat').on('change',function(){
           //     // console.log("123");
           //     var cat_id = $(this).val();

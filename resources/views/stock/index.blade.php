@@ -122,6 +122,7 @@
     <table class="table display" id="table_id">
         <thead class="thead-dark">
             <tr>
+            <th scope="col">Photo</th>
             <th scope="col">Device</th>
             <th scope="col">Brand</th>
             <th scope="col">Category</th>
@@ -133,10 +134,11 @@
             </tr>
         </thead>
         
-            <tbody id="slsearch">
+            <tbody id="slsearch" class="stk-tbl-lst">
             @foreach($stocks as $stock)
                 
                 <tr>
+                <td><img src="storage/cover_images/{{$stock->device['device_img']}}" alt=""></td>
                 <td>{{$stock->device['name']}}</td>
                 <td>{{$stock->device->brand['name']}}</td>
                 <td>{{$stock->device->category['name']}}</td>
@@ -174,7 +176,7 @@
 
 
     @else
-        <p>No stock List is listed!</p>
+        <!-- <p>No stock List is listed!</p> -->
     @endif
 
 @endsection

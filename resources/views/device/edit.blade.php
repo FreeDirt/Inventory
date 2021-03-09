@@ -6,7 +6,7 @@
 <div></div>
 <h1>Device Edit</h1>
 
-{!! Form::open(['action' => ['DeviceController@update', $device->id], 'method' => 'POST']) !!}
+{!! Form::open(['action' => ['DeviceController@update', $device->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         {{ Form::label('deviceCode', 'deviceCode') }}
         {{ Form::text('deviceCode', $device->deviceCode, ['class' => 'form-control', 'placeholder' => 'Enter deviceCode']) }}
@@ -54,6 +54,9 @@
             <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
         @endforeach
         </select>
+    </div>
+    <div class="form-group">
+        {{ Form::file('device_img')}}
     </div>
     <div>
         {{ Form::hidden('_method', 'PUT')}}

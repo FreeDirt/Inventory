@@ -49942,11 +49942,11 @@ function () {
       $('#modalimport').click(function () {
         // alert(this.id);
         importModal.style.display = 'block';
-      });
-      $('.modalImport').click(function () {
-        // alert(this.id);
-        importModal.style.display = 'none';
-      }); // listen for click
+      }); // $('.modalImport').click(function(){
+      //   // alert(this.id);
+      //   importModal.style.display = 'none';
+      // });
+      // listen for click
       // modalimport.addEventListener('click', openModal);
       //function to open modal
       // function openModal() {
@@ -50003,10 +50003,11 @@ function () {
       // });
 
       $(document).ready(function () {
+        // if($('#table_id').length >0 )
         $('#table_id').DataTable();
       });
       $(document).ready(function () {
-        $('#tabledata').DataTable();
+        if ($('#tabledata').length > 0) $('#tabledata').DataTable();
       }); // END
     }
   }]);
@@ -50138,6 +50139,28 @@ function () {
               });
             } else {
               $('select[name="device_id"]').empty();
+            }
+          });
+        }); // DYNAMIC ON CHANGE CATEGORY Device
+
+        $(document).ready(function () {
+          $('select[name="pcats"]').on('change', function () {
+            var pcatID = $(this).val();
+
+            if (pcatID) {
+              $.ajax({
+                url: '/device/ajax/' + pcatID,
+                type: "GET",
+                dataType: "json",
+                success: function success(data) {
+                  $('select[name="category_id"]').empty();
+                  $.each(data, function (key, value) {
+                    $('select[name="category_id"]').append('<option value="' + key + '">' + value + '</option>');
+                  });
+                }
+              });
+            } else {
+              $('select[name="category_id"]').empty();
             }
           });
         }); // $('#deviceCat').on('change',function(){

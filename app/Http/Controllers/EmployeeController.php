@@ -39,32 +39,14 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function submit(Request $res)
-    // {
-    //     return new User([
-    //         'name'     => $row[0],
-    //         'email'    => $row[1], 
-    //         'password' => Hash::make($row[2]),
-    //      ]);
-    // }
-
-
     public function index(Request $request)
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        // $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
         $employees = Employee::all();
         $importemployees = Employee::orderBy('id', 'desc')->get();
 
-        // $employee->device = Stock::where('employee_id', $employee)->get();
-        // $employee->phpCategories =  Category::where('categories.id', $employee->category_id)->distinct()->get();
-        // $employee->device = DB::table('stocks')->where('employee_id', $employee->id)
-        //                     ->join('employees', 'employees.id', '=', 'stocks.employee_id')
-        //                     ->join('devices', 'devices.id', '=', 'stocks.device_id')
-        //                     ->get();
-
-        // dd($employee->device);
+       
         if ($request->ajax()) {
             return view('employee.index', compact('employees', 'current_user','importemployees'));
         }
@@ -209,77 +191,13 @@ class EmployeeController extends Controller
         $employeeDevices = DB::table('stocks')->where('employee_id', $id)
         ->leftJoin('devices', 'devices.id', '=', 'stocks.device_id')
         ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
-        ->select(DB::raw('categories.name as catName, categories.sub_cat as sub_cat, employee_id as empID, devices.name as devName, serial as deviceSerial, stocks.created_at as dateAdded'))
-        ->orderBy('categories.sub_cat', 'asc')
+        ->leftJoin('parentcats', 'parentcats.id', '=', 'categories.parent_cat')
+        ->select(DB::raw('categories.name as catName, parentcats.name as pcatname, categories.parent_cat as parent_cat, employee_id as empID, devices.name as devName, serial as deviceSerial, stocks.created_at as dateAdded'))
+        ->orderBy('categories.parent_cat', 'asc')
         // ->groupBy('stocks.device_id')
         ->get()->toArray();
 
         // dd($devCounts);
-
-
-
-        // $employeeDevices = DB::table('stocks')->where('employee_id', $id)
-        // ->join('devices', 'devices.id', '=', 'stocks.device_id')
-        // ->join('categories', 'devices.category_id', '=', 'categories.id')
-        // ->pluck('serial','categories.name');
-
-
-
-    //    $employeeDevices = DB::select('call peremployee(?)',array($id));
-    //    DB::select('exec peremployee(?)',array($id));
-
-
-        // ->get();
-
-        // dd($employeeDevices);
-
-        // foreach($stocks as $stock) {
-        //     $stock->catcounts = DB::table('stocks')->where('employee_id', $id)
-        //     ->join('devices', 'devices.id', '=', 'stocks.device_id')
-        //     ->join('categories', 'devices.category_id', '=', 'categories.id')
-        //     ->select('devices.category_id')
-        //     // ->get()->pluck('name');
-        //     ->get();
-
-        //     dd($stock->catcounts);
-        // }
-
-        // $devCounts = DB::table('Stocks')
-        // ->leftJoin('devices', 'devices.id', '=', 'stocks.device_id')
-        // ->leftJoin('categories', 'categories.id', '=', 'devices.category_id')
-        // ->where('employee_id', $id)
-        // ->select(DB::raw('ifnull(count(serial),0) as seCount, categories.name as catNames, count(employee_id) as empTotal'))
-        // ->groupBy('category_id')
-        // ->get();
-
-        // dd($devCounts);
-
-
-
-
-
-
-        // var_dump(array_search('Monitor',$employeeDevices));
-        
-                
-        // foreach ($employeeDevices as $empDev) {
-        //          $empDev->laptop = Category::select('id')->where('name', 'Laptop')->first();
-        //     if($empDev->category_id == $empDev->laptop) {
-        //         dd($empDev->serial);
-        //     } else {
-        //         echo 'N/A';
-        //     }
-        // }
-
-        // DB::table('users')->where('username', $user_input)->first();
-
-        // dd( $employeeDevices);
-
-        // foreach($employeeDevices as $empDev => $key) {
-        //     if($empDev == "Laptop") {
-        //         dd($key);
-        //     }
-        // }
     
 
         return view('employee.show', compact('employee', 'current_user', 'employeeDevices', 'department', 'designation'));

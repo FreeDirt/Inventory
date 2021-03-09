@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Category;
 use App\Inventory;
+use App\Parentcat;
 
 class CategoryTableSeeder extends Seeder
 {
@@ -15,77 +16,77 @@ class CategoryTableSeeder extends Seeder
     {
         $monitor = new Category();
         $monitor->name = 'Monitor';
-        $monitor->sub_cat = 'Monitor';
+        $monitor->parent_cat = '1';
         $monitor->save();
 
         $usb = new Category();
         $usb->name = 'USB';
-        $usb->sub_cat = 'Periperals';
+        $usb->parent_cat = '2';
         $usb->save();
 
         $backup = new Category();
         $backup->name = 'BackUp';
-        $backup->sub_cat = 'Equipments';
+        $backup->parent_cat = '6';
         $backup->save();
 
         $phone = new Category();
         $phone->name = 'Phone';
-        $phone->sub_cat = 'Mobile Devices';
+        $phone->parent_cat = '4';
         $phone->save();
 
         $battery = new Category();
         $battery->name = 'Battery';
-        $battery->sub_cat = 'Supplies';
+        $battery->parent_cat = '7';
         $battery->save();
 
         $computer = new Category();
         $computer->name = 'Computer';
-        $computer->sub_cat = 'Equipments';
+        $computer->parent_cat = '6';
         $computer->save();
 
         $headset = new Category();
         $headset->name = 'Headset';
-        $headset->sub_cat = 'Periperals';
+        $headset->parent_cat = '2';
         $headset->save();
 
         $laptop = new Category();
         $laptop->name = 'Laptop';
-        $laptop->sub_cat = 'Equipments';
+        $laptop->parent_cat = '6';
         $laptop->save();
 
         $macmini = new Category();
         $macmini->name = 'Macmini';
-        $macmini->sub_cat = 'Equipments';
+        $macmini->parent_cat = '6';
         $macmini->save();
 
         $tablet = new Category();
         $tablet->name = 'Tablet';
-        $tablet->sub_cat = 'Mobile Devices';
+        $tablet->parent_cat = '4';
         $tablet->save();
 
         $webcam = new Category();
         $webcam->name = 'Webcam';
-        $webcam->sub_cat = 'Periperals';
+        $webcam->parent_cat = '2';
         $webcam->save();
 
         $avr = new Category();
         $avr->name = 'AVR';
-        $avr->sub_cat = 'Electronics';
+        $avr->parent_cat = '5';
         $avr->save();
 
         $extension = new Category();
         $extension->name = 'Extension';
-        $extension->sub_cat = 'Electronics';
+        $extension->parent_cat = '5';
         $extension->save();
 
         $charger = new Category();
         $charger->name = 'Charger';
-        $charger->sub_cat = 'Periperals';
+        $charger->parent_cat = '2';
         $charger->save();
 
         $mouse = new Category();
         $mouse->name = 'Mouse';
-        $mouse->sub_cat = 'Periperals';
+        $mouse->parent_cat = '2';
         $mouse->save();
         
     }

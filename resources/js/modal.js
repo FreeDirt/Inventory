@@ -26,10 +26,10 @@ class Modal {
             importModal.style.display = 'block';
         });
 
-        $('.modalImport').click(function(){
-          // alert(this.id);
-          importModal.style.display = 'none';
-        });
+        // $('.modalImport').click(function(){
+        //   // alert(this.id);
+        //   importModal.style.display = 'none';
+        // });
 
 
         // listen for click
@@ -100,12 +100,15 @@ class Modal {
         // jQuery( document ).ready(function( $ ) {
         //     $('#table_id').DataTable();
         // });
+        
 
         $(document).ready( function () {
+          // if($('#table_id').length >0 )
             $('#table_id').DataTable();
         } );
 
         $(document).ready( function () {
+          if($('#tabledata').length >0 )
           $('#tabledata').DataTable();
       } );
           

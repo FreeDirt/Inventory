@@ -83,17 +83,17 @@
                 <table class="table table-bordered w-border">
                 <?php $prevcat = "" ?>
                   @foreach($employeeDevices as $key => $val)
-                    @if ($prevcat != $val->sub_cat) 
+                    @if ($prevcat != $val->parent_cat) 
                       <thead id="printed-article">
                       <tr>
-                        <th scope="col"><p>{{$val->sub_cat}}</p></th>
+                        <th scope="col"><p>{{$val->pcatname}}</p></th>
                         <th scope="col"><p>Unit Type</p></th>
                         <th scope="col"><p>Serial Number</p></th>
                         <th scope="col"><p>Date</p></th>
                         <th scope="col"><p>Received by</p></th>
                       </tr>
                     </thead>
-                    <?php $prevcat = $val->sub_cat ?>
+                    <?php $prevcat = $val->parent_cat ?>
                     @endif
                     <tr> 
                       <td>
