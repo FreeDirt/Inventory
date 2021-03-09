@@ -12,7 +12,7 @@ use App\User;
 class Device extends Model
 {
 
-    public $fillable = ['deviceName'];
+    public $fillable = ['deviceName','cover_image'];
 
     public function user()
     {

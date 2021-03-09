@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Inventory;
 use App\Device;
+use App\Parentcat;
 
 class Category extends Model
 {
@@ -18,5 +19,10 @@ class Category extends Model
 
     public function devices() {
         return $this->hasMany('App\Device');
+    }
+
+    public function parentcat()
+    {
+        return $this->belongsTo('App\Parentcat', 'parentcat_id');
     }
 }

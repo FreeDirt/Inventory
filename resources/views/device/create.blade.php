@@ -8,7 +8,7 @@
 
 <div class="tablebg">
 
-{!! Form::open(['action' => 'DeviceController@store', 'class' => 'grid-template', 'method' => 'POST']) !!}
+{!! Form::open(['action' => 'DeviceController@store', 'class' => 'grid-template', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         <!-- {{ Form::label('deviceCode', 'Device Code') }} -->
         <select class="form-control" name="deviceCode" id="">
@@ -17,6 +17,23 @@
         @endforeach
         </select>
     </div>
+
+    <div class="form-group">
+        <select name="pcats" class="form-control">
+            <option value="">--- Category ---</option>
+            @foreach ($parentcats as $parentcat)
+                @if(!empty($parentcat->name))
+                    <option value="{{$parentcat->id}}">{{ucfirst($parentcat->name)}}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
+        <select id="category_id" class="form-control" name="category_id">
+                <option value="">--- Sub Category ---</option>
+        </select>
+    </div>
+
     <div class="form-group">
         <!-- {{ Form::label('name', 'Device Name') }} -->
         {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Device Name']) }}
@@ -30,14 +47,6 @@
         <!-- {{ Form::label('brand_id', 'Brand') }} -->
         <select class="form-control" name="brand_id" id="">
         @foreach ($brands as $key => $value)
-            <option value="{{$value->id}}">{{$value->name}}</option>
-        @endforeach
-        </select>
-    </div>
-    <div class="form-group">
-        <!-- {{ Form::label('category_id', 'Category') }} -->
-        <select class="form-control" name="category_id" id="">
-        @foreach ($categories as $key => $value)
             <option value="{{$value->id}}">{{$value->name}}</option>
         @endforeach
         </select>
@@ -60,6 +69,10 @@
         @endforeach
         </select>
     </div>
+    <div class="form-group">
+        {{ form::file('device_img')}}
+    </div>
+    
     <div class="form-group">
         {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
     </div>

@@ -50,13 +50,14 @@
                 <td>{{$department->name}}</td>
                 <td style="width: 50%;">{{$department->description}}</td>
                 <td>
-                <a href="/department/{{$department->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/department/{{$department->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['DepartmentController@destroy', $department->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <div class="flex gap-03em">
+                    <a href="/department/{{$department->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="/department/{{$department->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    {!!Form::open(['action' => ['DepartmentController@destroy', $department->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                    {!!Form::close()!!}</div>
                 </td>
                 </tr>
             </tbody>

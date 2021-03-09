@@ -25,13 +25,15 @@ Route::get('/tblist', 'PagesController@tblist');
 Route::get('/contact', 'PagesController@contact');
 // Inventory Controller CRUD
 Route::resource('inventory', 'InventoryController');
+// Parent Category Controller CRUD
+Route::resource('parentCat', 'ParentcatController');
 // Category Controller CRUD
 Route::resource('category', 'CategoryController');
 // Brand Controller CRUD
 Route::resource('brand', 'BrandController');
 // DeviceController CRUD
 Route::resource('device', 'DeviceController');
-
+Route::get('device/ajax/{id}',array('as'=>'device.ajax','uses'=>'DeviceController@stockAjax'));
 // StocksController CRUD
 Route::resource('media', 'MediaController');
 

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
+
 use App\User;
 use App\Parentcat;
-use DB;
 
-class CategoryController extends Controller
+
+class ParentcatController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Display a listing of the resource.
      *
@@ -29,22 +29,8 @@ class CategoryController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        // $categories = Category::orderBy('id', 'asc')->paginate(10);
-        $parentcats = Parentcat::all();
-
-        
-
-        $categories = DB::table('parentcats')
-            ->leftJoin('categories', 'parentcats.id', '=', 'categories.parent_cat')
-            ->select(DB::raw('categories.id as catID, categories.name as catName, parentcats.name as parentNAME'))
-            // ->groupBy('name')
-            // ->paginate(10);
-            ->get();
-
-            // dd($categories);
-
-        
-        return view('category.index', compact('categories', 'current_user', 'parentcats'));
+        $parent_categories = Parentcat::orderBy('id', 'asc')->paginate(10);
+        return view('parentCat.index', compact('parent_categories', 'current_user'));
     }
 
     /**
@@ -57,7 +43,7 @@ class CategoryController extends Controller
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
         // $user = User::where('id', $userId)->with('roles')->first();
-        return view('category.create', compact('current_user'));
+        return view('parentCat.create', compact('current_user'));
     }
 
     /**
@@ -69,19 +55,16 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:categories|max:255',
-            'parent_cat' => 'required'
+            'name' => 'required|unique:categories|max:255'
         ]);
 
         // Create New List
-        $category = new Category;
-        $category->name = $request->input('name');
-        $category->parent_cat = $request->input('parent_cat');
-        // $category->category = auth()->category()->category;
-        $category->save();
+        $parent_category = new Parentcat;
+        $parent_category->name = $request->input('name');
+        $parent_category->save();
         
         // Return Back
-        return redirect('/category')->with('success', 'New Category List Created!');
+        return redirect('/parentCat')->with('success', 'New Parent Category List Created!');
     }
 
     /**
@@ -94,8 +77,8 @@ class CategoryController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $category = Category::find($id);
-        return view('category.show', compact('category', 'current_user'));
+        $parent_category = Parentcat::find($id);
+        return view('parentCat.show', compact('parent_category', 'current_user'));
     }
 
     /**
@@ -108,11 +91,11 @@ class CategoryController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $category = Category::find($id);
-        $categories = Category::all();
+        $parent_category = Parentcat::find($id);
+        $parent_categories = Parentcat::all();
 
         // dd( $category);
-        return view('category.edit', compact('category', 'current_user','categories'));
+        return view('parentCat.edit', compact('parent_category', 'current_user','parent_categories'));
     }
 
     /**
@@ -125,19 +108,16 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'parent_cat' => 'required'
+            'name' => 'required'
         ]);
 
         // Create New List
-        $category = Category::find($id);
-        $category->name = $request->input('name');
-        $category->parent_cat = $request->input('parent_cat');
-
-        $category->save();
+        $parent_category = Parentcat::find($id);
+        $parent_category->name = $request->input('name');
+        $parent_category->save();
         
         // Return Back
-        return redirect('/category')->with('success', 'Updated category List!');
+        return redirect('/parentCat')->with('success', 'Updated category List!');
     }
 
     /**
@@ -148,8 +128,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
-        return redirect('/category')->with('success', 'Category Deleted!');
+        $parent_category = Parentcat::find($id);
+        $parent_category->delete();
+        return redirect('/parentCat')->with('success', 'Parent Category Deleted!');
     }
 }

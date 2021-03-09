@@ -12,10 +12,10 @@
         {{ Form::text('name', $category->name, ['class' => 'form-control', 'placeholder' => 'Enter Category Name']) }}
        
 
-        <select class="form-control" name="sub_cat" id="">
-        <?php $selectedvalue = $category->sub_cat; ?>
+        <select class="form-control" name="parent_cat" id="">
+        <?php $selectedvalue = $category->parent_cat; ?>
         @foreach($categories as $key => $value)
-            <option value="{{$value->sub_cat}}" {{ $selectedvalue == $value->sub_cat ? 'selected="selected"' : ''}}>{{$value->sub_cat}}</option>
+            <option value="{{$value->parent_cat}}" {{ $selectedvalue == $value->parent_cat ? 'selected="selected"' : ''}}>{{$value->parent_cat}}</option>
         @endforeach
         </select>
     </div>

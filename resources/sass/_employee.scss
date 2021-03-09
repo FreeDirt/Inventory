@@ -32,7 +32,7 @@
     margin-bottom: -100px;
 }
 
-.emp-tbl-lst {
+.emp-tbl-lst, .dev-tbl-lst, .stk-tbl-lst {
     
 
     tr {
@@ -183,9 +183,9 @@
         background-color: #ffffff;
     }
 
-    .emp-view {
-        // margin: auto;
-    }
+    // .emp-view {
+    //     // margin: auto;
+    // }
     
     a {
         text-decoration: none;

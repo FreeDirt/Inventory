@@ -14,10 +14,13 @@ class IpTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 255; $i++) { 
-            DB::table('ipaddresses')->insert([
-               'ip' => '192.168.88' . '+' . $i
-           ]);
+        for ($i=1; $i < 255; $i++) { 
+           DB::table('ipaddresses')->insert([
+                'ip' => '192.168.88' . '.' . $i,
+                'description' => 'Edit',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
        }
     }
 }

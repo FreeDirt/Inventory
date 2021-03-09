@@ -95,8 +95,7 @@
         <table class="table display" id="table_id">
         <thead class="thead-dark">
             <tr>
-            <!-- <th scope="col">Id</th> -->
-            <!-- <th scope="col">Device Code</th> -->
+            <th scope="col">Photo</th>
             <th scope="col">Device Name</th>
             <th scope="col">Brand</th>
             <th scope="col">Category</th>
@@ -106,11 +105,10 @@
             <th scope="col">Action</th>
             </tr>
         </thead>
-            <tbody>
+            <tbody class="dev-tbl-lst">
             @foreach($devices as $device)
                 <tr>
-                <!-- <td>{{$device->id}}</td> -->
-                <!-- <td>{{$device->deviceCode}}</td> -->
+                <td><img src="/storage/cover_images/{{$device->device_img}}" alt="profile picture"></td>
                 <td>{{$device->name}}</td>
                 <td>{{$device->brand['name']}}</td>
                 <td>{{$device->category['name']}}</td>
@@ -131,7 +129,6 @@
                 </tr>
                 @endforeach
             </tbody>
-        <!-- {{$devices->links()}} -->
         </table>
         </div>
     

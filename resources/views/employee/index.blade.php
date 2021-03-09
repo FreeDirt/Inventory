@@ -8,7 +8,7 @@
 <div id="importModal" class="modalImport">
     <div class="modal-content">
         <div class="container">
-            <span id="closeBtn" class="closeModalBtn">&times;</span>
+            <span id="closeBtnimport" class="closeModalBtn">&times;</span>
         </div>
         <div class="container">
                 <div class="clearfix">
@@ -139,7 +139,7 @@
         </div>
     
     @else
-        <p>No employee List is listed!</p>
+        <!-- <p>No employee List is listed!</p> -->
     @endif
 
 @endsection

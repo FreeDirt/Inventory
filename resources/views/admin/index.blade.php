@@ -38,13 +38,14 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->roles->first()->name}}</td>
                 <td>
-                <a href="/admin/{{$user->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
-                <a href="/admin/{{$user->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                {!!Form::open(['action' => ['AdminController@destroy', $user->id], 'method' => 'POST', 'class' => 'btn btn-danger'])!!}
-                    {{Form::hidden('_method', 'DELETE')}}
-                    {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn-danger'] )  }}
+                <div class="flex gap-03em">
+                    <a href="/admin/{{$user->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
+                    <a href="/admin/{{$user->id}}/edit" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    {!!Form::open(['action' => ['AdminController@destroy', $user->id], 'method' => 'POST', 'class' => 'show_confirm'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{ Form::button('<i class="fas fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger'] )  }}
 
-                {!!Form::close()!!}
+                    {!!Form::close()!!}</div>
                 </td>
                 </tr>
             </tbody>

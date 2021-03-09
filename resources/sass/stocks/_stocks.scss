@@ -37,10 +37,20 @@
     display: block;
     background-color: #fff;
     clip-path: polygon(0 30%, 30% 30%, 30% 0, 70% 0, 70% 30%, 100% 30%, 100% 70%, 70% 70%, 70% 100%, 30% 100%, 30% 70%, 0 70%);
+    transition: .3s ease;
+}
+
+.open-form:checked ~ .add-stock label .add-new {
+    width: 20px;
+    height: 20px;
+    display: block;
+    background-color: red;
+    clip-path: polygon(30% 0%, 0% 30%, 30% 50%, 0% 80%, 30% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 30%, 80% 0%, 50% 30%);
+    transition: .3s ease;
+
 }
 
 .add-item-form {
-    // visibility: hidden;
     opacity: 0;
     position: fixed;
     width: 100%;
