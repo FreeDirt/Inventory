@@ -9,6 +9,7 @@ use App\Designation;
 use App\Department;
 use App\Ipaddress;
 use App\Stock;
+use App\Softwareuser;
 
 class Employee extends Model
 {
@@ -31,6 +32,11 @@ class Employee extends Model
         return $this->belongsTo('App\Department', 'department_id');
     }
 
+    public function empstatus()
+    {
+        return $this->belongsTo('App\Empstatus', 'empstatus_id');
+    }
+
     public function ipaddress()
     {
         return $this->belongsTo('App\Ipaddress', 'ipaddress_id');
@@ -42,6 +48,11 @@ class Employee extends Model
     public function stock()
     {
         return $this->belongsTo('App\Stock', 'stock_id');
+    }
+
+    public function softwareuser()
+    {
+        return $this->belongsTo('App\Softwareuser', 'softwareuser_id');
     }
 }
 

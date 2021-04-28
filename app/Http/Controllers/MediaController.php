@@ -103,6 +103,8 @@ class MediaController extends Controller
             if ($multi_images) {
                 return redirect('/media')->with('success', 'Photo Uploaded');
             }
+
+            return redirect('/media')->with('success', 'Photo Uploaded');
         } 
 
         // if($file) {

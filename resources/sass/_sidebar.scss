@@ -84,6 +84,10 @@
     background-color: rgba($color: #fff, $alpha: .5);
 }
 
+.softactivebtn {
+    background-color: rgba($color: #fff, $alpha: .5);
+}
+
 hr {
     background-color: #999;
     border: 0 none;
@@ -95,13 +99,16 @@ hr {
     position: relative;
     left: 270px;
     transition: all 500ms linear;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
 
     span {
         display: block;
         width: 30px;
         height: 5px;
         background: #151719;
-        margin: 5px 0px;
+        margin: 2px 0px;
     }
 }
 

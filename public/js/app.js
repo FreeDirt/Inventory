@@ -50102,6 +50102,12 @@ function () {
           $(".employee-menu-settings").show();
         } else {
           $(".employee-menu-settings").hide();
+        }
+
+        if ($(".software-menu-settings").hasClass('active')) {
+          $(".software-menu-settings").show();
+        } else {
+          $(".software-menu-settings").hide();
         } // ARROW TOGGLE SIDEBAR MENU
 
 
@@ -50119,6 +50125,11 @@ function () {
           $(".employee-menu-settings").slideToggle();
           $(".employee-menu-settings").toggleClass('active');
           $('#emp-tog-icon').toggleClass('arrow-rotated');
+        });
+        $(".toggle-btn-menu-soft").click(function () {
+          $(".software-menu-settings").slideToggle();
+          $(".software-menu-settings").toggleClass('active');
+          $('#soft-tog-icon').toggleClass('arrow-rotated');
         }); // DYNAMIC ON CHANGE CATEGORY STOCK
 
         $(document).ready(function () {
@@ -50712,6 +50723,7 @@ function () {
       //           alert('No response from server');
       //     });
       // }
+      // NEUMORPHIC
       //END  
     }
   }]);

@@ -15,6 +15,7 @@ use App\Designation;
 use App\Department;
 use App\Device;
 use App\Employee;
+use App\Empstatus;
 use App\Ipaddress;
 use App\Image;
 use App\User;
@@ -43,15 +44,31 @@ class EmployeeController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
-        $employees = Employee::all();
+
+        $companies = Company::all();
+        $designations = Designation::all();
+        $departments = Department::all();
+        $ipaddresses = Ipaddress::all();
+        $countries = Country::all();
+        $images = Image::all();
+        $empstatuses = Empstatus::all();
+
         $importemployees = Employee::orderBy('id', 'desc')->get();
 
-       
+        $employees = DB::table('employees')
+                    ->leftJoin('empstatuses', 'employees.status', '=', 'empstatuses.id')
+                    ->select('employees.*', 'empstatuses.status as status')
+                    ->get();
+
+        // dd($employees);
+        
         if ($request->ajax()) {
             return view('employee.index', compact('employees', 'current_user','importemployees'));
         }
 
-        return view('employee.index', compact('employees', 'current_user','importemployees'));
+        return view('employee.index', compact('employees', 'current_user','importemployees',
+                                                'companies','designations','departments',
+                                                'ipaddresses','countries','images','empstatuses'));
     }
 
     /**
@@ -89,7 +106,9 @@ class EmployeeController extends Controller
         $ipaddresses = Ipaddress::all();
         $countries = Country::all();
         $images = Image::all();
-        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses','countries', 'images'));
+        $empstatuses = Empstatus::all();
+        
+        return view('employee.create', compact('current_user', 'companies', 'designations','departments','ipaddresses','countries', 'images','empstatuses'));
     }
 
     /**
@@ -117,7 +136,8 @@ class EmployeeController extends Controller
             'postal_code' => 'nullable',
             'employee_no' => 'required',
             'gender' => 'required',
-            'cover_image' => 'sometimes|nullable|max:1999',
+            'status' => 'required',
+            'cover_image' => 'image|nullable|max:1999',
         ]);
 
         // Handle File Upload
@@ -133,7 +153,7 @@ class EmployeeController extends Controller
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
             
-        } elseif($request->has('cover_image'))  {
+        } elseif($request->hasFile('cover_image'))  {
             $fileNameToStore = $request->input('cover_image');
         }
         else {
@@ -159,8 +179,8 @@ class EmployeeController extends Controller
         $employee->postal_code = $request->input('postal_code');
         $employee->employee_no = $request->input('employee_no');
         $employee->gender = $request->input('gender');
+        $employee->status = $request->input('status');
         $employee->cover_image = $fileNameToStore;
-        // employeey->category = auth()->category()->category;
         $employee->save();
         
         // Return Back
@@ -179,8 +199,16 @@ class EmployeeController extends Controller
         $current_user = User::find($current_userId);
         $employee = Employee::find($id);
         $categories = Category::all()->pluck('name');
-        $department = Department::where('id', $employee->department_id)->pluck('name')->first();
-        $designation = Designation::where('id', $employee->designation_id)->pluck('name')->first();
+        $empdepartment = Department::where('id', $employee->department_id)->pluck('name')->first();
+        $empdesignation = Designation::where('id', $employee->designation_id)->pluck('name')->first();
+
+        $companies = Company::all();
+        $designations = Designation::all();
+        $departments = Department::all();
+        $ipaddresses = Ipaddress::all();
+        $countries = Country::all();
+        $images = Image::all();
+        $empstatuses = Empstatus::all();
 
         // $designation = $employee->designation_id;
 
@@ -200,7 +228,7 @@ class EmployeeController extends Controller
         // dd($devCounts);
     
 
-        return view('employee.show', compact('employee', 'current_user', 'employeeDevices', 'department', 'designation'));
+        return view('employee.show', compact('employee', 'current_user', 'employeeDevices', 'empdepartment', 'empdesignation','companies', 'designations','departments','ipaddresses','countries', 'images','empstatuses'));
     }
 
     /**
@@ -220,8 +248,9 @@ class EmployeeController extends Controller
         $ipaddresses = Ipaddress::all();
         $images = Image::all();
         $countries = Country::all();
+        $empstatuses = Empstatus::all();
         
-        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','images','countries'));
+        return view('employee.edit')->with(compact('employee', 'current_user', 'companies','designations','departments','ipaddresses','images','countries','empstatuses'));
     }
 
     /**
@@ -235,7 +264,6 @@ class EmployeeController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'email',
             'bday' => 'nullable',
             'personal_no' => 'required',
             'department_id' => 'nullable',
@@ -250,6 +278,7 @@ class EmployeeController extends Controller
             'postal_code' => 'nullable',
             'employee_no' => 'required',
             'gender' => 'required',
+            'status' => 'required',
         ]);
 
          // Handle File Upload
@@ -269,7 +298,6 @@ class EmployeeController extends Controller
         // Create New List
         $employee = Employee::find($id);
         $employee->name = $request->input('name');
-        $employee->email = $request->input('email');
         $employee->bday = $request->input('bday');
         $employee->user_id = auth()->user()->id;
         $employee->personal_no = $request->input('personal_no');
@@ -285,10 +313,16 @@ class EmployeeController extends Controller
         $employee->postal_code = $request->input('postal_code');
         $employee->employee_no = $request->input('employee_no');
         $employee->gender = $request->input('gender');
+        $employee->status = $request->input('status');
         if($request->hasFile('cover_image')){
             $employee->cover_image = $fileNameToStore;
         }
         $employee->save();
+
+        if ($request->is('employee/' . $id)) {
+            return redirect('employee/'.$id)->with('success', 'Susccessfully Updated the Contact!');
+        }
+
         
         // Return Back
         return redirect('/employee')->with('success', 'Updated Employee List!');

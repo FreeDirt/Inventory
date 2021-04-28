@@ -6,9 +6,20 @@
     box-sizing: border-box;
 }
 
+.auto-fit {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-gap: 1em;
+}
+
 .grid {
     display: grid;
     grid-gap: 1em;
+    box-sizing: border-box;
+}
+
+.grid-no-gap {
+    display: grid;
     box-sizing: border-box;
 }
 

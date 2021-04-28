@@ -2,7 +2,155 @@
 
 @section('content')
 <h1>Employee List</h1>
-<a href="/employee/create" class="btn btn-info float-right mx-sm-3">Create New</a>
+<input type="checkbox" name="add-new" class="open-form" id="add-new">
+
+<div class="add-stock">
+    <label for="add-new"><span class="add-new"></span></label>
+</div>
+
+<div class="body-theme add-item-form">
+      <div class="form-item">
+        {!! Form::open(['action' => 'EmployeeController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        <h1>Add Employee</h1>
+            <div class="auto-fit">
+                <div class="form-group">
+                    <!-- {{ Form::label('name', 'Name') }} -->
+                    {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Name']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('email', 'Email') }} -->
+                    {{ Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'Enter Email', 'required']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('bday', 'Birthday') }} -->
+                    {{ Form::date('bday', '', ['class' => 'form-control', 'placeholder' => 'Enter Birthday']) }}
+                </div>
+                
+                <div class="form-group">
+                    <!-- {{ Form::label('personal_no', 'Personal Number') }} -->
+                    {{ Form::text('personal_no', '', ['class' => 'form-control', 'placeholder' => 'Enter Personal Number']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('company_id', 'Company') }} -->
+                    <select class="form-control" name="company_id">
+                    <option value="">--- Select Company ---</option>
+                    @foreach ($companies as $key => $value)
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('ipaddress_id', 'Ip Address') }} -->
+                    <select class="form-control" name="ipaddress_id">
+                    <option value="">--- Select IP ---</option>
+                    @foreach ($ipaddresses as $key => $value)
+                        <option value="{{$value->id}}">{{$value->ip}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('department_id', 'Department') }} -->
+                    <select class="form-control" name="department_id">
+                        <option value="">--- Select Department ---</option>
+                    @foreach ($departments as $key => $value)
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('designation_id', 'Designation') }} -->
+                    <select class="form-control" name="designation_id">
+                    <option value="">--- Select Designation ---</option>
+                    @foreach ($designations as $key => $value)
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('company_no', 'Company Number') }} -->
+                    {{ Form::text('company_no', '', ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('country_id', 'Country') }} -->
+                    <select class="form-control" name="country_id">
+                    <option value="">--- Select Country ---</option>
+                    @foreach ($countries as $key => $value)
+                        <option value="{{$value->id}}">{{$value->name}}</option>
+                    @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('address', 'Address') }} -->
+                    {{ Form::text('address', '', ['class' => 'form-control', 'placeholder' => 'Address']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('city', 'City') }} -->
+                    {{ Form::text('city', '', ['class' => 'form-control', 'placeholder' => 'City']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('region', 'Region') }} -->
+                    {{ Form::text('region', '', ['class' => 'form-control', 'placeholder' => 'Region']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('postal_code', 'Postal Code') }} -->
+                    {{ Form::text('postal_code', '', ['class' => 'form-control', 'placeholder' => 'Postal Code']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('employee_no', 'Employee No') }} -->
+                    {{ Form::text('employee_no', '', ['class' => 'form-control', 'placeholder' => 'Employee No', 'required']) }}
+                </div>
+                <div class="form-group">
+                    <!-- {{ Form::label('gender', 'Gender') }} -->
+                    <select class="form-control" name="gender">
+                        <option value="Male"> Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <!-- {{ Form::label('gender', 'Gender') }} -->
+                    <select class="form-control" name="status">
+                    <option value="">--- Select Status ---</option>
+                    @foreach ($empstatuses as $key => $value)
+                        <option value="{{$value->id}}">{{$value->status}}</option>
+                    @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                {{ Form::file('cover_image')}}
+                </div>
+
+                <div class="form-group">
+                    <div class="media-file-upload">
+                        <a class="btn btn-primary" href="#open-modal" id="mdlopen">Select Image</a> <span>{{ Form::text('cover_image', '', ['class' => 'selectedImage', 'id' => 'img-id', 'readonly']) }}</span>
+                    </div>
+                    <div id="open-modal" class="modal-window">
+                        <a href="#" title="Close" class="modal-close">Close</a>
+                        
+                        @if(count($images) > 0)
+                        <div class="body-theme">
+                            <div class="media_images grid repeat7">
+                                @foreach($images as $image)
+                                <img src="/storage/cover_images/{{$image->image_name}}" class="clickMe" id="{{$image->image_name}}">
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
+
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="form-group text-right">
+                    <label for="add-new"><div class="cancel">Cancel</div></label>
+                    {{ Form::submit('Add', ['class' => 'add']) }}
+            </div>
+        {!! Form::close() !!}
+    </div>
+</div><br>
+
 <button id="modalimport" class="btn btn-info float-right">Import / Export</button>
 
 <div id="importModal" class="modalImport">
@@ -44,7 +192,7 @@
                         @foreach($importemployees as $employee)
                             <tr>
                                 <td>{{$employee->id}}</td>
-                                <td>{{$employee->name}}</td>
+                                <td>{{ucfirst($employee->name)}}</td>
                                 <td>{{$employee->email}}</td>
                             </tr>
                         @endforeach
@@ -57,7 +205,7 @@
 </div><br><br>
 
 @if(count($employees) > 0)
-    <div class="">
+    <!-- <div class="">
     <div class="search-field">
         <div class="search-by-categories">
             <div><p>Select by Categories: drop down     |    show: 10</p></div>
@@ -72,7 +220,7 @@
                 </div>
             </form>
         </div>
-    </div><br>
+    </div><br> -->
         <div class="tog-label">
             <label for="toggle-tblempv">
                 <i id="grid-view" class="fas fa-th fa-2x {{Request::has('employee/*') ? 'fa-th-list' : 'fa-th-list'}}"></i>
@@ -86,17 +234,28 @@
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">Company No.</th>
+            <th scope="col">Employment Status</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
         
-            <tbody class="emp-tbl-lst">
+            <tbody class="tbl-lst">
             @foreach($employees as $employee)
                 <tr>
                 <td><img src="/storage/cover_images/{{$employee->cover_image}}" alt="prifile picture"></td>
-                <td>{{$employee->name}}</td>
+                <td>{{ucfirst($employee->name)}}</td>
                 <td>{{$employee->email}}</td>
                 <td>{{$employee->company_no}}</td>
+                <td>@if($employee->status == 'Employed')
+                        <span class="status-green">{{$employee->status}}</span>
+                    @elseif($employee->status == 'Resigned')
+                        <span class="status-red">{{$employee->status}}</span>
+                    @elseif($employee->status == 'Training')
+                        <span class="status-orange">{{$employee->status}}</span>
+                    @else($employee->status == 'Probationary')
+                        <span class="status-blue">{{$employee->status}}</span>
+                    @endif
+                </td>
                 <td>
                 <div class="flex gap-03em">
                     <a href="/employee/{{$employee->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>
@@ -113,27 +272,6 @@
             </tbody>
         </table>
         </div>
-        
-        <!-- <div class="tog-label">
-            <label for="toggle-tblempv">
-                <i id="grid-view" class="fas fa-th fa-2x {{Request::has('employee/*') ? 'fa-th-list' : 'fa-th-list'}}"></i>
-            </label>
-        </div>
-        <input type="checkbox" name="mycheckbox" id="toggle-tblempv">
-        <div class="empCont control-me" id="id">
-        @foreach($employees as $employee)
-            <div class="emp-view">
-            <a href="/employee/{{$employee->id}}">
-                <div class="emp-card">
-                    <p> <img src="/storage/cover_images/{{$employee->cover_image}}" class="img-global-class" alt="prifile picture"></p>
-                    <p>{{$employee->name}}</p>
-                    <p>{{$employee->email}}</p>
-                    <p>{{$employee->company_no}}</p>
-                    <p>{{$employee->stock['name']}}</p>
-                </div>
-            </a>
-            </div>
-        @endforeach -->
         
         
         </div>

@@ -51,8 +51,6 @@
                 @include('inc.sidebar')
             </div>
 
-            
-
             @if(Request::is('employee/*'))
                 <div class="right-content-fluid" id="content">
                     @include('inc.error')

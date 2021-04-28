@@ -9,3 +9,98 @@
 .showbtn {
     display: block;
 }
+ .edit {
+    cursor: pointer;
+    background: #0fb36f;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 2px solid #0fb36f;
+    border-radius: 0.5rem;
+    top: 0.4em;
+    position: relative;
+    box-shadow: 0 0.2em #1baf65, 0 0.5em rgba(14, 178, 63, 0.4);
+    transition: .3s ease;
+
+    &:hover {
+        background: #0fb36f;
+        transition: .3s ease;
+        top: 0.6em;
+        color: #ffffff;
+        box-shadow: 0 0.1em #1baf65, 0 0.3em rgba(14, 178, 63, 0.4);
+      }
+}
+
+.update {
+    cursor: pointer;
+    background: #0e79b2;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 2px solid hsl(201, 85%, 38%);
+    border-radius: 0.5rem;
+    top: 0.4em;
+    position: relative;
+    box-shadow: 0 0.2em #1b7baf, 0 0.5em rgba(14, 121, 178, 0.4);
+    transition: .3s ease; 
+
+    &:hover {
+        background: #0e79b2;
+        transition: .3s ease;
+        top: 0.6em;
+        color: #ffffff;
+        box-shadow: 0 0.1em #1b7baf, 0 0.3em rgba(14, 121, 178, 0.4);
+      }
+}
+
+.cancel {
+    cursor: pointer;
+    background: #b30f0f;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 2px solid #b30f0f;
+    border-radius: 0.5rem;
+    top: 0.4em;
+    position: relative;
+    box-shadow: 0 0.2em #af1b2f, 0 0.5em rgba(178, 14, 41, 0.4);
+    transition: .3s ease;
+    
+    &:hover {
+        background: #b30f0f;
+        transition: .3s ease;
+        top: 0.6em;
+        color: #ffffff;
+        box-shadow: 0 0.1em #af1b2f, 0 0.3em rgba(178, 14, 41, 0.4);
+    }
+}
+
+.add {
+    cursor: pointer;
+    background: #0f7fb3;
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem 1.4rem;
+    border: 2px solid #0f7fb3;
+    border-radius: 0.5rem;
+    top: 0.4em;
+    position: relative;
+    box-shadow: 0 0.2em #39a6d8, 0 0.5em rgba(57, 166, 216, 0.4);
+    transition: .3s ease;
+    
+    &:hover {
+        background: #0f7fb3;
+        transition: .3s ease;
+        top: 0.6em;
+        color: #ffffff;
+        box-shadow: 0 0.1em #39a6d8, 0 0.3em rgba(57, 166, 216, 0.4);
+    }
+}

@@ -1,32 +1,164 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="emp-prof-banner">
-    <div><img src="https://png.pngtree.com/thumb_back/fw800/background/20190221/ourmid/pngtree-texture-geometric-black-metal-gradient-image_17809.jpg" alt=""></div>
-</div>
-<div class="container">
-<div class="container body-theme emp-profile">
-   <div class="grid onefr2fr1 grid-1em-gap">
-        <div class="emp-img">
-            <img src="/storage/cover_images/{{$employee->cover_image}}" alt="prifile picture">
+<div class="employee-container">
+<a href="/employee" class="btn btn-info">Go Back</a><br><br>
+<div class="emp-prof-container">
+<div class="emp-profile flex-2">
+  <div class="isicon"><i class="fas fa-user fa-3x"></i></div>
+<input type="checkbox" name="emp-edit-profile" class="emp-edit-form" id="emp-edit-profile">
+{!! Form::open(['action' => ['EmployeeController@update', $employee->id], 'method' => 'POST', 'class' => 'emp-form', 'enctype' => 'multipart/form-data']) !!}
+<div class="auto-fit">
+    <div class="emp-input-style">
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', ucfirst($employee->name), ['class' => 'form-control', 'placeholder' => 'Enter employee Name']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('email', 'Email (Disabled)') }}
+        {{ Form::text('email', $employee->email, ['class' => 'form-control', 'placeholder' => 'EnterEmail', 'disabled']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('bday', 'Birthday') }}
+        {{ Form::text('bday', $employee->bday, ['class' => 'form-control', 'placeholder' => 'Enter Birthday']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('personal_no', 'Personal Number') }}
+        {{ Form::text('personal_no', $employee->personal_no, ['class' => 'form-control', 'placeholder' => 'Personal Number']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('company_id', 'Company') }}
+        <select class="form-control" name="company_id" id="">
+        <?php $selectedvalue = $employee->company_id ?>
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('ipaddress_id', 'Ip Address') }}
+        <select class="form-control" name="ipaddress_id" id="">
+        <?php $selectedvalue = $employee->ipaddress_id ?>
+        @foreach ($ipaddresses as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->ip}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('designation_id', 'Designation') }}
+        <select class="form-control" name="designation_id" id="">
+        <?php $selectedvalue = $employee->designation_id ?>
+        @foreach ($designations as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('department_id', 'department') }}
+        <select class="form-control" name="department_id" id="">
+        <?php $selectedvalue = $employee->department_id ?>
+        @foreach ($departments as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('company_no', 'Company Number') }}
+        {{ Form::text('company_no', $employee->company_no, ['class' => 'form-control', 'placeholder' => 'Company Number']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('country_id', 'Country') }}
+        <select class="form-control" name="country_id" id="">
+        <?php $selectedvalue = $employee->country_id ?>
+        @foreach ($countries as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('address', 'Address') }}
+        {{ Form::text('address', $employee->address, ['class' => 'form-control', 'placeholder' => 'Address']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('city', 'City') }}
+        {{ Form::text('city', $employee->city, ['class' => 'form-control', 'placeholder' => 'City']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('region', 'Region') }}
+        {{ Form::text('region', $employee->region, ['class' => 'form-control', 'placeholder' => 'Region']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('postal_code', 'Postal Code') }}
+        {{ Form::text('postal_code', $employee->postal_code, ['class' => 'form-control', 'placeholder' => 'Postal Code']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('employee_no', 'Employee No') }}
+        {{ Form::text('employee_no', $employee->employee_no, ['class' => 'form-control', 'placeholder' => 'Employee No']) }}
+    </div>
+    <div class="emp-input-style">
+        {{ Form::label('gender', 'Gender') }}
+        {{ Form::text('gender', $employee->gender, ['class' => 'form-control', 'placeholder' => 'Gender']) }}
+    </div>
+
+    <div class="emp-input-style">
+        {{ Form::label('status', 'Status') }}
+        <select class="form-control" name="status" id="">
+        <?php $selectedvalue = $employee->status ?>
+        @foreach ($empstatuses as $key => $value)
+            <option value="{{$value->id}}" {{ $selectedvalue == $value->id ? 'selected="selected"' : ''}}>{{$value->status}}</option>
+        @endforeach
+        </select>
+    </div>
+
+    <div class="emp-input-style file-upload-img">
+        {{ Form::file('cover_image')}}
+    </div>
+    <div class="emp-input-style">
+        <div class="media-file-upload">
+            <a class="btn btn-primary" href="#open-modal" id="mdlopen">Gallery</a> <span class="">{{ Form::text('cover_image', '', ['class' => 'selectedImage', 'id' => 'img-id', 'readonly']) }}</span>
         </div>
-        <div class="emp-details">
-                <p>ID: {{$employee->id}}</p>
-                <p>Name: {{$employee->name}}</p>
-                <p>Email: {{$employee->email}}</p>
-                <p>Bday: {{$employee->bday}}</p>
-                <p>Personal Number: {{$employee->personal_no}}</p>
-                <p>Company Number: {{$employee->company_no}}</p>
-                <p>City: {{$employee->city}}</p>
-                <p>Region: {{$employee->region}}</p>
-        </div>
-        <div classs="emp-actions">
-            <div class="container text-center">
-                <a href="/employee/{{$employee->id}}/edit" class="btn btn-primary">EDIT PROFILE</a>
+        <div id="open-modal" class="modal-window">
+            <a href="#" title="Close" class="modal-close">Close</a>
+            
+            @if(count($images) > 0)
+            <div class="body-theme">
+                <div class="media_images grid repeat7">
+                    @foreach($images as $image)
+                    <img src="/storage/cover_images/{{$image->image_name}}" class="clickMe" id="{{$image->image_name}}">
+                    @endforeach
+                </div>
             </div>
+            @endif
+
         </div>
-   </div>
+    </div>
 </div>
+      <div class="emp-form-btn-cont">
+          <div class="emp-form-update">
+              {{ Form::hidden('_method', 'PUT')}}
+              {{ Form::submit('Update', ['class' => 'update']) }}
+          </div>
+          <div class="emp-form-edit">
+              <label for="emp-edit-profile" class="edit">Edit Profile</label>
+          </div>
+          <div class="emp-form-cancel">
+              <label for="emp-edit-profile" class="cancel">Cancel</label>
+          </div>
+      </div>
+{!! Form::close() !!}
+</div>
+
+    <div class="emp-profile flex-1">
+        <div class="emp-cover-img">
+            <img src="/storage/cover_images/{{$employee->cover_image}}" alt="{{ucfirst($employee->name)}}">
+        </div>
+        <div class="emp-text-content">
+          <p><strong>{{ucfirst($employee->name)}}</strong></p>
+          <p>What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book it has?</p>
+          <p><button class="emp-follow">Follow</button></p>
+        </div>
+    </div>
+    
+  </div>
 </div>
 
 
@@ -34,7 +166,7 @@
 <!-- Bootstrap CSS -->
 <!-- jQuery first, then Bootstrap JS. -->
 <!-- Nav tabs -->
-<div class="container">
+<div class="employee-container">
 <ul class="nav nav-tabs" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" href="#accountability" role="tab" data-toggle="tab">Accountability</a>
@@ -49,7 +181,7 @@
 
 </div>
 
-<div class="container">
+<div class="employee-container">
 <!-- Tab panes -->
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane in active" id="accountability">
@@ -68,10 +200,10 @@
             <h2>ACCOUNTABILITY FORM (I.T)</h2>
 
             <div class="emp-acc-detail">
-                <div class="acc-dt"><div class="acc-txt">Name:</div><div class="acc-input"><input type="text" value="{{$employee->name}}" {{ $employee->name ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Name:</div><div class="acc-input"><input type="text" value="{{ucfirst($employee->name)}}" {{ $employee->name ? 'disabled' : '' }}></div></div>
                 <div class="acc-dt"><div class="acc-txt">Employee Number:</div><div class="acc-input"><input type="text" value="{{$employee->employee_no}}" {{ $employee->employee_no ? 'disabled' : '' }}></div></div>
-                <div class="acc-dt"><div class="acc-txt">Department:</div><div class="acc-input"><input type="text" value="{{$department}}" {{ $department ? 'disabled' : '' }}></div></div>
-                <div class="acc-dt"><div class="acc-txt">Position:</div><div class="acc-input"><input type="text" value="{{$designation}}" {{ $designation ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Department:</div><div class="acc-input"><input type="text" value="{{$empdepartment}}" {{ $empdepartment ? 'disabled' : '' }}></div></div>
+                <div class="acc-dt"><div class="acc-txt">Position:</div><div class="acc-input"><input type="text" value="{{$empdesignation}}" {{ $empdesignation ? 'disabled' : '' }}></div></div>
             </div>
 
             <!-- //ACCOUNTABILITY FORM (I.T) -->
@@ -213,20 +345,26 @@
                    <!-- Mobile Devices -->
                   <tbody>
                     <tr>
-                      <td><p><strong>Checked & verified by:</strong><br><span>(Systems)</span></p>
+                      <td><p><strong>verified by:</strong><br><span>( IT admin )</span></p>
                       </td>
                       <td><div class="acc-input"><input type="text" class="sign-over-name"><hr>Signature Over Printed Name
                       </td>
                       <td><p><strong>Employee:</strong><br><span> &nbsp;</span></p>
                       </td>
-                      <td><div class="acc-input"><input type="text" class="sign-over-name"><hr>Signature Over Printed Name
+                      <td><div class="acc-input"><input type="text" class="sign-over-name" value="{{ucfirst($employee->name)}}"><hr>Signature Over Printed Name
+                      </td>
+                      <td><p><strong>President:</strong><br><span>( CEO )</span></p>
+                      </td>
+                      <td><div class="acc-input"><input type="text" class="sign-over-name" value="Dr. Andreas Klippe"><hr>Signature Over Printed Name
                       </td>
                     </tr>
                     <tr>
                       <td>
                       </td>
-                      <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed
+                      <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed</td>
+                      <td>
                       </td>
+                      <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed</td>
                       <td>
                       </td>
                       <td><div class="acc-input"><input type="date" class="sign-over-name"><hr>Date Signed</td>

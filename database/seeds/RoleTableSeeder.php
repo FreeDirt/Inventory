@@ -18,8 +18,8 @@ class RoleTableSeeder extends Seeder
         $role_user->save();
 
         $role_author = new Role();
-        $role_author->name = 'Author';
-        $role_author->description = 'An Author';
+        $role_author->name = 'Moderator';
+        $role_author->description = 'A moderator';
         $role_author->save();
 
         $role_admin = new Role();

@@ -37,11 +37,15 @@ class DeviceController extends Controller
     {
         $current_userId = Auth()->user()->id;
         $current_user = User::find($current_userId);
+        $brands = Brand::all();
+        $companies = Company::all();
+        $countries = Country::all();
         $devices = Device::orderBy('created_at', 'desc')->get();
+        $images = Image::all();
         $importdevices = Device::orderBy('id', 'desc')->get();
+        $parentcats = Parentcat::all();
 
-
-        return view('device.index', compact('devices', 'current_user','importdevices'));
+        return view('device.index', compact('devices', 'current_user','brands', 'importdevices', 'companies', 'countries', 'parentcats','images'));
     }
 
     /**
@@ -124,7 +128,7 @@ class DeviceController extends Controller
         } elseif($request->has('device_img')) {
             $filenameToStore = $request->input('device_img');
         } else {
-            $filenameToStore = 'noimage.jpg';
+            $filenameToStore = 'default.png';
         }
 
         // Create New List

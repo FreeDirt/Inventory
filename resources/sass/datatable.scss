@@ -1,11 +1,10 @@
 .dt-grid-view {
 
-
     table thead {
         display: none;
     }
 
-    table .emp-tbl-lst {
+    table .tbl-lst {
         margin-bottom: 50px;
         display: grid;
         grid-gap: 1em;
@@ -34,7 +33,7 @@
         }
     }
 
-    table .emp-tbl-lst:nth-child(even) {
+    table .tbl-lst:nth-child(even) {
         background: transparent!important;
     }
 

@@ -19,8 +19,9 @@ class AddTablesToEmployees extends Migration
             $table->string('designation_id')->after('department_id')->nullable();
             $table->string('ipaddress_id')->after('designation_id')->nullable();
             $table->string('country_id')->after('region')->nullable();
-            $table->string('cover_image')->after('gender');
+            $table->string('cover_image')->after('gender')->nullable();
             $table->integer('user_id')->after('cover_image');
+            $table->integer('status')->after('user_id');
         });
     }
 
