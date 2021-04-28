@@ -40,9 +40,7 @@ class CategoryController extends Controller
             // ->groupBy('name')
             // ->paginate(10);
             ->get();
-
             // dd($categories);
-
         
         return view('category.index', compact('categories', 'current_user', 'parentcats'));
     }

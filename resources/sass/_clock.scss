@@ -26,10 +26,10 @@
         background: #000;
         position: absolute;
         top: 10px;
-        -webkit-transition: -webkit-transform 0.2s;
-        transition: -webkit-transform 0.2s;
-        transition: transform 0.2s;
-        transition: transform 0.2s, -webkit-transform 0.2s;
+        // -webkit-transition: -webkit-transform 0.2s;
+        // transition: -webkit-transform 0.2s;
+        // transition: transform 0.2s;
+        // transition: transform 0.2s, -webkit-transform 0.2s;
       }
       .clock__hand:before {
         content: "";

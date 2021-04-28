@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $role_user = Role::where('name', 'User')->first();
-        $role_author = Role::where('name', 'Author')->first();
+        $role_moderator = Role::where('name', 'Moderator')->first();
         $role_admin = Role::where('name', 'Admin')->first();
         
         $user = new User();
@@ -24,13 +24,6 @@ class UserTableSeeder extends Seeder
         $user->save();
         $user->roles()->attach($role_user);
 
-        $user = new User();
-        $user->name = 'Mervyn Espiritu';
-        $user->email = 'ict.admin01@acc.dr-klippe.de';
-        $user->password = bcrypt('ABCD1234');
-        $user->save();
-        $user->roles()->attach($role_admin);
-
         $admin = new User();
         $admin->name = 'Admin';
         $admin->email = 'r.mendoza@acc.dr-klippe.de';
@@ -38,11 +31,18 @@ class UserTableSeeder extends Seeder
         $admin->save();
         $admin->roles()->attach($role_admin);
 
-        $author = new User();
-        $author->name = 'Author';
-        $author->email = 'test08@acc.dr-klippe.de';
-        $author->password = bcrypt('author');
-        $author->save();
-        $author->roles()->attach($role_author);
+        $admin2 = new User();
+        $admin2->name = 'adavid';
+        $admin2->email = 'ict.admin02@acc.dr-klippe.de';
+        $admin2->password = bcrypt('Pa12wo34!');
+        $admin2->save();
+        $admin2->roles()->attach($role_admin);
+
+        $moderator = new User();
+        $moderator->name = 'Moderator';
+        $moderator->email = 'test08@acc.dr-klippe.de';
+        $moderator->password = bcrypt('Moderator');
+        $moderator->save();
+        $moderator->roles()->attach($role_moderator);
     }
 }

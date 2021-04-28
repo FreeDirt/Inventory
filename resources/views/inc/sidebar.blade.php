@@ -8,7 +8,7 @@
         <hr>
             <div class="user-profile {{Request::is('profile') ? 'activebtn' : ''}}">
                 <div class="current-user-img"><img src="/storage/cover_images/noimage.jpg" alt=""></div>
-                <div class="current-user-name" id="btn-profile" ><span> {{$current_user->name}} mendoza </span> <i id="myprofile" class="{{Request::is('profile') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
+                <div class="current-user-name" id="btn-profile" ><span> {{$current_user->name}}</span> <i id="myprofile" class="{{Request::is('profile') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
             </div>
             <div class="user-profile-settings {{Request::is('profile') ? 'active' : ''}}" >
                 <ul>
@@ -54,12 +54,12 @@
 
             @if (auth()->check())
                 @if (auth()->user()->hasRole('Admin'))
-                <li><a class="{{Request::is('admin') ? 'activebtn' : ''}}" href="/admin">
-                    <div class="f-box">
-                        <div class="fl-item-icon"><i class="fas fa-users-cog fa-2x"></i></div> 
-                        <div class="fl-item-text"><span>Admin Panel</span></div>
-                    </div>
-                </a></li>
+                    <li><a class="{{Request::is('admin') ? 'activebtn' : ''}}" href="/admin">
+                        <div class="f-box">
+                            <div class="fl-item-icon"><i class="fas fa-users-cog fa-2x"></i></div> 
+                            <div class="fl-item-text"><span>Admin Panel</span></div>
+                        </div>
+                    </a></li>
                 @else
                     
                 @endif
@@ -76,7 +76,7 @@
 
             <li><div class="toggle-btn-menu {{Request::is('device*', 'stock*','category*','brand*') ? 'activebtn' : ''}}">
                     <div class="f-box">
-                        <div class="fl-item-icon"><i class="fas fa-th-list fa-2x"></i></div> 
+                        <div class="fl-item-icon"><i class="fas fa-laptop-medical fa-2x"></i></div> 
                         <div class="fl-item-text"><span>Inventory List</span><i id="inv-tog-icon" class="{{Request::is('device', 'stock*','category*','brand*') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                         <li>
                             <a class="{{Request::is('device*') ? 'invactivebtn' : ''}}" href="/device">
                                 <div class="f-box">
-                                    <div class="fl-item-icon"><i class="fas fa-laptop-medical"></i></div>
+                                    <div class="fl-item-icon"><i class="fab fa-apple fa-lg"></i></div>
                                     <div class="fl-item-text"><span>Devices</span></div>
                                 </div>
                             </a>
@@ -98,6 +98,8 @@
                                 </div>
                             </a>
                         </li>
+                @if (auth()->check())
+                @if (auth()->user()->hasRole('Admin'))
                         <li>
                             <a class="{{Request::is('category*') ? 'invactivebtn' : ''}}" href="/category">
                                 <div class="f-box">
@@ -114,6 +116,10 @@
                                 </div>
                             </a>
                         </li>
+                        @else
+                    
+                    @endif
+                @endif
                     </ul>
                 </div>
             </li>
@@ -130,10 +136,13 @@
                             <a class="{{Request::is('employee') ? 'empactivebtn' : ''}}" href="/employee">
                                 <div class="f-box">
                                     <div class="fl-item-icon"><i class="fas fa-id-card"></i></div> 
-                                    <div class="fl-item-text"><span>Details</span></div>
+                                    <div class="fl-item-text"><span>Employee List</span></div>
                                 </div>
                             </a>
                         </li>
+
+            @if (auth()->check())
+                @if (auth()->user()->hasRole('Admin'))
                         <li>
                             <a class="{{Request::is('ipaddress') ? 'empactivebtn' : ''}}" href="/ipaddress">
                                 <div class="f-box">
@@ -166,9 +175,41 @@
                                 </div>
                             </a>
                         </li>
+                        @else
+                    
+                    @endif
+                @endif
                     </ul>
                 </div>
             </li>
+            <li><div class="toggle-btn-menu-soft {{Request::is('software*') ? 'activebtn' : ''}}">
+                    <div class="f-box">
+                        <div class="fl-item-icon"><i class="fas fa-file-invoice fa-2x"></i></div> 
+                        <div class="fl-item-text"><span>IT Softwares</span><i id="soft-tog-icon" class="{{Request::is('software') ? 'arrow-rotated' : ''}} fas fa-caret-down"></i></div>
+                    </div>
+                </div>
+                <div class="software-menu-settings {{Request::is('software*') ? 'active' : ''}}" >
+                    <ul>
+                        <li>
+                            <a class="{{Request::is('software-user') ? 'softactivebtn' : ''}}" href="/software-user">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-user-plus"></i></div>
+                                    <div class="fl-item-text"><span>Software Users</span></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{Request::is('software') ? 'softactivebtn' : ''}}" href="/software">
+                                <div class="f-box">
+                                    <div class="fl-item-icon"><i class="fas fa-laptop-code"></i></div>
+                                    <div class="fl-item-text"><span>Software Lists</span></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
             <li><a class="{{Request::is('contact') ? 'activebtn' : ''}}" href="/contact">
                     <div class="f-box">
                         <div class="fl-item-icon"><i class="fas fa-address-book fa-2x"></i></div> 

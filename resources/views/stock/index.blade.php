@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<input type="checkbox" name="add-new" class="open-form" id="add-new">
+
+    <input type="checkbox" name="add-new" class="open-form" id="add-new">
     <div class="add-stock">
         <label for="add-new"><span class="add-new"></span></label>
     </div>
 
-    
-
     <div class="body-theme">
+    <div class="isicon"><i class="fas fa-truck-loading fa-3x"></i></div>
     <table class="table" id="tabledata">
         <thead class="thead-dark">
             <tr>
@@ -85,8 +85,10 @@
             @endif
                 
             </div>
+            
             <div class="stock-form-content">
-                {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+            <label for="add-new"><div class="cancel">Cancel</div></label>
+                {{ Form::submit('Add', ['class' => 'add']) }}
             </div>
         </div>
            

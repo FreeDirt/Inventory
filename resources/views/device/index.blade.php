@@ -1,9 +1,111 @@
 @extends('layouts.app')
 
 @section('content')
+<input type="checkbox" name="add-new" class="open-form" id="add-new">
+<div class="add-stock">
+    <label for="add-new"><span class="add-new"></span></label>
+</div>
 
-<h1>Device List</h1>
-<a href="/device/create" class="btn btn-info float-right">Create New</a><br><br>
+<div class="body-theme add-item-form">
+
+{!! Form::open(['action' => 'DeviceController@store', 'class' => 'device-form-container', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+<div class="">
+    <h1>Add Devices</h1>
+</div>
+
+<div class="auto-fit">
+    <div class="device-form-content">
+        <!-- {{ Form::label('deviceCode', 'Device Code') }} -->
+        <select class="form-control" name="deviceCode" id="" required>
+        @foreach ($companies as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+
+    <div class="device-form-content">
+        <select name="pcats" class="form-control" required>
+            <option value="">--- Category ---</option>
+            @foreach ($parentcats as $parentcat)
+                @if(!empty($parentcat->name))
+                    <option value="{{$parentcat->id}}">{{ucfirst($parentcat->name)}}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+    <div class="device-form-content">
+        <select id="category_id" class="form-control" name="category_id" required>
+                <option value="">--- Sub Category ---</option>
+        </select>
+    </div>
+
+    <div class="device-form-content">
+        <!-- {{ Form::label('name', 'Device Name') }} -->
+        {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Device Name', 'required']) }}
+    </div>
+    <div class="device-form-content">
+        <!-- {{ Form::label('model_no', 'Model no.') }} -->
+        {{ Form::text('model_no', '', ['class' => 'form-control', 'placeholder' => 'Enter Model No.', ' required']) }}
+    </div>
+    
+    <div class="device-form-content">
+        <!-- {{ Form::label('brand_id', 'Brand') }} -->
+        <select class="form-control" name="brand_id" id="" required>
+        @foreach ($brands as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    
+    <div class="device-form-content">
+        <!-- {{ Form::label('model_year', 'Model Year') }} -->
+        {{ Form::text('model_year', '', ['class' => 'form-control', 'placeholder' => 'Enter Model Year', 'required']) }}
+    </div>
+    <div class="device-form-content">
+        <!-- {{ Form::label('cost', 'Cost') }} -->
+        {{ Form::text('cost', '', ['class' => 'form-control', 'placeholder' => 'Cost', 'required']) }}
+    </div>
+    <div class="device-form-content">
+        <!-- {{ Form::label('country', 'Country Purchased') }} -->
+        <select class="form-control" name="country_id" required>
+        <option value="">--- Select Country ---</option>
+        @foreach ($countries as $key => $value)
+            <option value="{{$value->id}}">{{$value->name}}</option>
+        @endforeach
+        </select>
+    </div>
+    <div class="device-form-content">
+        {{ form::file('device_img')}}
+    </div>
+
+    <div class="device-form-content">
+        <div class="media-file-upload">
+            <a class="btn btn-primary" href="#open-modal" id="mdlopen">Select Image</a> <span>{{ Form::text('cover_image', '', ['class' => 'selectedImage', 'id' => 'img-id', 'readonly']) }}</span>
+        </div>
+        <div id="open-modal" class="modal-window">
+            <a href="#" title="Close" class="modal-close">Close</a>
+            
+            @if(count($images) > 0)
+            <div class="body-theme">
+                <div class="media_images grid repeat7">
+                    @foreach($images as $image)
+                    <img src="/storage/cover_images/{{$image->image_name}}" class="clickMe" id="{{$image->image_name}}">
+                    @endforeach
+                </div>
+            </div>
+            @endif
+
+        </div>
+    </div>
+    </div>
+
+    <div class="device-form-content text-right">
+        <label for="add-new"><div class="cancel">Cancel</div></label>
+        {{ Form::submit('Add', ['class' => 'add']) }}
+    </div>
+{!! Form::close() !!}
+</div>
+
 <button id="modalimport" class="btn btn-info float-right">Import / Export</button>
 
 <div id="importModal" class="modalImport">
@@ -77,7 +179,8 @@
 
 @if(count($devices) > 0)
     <div class="body-theme">
-    <div class="search-field">
+    <div class="isicon"><i class="fas fa-laptop-medical fa-3x"></i></div>
+    <!-- <div class="search-field">
         <div class="search-by-categories">
             <div><p>Select by Categories: drop down     |    show: 10</p></div>
         </div>
@@ -91,7 +194,7 @@
                 </div>
             </form>
         </div>
-    </div><br>
+    </div><br> -->
         <table class="table display" id="table_id">
         <thead class="thead-dark">
             <tr>

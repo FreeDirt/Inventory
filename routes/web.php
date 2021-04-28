@@ -36,6 +36,11 @@ Route::resource('device', 'DeviceController');
 Route::get('device/ajax/{id}',array('as'=>'device.ajax','uses'=>'DeviceController@stockAjax'));
 // StocksController CRUD
 Route::resource('media', 'MediaController');
+// SoftwareController CRUD
+Route::resource('software', 'SoftwareController');
+// SoftwareUserController CRUD
+Route::resource('software-user', 'SoftwareUserController');
+Route::get('software-user/items/{items}',array('as'=>'softwareuser.items','uses'=>'SoftwareUserController@items'));
 
 // StocksController CRUD
 Route::resource('stock', 'StockController');
@@ -57,6 +62,8 @@ Route::resource('profile', 'ProfileController');
 Route::resource('admin', 'AdminController');
 // Employee Controller CRUD
 Route::resource('employee', 'EmployeeController');
+// Employee Status Controller CRUD
+Route::resource('empstatus', 'EmpstatusController');
 // Company Controller CRUD
 Route::resource('company', 'CompanyController');
 // Company Designation CRUD
@@ -95,7 +102,7 @@ Route::get('devices/export', 'DeviceController@export');
 
 // Route::get('/admin/edit', 'UsersController@edit');
 // Route::post('/admin/update', 'UsersController@update');
-// Route::get('/adminpanel', ['uses' => 'PagesController@adminpanel', 'middleware' => 'roles', 'roles' => ['Admin', 'Author']]);
+// Route::get('/adminpanel', ['uses' => 'PagesController@adminpanel', 'middleware' => 'roles', 'roles' => ['Admin', 'Moderator']]);
 
 // Route::get('/inventory', 'PagesController@inventory');
 

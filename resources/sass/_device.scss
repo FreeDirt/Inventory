@@ -1,0 +1,30 @@
+.device-form-container {
+    width: 63%;
+    margin: 0 auto;
+    background: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 75%);
+}
+
+.dev-tbl-lst, .sq-tbl-lst {
+    
+    tr {
+        
+        td {
+            vertical-align: 0;
+            
+
+            img {
+                width: 50px;
+                border-radius: 0;
+            }
+        }
+    }
+
+    &:nth-child(even) {
+        background-color: #f8fbfc!important;
+    }
+
+   
+}

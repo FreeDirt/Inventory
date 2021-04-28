@@ -29,13 +29,13 @@ class ParentcatTableSeeder extends Seeder
         $electronics->name = 'Electronics';
         $electronics->save();
 
-        $equipments = new Parentcat();
-        $equipments->name = 'Equipments';
-        $equipments->save();
-
         $supplies = new Parentcat();
         $supplies->name = 'Supplies';
         $supplies->save();
+
+        $computer = new Parentcat();
+        $computer->name = 'Computer';
+        $computer->save();
 
     }
 }

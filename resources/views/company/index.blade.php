@@ -34,7 +34,8 @@
             <tr>
             <!-- <th scope="col">Id</th> -->
             <th scope="col">ID</th>
-            <th scope="col">company Name</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Company Description</th>
             <th scope="col">Action</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
                 <!-- <td>{{$company->id}}</td> -->
                 <td>{{$company->id}}</td>
                 <td>{{$company->name}}</td>
+                <td>{{$company->description}}</td>
                 <td>
                 <div class="flex gap-03em">
                     <a href="/company/{{$company->id}}" class="btn btn-primary"><i class="fas fa-eye"></i></a>

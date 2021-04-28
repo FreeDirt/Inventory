@@ -26,23 +26,23 @@ class CategoryTableSeeder extends Seeder
 
         $backup = new Category();
         $backup->name = 'BackUp';
-        $backup->parent_cat = '6';
+        $backup->parent_cat = '4';
         $backup->save();
 
         $phone = new Category();
         $phone->name = 'Phone';
-        $phone->parent_cat = '4';
+        $phone->parent_cat = '3';
         $phone->save();
 
         $battery = new Category();
         $battery->name = 'Battery';
-        $battery->parent_cat = '7';
+        $battery->parent_cat = '5';
         $battery->save();
 
-        $computer = new Category();
-        $computer->name = 'Computer';
-        $computer->parent_cat = '6';
-        $computer->save();
+        $imac = new Category();
+        $imac->name = 'Imac';
+        $imac->parent_cat = '6';
+        $imac->save();
 
         $headset = new Category();
         $headset->name = 'Headset';
@@ -61,7 +61,7 @@ class CategoryTableSeeder extends Seeder
 
         $tablet = new Category();
         $tablet->name = 'Tablet';
-        $tablet->parent_cat = '4';
+        $tablet->parent_cat = '3';
         $tablet->save();
 
         $webcam = new Category();
@@ -71,12 +71,12 @@ class CategoryTableSeeder extends Seeder
 
         $avr = new Category();
         $avr->name = 'AVR';
-        $avr->parent_cat = '5';
+        $avr->parent_cat = '4';
         $avr->save();
 
         $extension = new Category();
         $extension->name = 'Extension';
-        $extension->parent_cat = '5';
+        $extension->parent_cat = '4';
         $extension->save();
 
         $charger = new Category();
