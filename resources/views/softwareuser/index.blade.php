@@ -78,10 +78,10 @@
             @foreach($itemCounts as $software)
             <div class="software-list">
                 <div class="software-list-img-cont">
-                    <img src="/storage/cover_images/{{ $software->software_img }}" alt="profile picture">
+                <a href="/software-user/items/{{$software->sid}}"><img src="/storage/cover_images/{{ $software->software_img }}" alt="profile picture"></a>
                 </div>
                 <div class="software-list-text-cont">
-                    <a href="/software-user/items/{{$software->sid}}">{{ $software->softname }} Users - {{ $software->empTotal }}</a>
+                    <a href="/software-user/items/{{$software->sid}}">Users - {{ $software->empTotal }}</a>
                 </div>
             </div>
             @endforeach

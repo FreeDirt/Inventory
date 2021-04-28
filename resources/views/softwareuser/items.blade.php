@@ -38,7 +38,7 @@
         </thead>
         
      
-            <tbody class="tbl-lst">
+            <tbody class="sq-tbl-lst">
             @foreach ($softwaresView as $softwareView)
                 <tr>
                 <td><img src="/storage/cover_images/{{$softwareView->software_img}}" alt="profile picture">

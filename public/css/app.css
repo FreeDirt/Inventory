@@ -12864,30 +12864,38 @@ input:checked + .empCont .emp-view img {
   display: none;
 }
 
-.dt-grid-view table .tbl-lst {
+.dt-grid-view table .tbl-lst,
+.dt-grid-view table .sq-tbl-lst {
   margin-bottom: 50px;
   display: grid;
   grid-gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
 }
 
-.dt-grid-view table .tbl-lst tr td {
-  border: none;
+.dt-grid-view table .tbl-lst tr td,
+.dt-grid-view table .sq-tbl-lst tr td {
+  border: none !important;
 }
 
 .dt-grid-view table .tbl-lst .even,
-.dt-grid-view table .tbl-lst .odd {
+.dt-grid-view table .tbl-lst .odd,
+.dt-grid-view table .sq-tbl-lst .even,
+.dt-grid-view table .sq-tbl-lst .odd {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   cursor: pointer;
 }
 
 .dt-grid-view table .tbl-lst .even:hover,
-.dt-grid-view table .tbl-lst .odd:hover {
+.dt-grid-view table .tbl-lst .odd:hover,
+.dt-grid-view table .sq-tbl-lst .even:hover,
+.dt-grid-view table .sq-tbl-lst .odd:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .dt-grid-view table .tbl-lst .even td img,
-.dt-grid-view table .tbl-lst .odd td img {
+.dt-grid-view table .tbl-lst .odd td img,
+.dt-grid-view table .sq-tbl-lst .even td img,
+.dt-grid-view table .sq-tbl-lst .odd td img {
   width: 200px;
 }
 
@@ -12901,6 +12909,59 @@ input:checked + .empCont .emp-view img {
   display: grid;
   text-align: center;
   align-items: center;
+}
+
+@media (max-width: 900px) {
+  table thead {
+    display: none;
+  }
+
+  table .tbl-lst,
+  table .sq-tbl-lst {
+    margin-bottom: 50px;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
+  }
+
+  table .tbl-lst tr td,
+  table .sq-tbl-lst tr td {
+    border: none !important;
+  }
+
+  table .tbl-lst .even,
+  table .tbl-lst .odd,
+  table .sq-tbl-lst .even,
+  table .sq-tbl-lst .odd {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+  }
+
+  table .tbl-lst .even:hover,
+  table .tbl-lst .odd:hover,
+  table .sq-tbl-lst .even:hover,
+  table .sq-tbl-lst .odd:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  table .tbl-lst .even td img,
+  table .tbl-lst .odd td img,
+  table .sq-tbl-lst .even td img,
+  table .sq-tbl-lst .odd td img {
+    width: 200px;
+  }
+
+  table .tbl-lst:nth-child(even) {
+    background: transparent !important;
+  }
+
+  table tbody tr {
+    background-color: #fff;
+    border-radius: 25px;
+    display: grid;
+    text-align: center;
+    align-items: center;
+  }
 }
 
 .isicon {
@@ -13008,16 +13069,19 @@ input:checked + .empCont .emp-view img {
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.75);
 }
 
-.dev-tbl-lst tr td {
+.dev-tbl-lst tr td,
+.sq-tbl-lst tr td {
   vertical-align: 0;
 }
 
-.dev-tbl-lst tr td img {
+.dev-tbl-lst tr td img,
+.sq-tbl-lst tr td img {
   width: 50px;
   border-radius: 0;
 }
 
-.dev-tbl-lst:nth-child(even) {
+.dev-tbl-lst:nth-child(even),
+.sq-tbl-lst:nth-child(even) {
   background-color: #f8fbfc !important;
 }
 

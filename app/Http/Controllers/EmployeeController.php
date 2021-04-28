@@ -260,7 +260,7 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $sid)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -294,6 +294,10 @@ class EmployeeController extends Controller
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         } 
+
+        if($request->input('status') == "2") {
+            
+        }
 
         // Create New List
         $employee = Employee::find($id);
