@@ -12912,11 +12912,11 @@ input:checked + .empCont .emp-view img {
 }
 
 @media (max-width: 900px) {
-  table thead {
+  table#table_id thead {
     display: none;
   }
 
-  table .tbl-lst,
+  table#table_id .tbl-lst,
   table .sq-tbl-lst {
     margin-bottom: 50px;
     display: grid;
@@ -12924,38 +12924,38 @@ input:checked + .empCont .emp-view img {
     grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
   }
 
-  table .tbl-lst tr td,
+  table#table_id .tbl-lst tr td,
   table .sq-tbl-lst tr td {
     border: none !important;
   }
 
-  table .tbl-lst .even,
-  table .tbl-lst .odd,
+  table#table_id .tbl-lst .even,
+  table#table_id .tbl-lst .odd,
   table .sq-tbl-lst .even,
   table .sq-tbl-lst .odd {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     cursor: pointer;
   }
 
-  table .tbl-lst .even:hover,
-  table .tbl-lst .odd:hover,
+  table#table_id .tbl-lst .even:hover,
+  table#table_id .tbl-lst .odd:hover,
   table .sq-tbl-lst .even:hover,
   table .sq-tbl-lst .odd:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   }
 
-  table .tbl-lst .even td img,
-  table .tbl-lst .odd td img,
+  table#table_id .tbl-lst .even td img,
+  table#table_id .tbl-lst .odd td img,
   table .sq-tbl-lst .even td img,
   table .sq-tbl-lst .odd td img {
     width: 200px;
   }
 
-  table .tbl-lst:nth-child(even) {
+  table#table_id .tbl-lst:nth-child(even) {
     background: transparent !important;
   }
 
-  table tbody tr {
+  table#table_id tbody tr {
     background-color: #fff;
     border-radius: 25px;
     display: grid;

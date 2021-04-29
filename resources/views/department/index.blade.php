@@ -5,8 +5,9 @@
 <a href="/department/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($departments) > 0)
     <div class="body-theme">
+    <div class="isicon"><i class="fas fa-briefcase fa-3x"></i></div>
     <div class="search-field">
-        <div class="search-by-categories">
+        <!-- <div class="search-by-categories">
             <div><p>Select by departments: drop down     |    show: 10</p></div>
         </div>
         <div class="search-btn-form">
@@ -30,7 +31,7 @@
                     </div>    
             {!! Form::close() !!}
             
-        </div>
+        </div> -->
     </div><br>
         <table class="table">
         <thead class="thead-dark">

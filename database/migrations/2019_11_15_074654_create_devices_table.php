@@ -19,6 +19,7 @@ class CreateDevicesTable extends Migration
             $table->mediumText('name');
             $table->string('model_no');
             $table->string('model_year');
+            $table->string('acquisition');
             $table->integer('cost');
             $table->timestamps();
         });

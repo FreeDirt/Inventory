@@ -5,6 +5,7 @@
 <a href="/empstatus/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($empstatuses) > 0)
     <div class="body-theme">
+    <div class="isicon"><i class="fas fa-briefcase fa-3x"></i></div>
     <div class="search-field">
         <div class="search-by-categories">
             <div><p>Select by empstatuses: drop down     |    show: 10</p></div>

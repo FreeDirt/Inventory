@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Employee List</h1>
 <input type="checkbox" name="add-new" class="open-form" id="add-new">
 
 <div class="add-stock">
@@ -221,6 +220,8 @@
             </form>
         </div>
     </div><br> -->
+    <div class="body-theme">
+    <div class="isicon"><i class="fas fa-users fa-3x"></i></div>
         <div class="tog-label">
             <label for="toggle-tblempv">
                 <i id="grid-view" class="fas fa-th fa-2x {{Request::has('employee/*') ? 'fa-th-list' : 'fa-th-list'}}"></i>
@@ -275,6 +276,7 @@
         
         
         </div>
+</div>
     
     @else
         <!-- <p>No employee List is listed!</p> -->

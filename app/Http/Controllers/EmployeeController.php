@@ -225,7 +225,7 @@ class EmployeeController extends Controller
         // ->groupBy('stocks.device_id')
         ->get()->toArray();
 
-        // dd($devCounts);
+        // dd($employeeDevices);
     
 
         return view('employee.show', compact('employee', 'current_user', 'employeeDevices', 'empdepartment', 'empdesignation','companies', 'designations','departments','ipaddresses','countries', 'images','empstatuses'));

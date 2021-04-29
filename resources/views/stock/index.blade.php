@@ -8,7 +8,7 @@
     </div>
 
     <div class="body-theme">
-    <div class="isicon"><i class="fas fa-truck-loading fa-3x"></i></div>
+    <div class="isicon"><i class="fas fa-box-open fa-3x"></i></div>
     <table class="table" id="tabledata">
         <thead class="thead-dark">
             <tr>

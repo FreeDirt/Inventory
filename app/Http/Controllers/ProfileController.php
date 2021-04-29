@@ -29,8 +29,10 @@ class ProfileController extends Controller
         $current_userId = auth()->user()->id;
         $current_user = User::find($current_userId);
         $inventories = $current_user->inventories;
+        // dd($current_user);
         return view('profile.index', compact('current_user', 'inventories'));
         // return view('profile.index', compact('current_user'));
+         
     }
 
     /**

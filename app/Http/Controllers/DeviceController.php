@@ -114,6 +114,7 @@ class DeviceController extends Controller
             'brand_id' => 'required',
             'category_id' => 'required',
             'model_year' => 'required',
+            'acquisition' => 'required',
             'cost' => 'required',
             'country_id' => 'required',
             'device_img' => 'image|nullable|max:1999',
@@ -140,6 +141,7 @@ class DeviceController extends Controller
         $device->category_id = $request->input('category_id');
         $device->user_id = auth()->user()->id;
         $device->model_year = $request->input('model_year');
+        $device->acquisition = $request->input('acquisition');
         $device->cost = $request->input('cost');
         $device->country_id = $request->input('country_id');
         $device->device_img = $filenameToStore;
@@ -197,6 +199,7 @@ class DeviceController extends Controller
             'brand_id' => 'required',
             'category_id' => 'required',
             'model_year' => 'required',
+            'acquisition' => 'required',
             'cost' => 'required',
             'country_id' => 'required',
         ]);
@@ -224,6 +227,7 @@ class DeviceController extends Controller
         $device->brand_id = $request->input('brand_id');
         $device->category_id = $request->input('category_id');
         $device->model_year = $request->input('model_year');
+        $device->acquisition = $request->input('acquisition');
         $device->country_id = $request->input('country_id');
         if($request->hasFile('device_img')){
             $device->device_img = $fileNameToStore;

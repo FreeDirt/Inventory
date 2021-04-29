@@ -38,10 +38,10 @@
         </thead>
         
      
-            <tbody class="sq-tbl-lst">
+            <tbody class="tbl-lst">
             @foreach ($softwaresView as $softwareView)
                 <tr>
-                <td><img src="/storage/cover_images/{{$softwareView->software_img}}" alt="profile picture">
+                <td><img src="/storage/cover_images/{{$softwareView->cover_image}}" alt="profile picture">
                 <td>{{$softwareView->sname}}</td>
                 <td>{{$softwareView->ename}}</td>
                 <td>{{$softwareView->price == "0" ? "Free" : $softwareView->price}}</td>
@@ -52,7 +52,7 @@
                         @elseif ($softwareView->renewal_date < $now)
                         <span class="color-red">{{date('M j, Y', strtotime($softwareView->renewal_date))}}</span>
                     @else
-                    <span class="color-orange">{{date('M j, Y', strtotime($softwareView->renewal_date))}}</span>
+                    <span class="color-green">{{date('M j, Y', strtotime($softwareView->renewal_date))}}</span>
                     @endif</td>
                 <td>
                     {{ $softwareView->sstatus !== "Free" ? "On-Going" : $softwareView->sstatus }}
@@ -60,7 +60,7 @@
                 <td>{{$softwareView->credit_card}}</td>
                 <td>{{$softwareView->credit_holder}}</td>
                 <td>
-                    
+
                     
                 </td>
                 </tr>

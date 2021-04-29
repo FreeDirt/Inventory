@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>ipaddress List</h1>
 <a href="/ipaddress/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($ipaddresses) > 0)
     <div class="body-theme">
+    <div class="isicon"><i class="fas fa-globe-asia fa-3x"></i></div>
     <div class="search-field">
-        <div class="search-by-categories">
+        <!-- <div class="search-by-categories">
             <div><p>Select by ipaddresss: drop down     |    show: 10</p></div>
         </div>
         <div class="search-btn-form">
@@ -30,7 +30,7 @@
                     </div>    
             {!! Form::close() !!}
             
-        </div>
+        </div> -->
     </div><br>
         <table class="table">
         <thead class="thead-dark">

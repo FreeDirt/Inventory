@@ -2,7 +2,13 @@
 
 @section('content')
 
-<div class="container body-theme">
+
+<div class="body-theme">
+    <div class="isicon"><i class="fas fa-user fa-3x"></i></div>
+</div>
+
+
+<div class="container">
 <h1>{{$current_user->name}} Profile</h1>
 </div> <br>
 

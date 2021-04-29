@@ -50,11 +50,11 @@
 
 @media (max-width: 900px) {
     
-    table thead {
+    table#table_id thead {
         display: none;
     }
 
-    table .tbl-lst, table .sq-tbl-lst {
+    table#table_id .tbl-lst, table .sq-tbl-lst {
         margin-bottom: 50px;
         display: grid;
         grid-gap: 1em;
@@ -83,11 +83,11 @@
         }
     }
 
-    table .tbl-lst:nth-child(even) {
+    table#table_id .tbl-lst:nth-child(even) {
         background: transparent!important;
     }
 
-    table tbody tr {
+    table#table_id tbody tr {
         background-color: #fff;
         border-radius: 25px;
         display: grid;

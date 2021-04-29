@@ -6,11 +6,9 @@
 @if(count($brands) > 0)
     <div class="body-theme">
     <div class="search-field">
-        <div class="search-by-categories">
-            <div><p>Select by brands: drop down     |    show: 10</p></div>
-        </div>
+        <div class="isicon"><i class="fas fa-certificate fa-3x"></i></div>
         <div class="search-btn-form">
-            <form action="/search" method="get">
+            <!-- <form action="/search" method="get">
                 <div class="input-group">
                     <input type="search" name="search" class="form-control" placeholder="Search">
                     <span class="input-group-prepend">
@@ -25,7 +23,7 @@
                     {{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Enter Brand name']) }}    
                     {{ Form::submit('Add Brand', ['class' => 'btn btn-primary']) }}
                     </div>    
-            {!! Form::close() !!}
+            {!! Form::close() !!} -->
             
         </div>
     </div><br>

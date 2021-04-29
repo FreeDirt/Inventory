@@ -53,6 +53,8 @@
 <h1>Software List</h1>
 <!-- <a href="/software/create" class="btn btn-info float-right">Create New</a><br><br> -->
 @if(count($softwares) > 0)
+<div class="body-theme">
+    <div class="isicon"><i class="fas fa-laptop-code fa-3x"></i></div>
         <div class="software-lists">
             @foreach($softwares as $software)
             <div class="software-list">
@@ -61,6 +63,8 @@
             </div>
             @endforeach
         </div>
+
+</div>
     @else
         <p>No software List is listed!</p>
     @endif

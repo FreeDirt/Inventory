@@ -5,12 +5,13 @@
 <a href="/designation/create" class="btn btn-info float-right">Create New</a><br><br>
 @if(count($designations) > 0)
     <div class="body-theme">
+    <div class="isicon"><i class="fas fa-user-tie fa-3x"></i></div>
     <div class="search-field">
-        <div class="search-by-categories">
+        <!--div class="search-by-categories">
             <div><p>Select by designations: drop down     |    show: 10</p></div>
         </div>
         <div class="search-btn-form">
-            <form action="/search" method="get">
+             <form action="/search" method="get">
                 <div class="input-group">
                     <input type="search" name="search" class="form-control" placeholder="Search">
                     <span class="input-group-prepend">
@@ -30,7 +31,7 @@
                     </div>    
             {!! Form::close() !!}
             
-        </div>
+        </div> -->
     </div><br>
         <table class="table">
         <thead class="thead-dark">

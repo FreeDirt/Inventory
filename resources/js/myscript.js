@@ -530,7 +530,6 @@ class Myscript {
               };
           })(jQuery);
 
-
           // Print With Check
           $(function () { 
             $("#print").click(function () {

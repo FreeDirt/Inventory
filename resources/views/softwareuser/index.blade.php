@@ -94,6 +94,8 @@
 
 <!-- <a href="/software/create" class="btn btn-info float-right">Create New</a><br><br> -->
 @if(count($softwareusers) > 0)
+    <div class="body-theme">
+    <div class="isicon"><i class="fas fa-user-plus fa-3x"></i></div>
     <table class="table mytable" id="table_id">
         <thead class="thead-dark">
             <tr>
@@ -135,6 +137,7 @@
             @endforeach
             </tbody>
         </table>
+    </div>
     </div>
 @else
     
