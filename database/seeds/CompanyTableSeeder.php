@@ -14,18 +14,18 @@ class CompanyTableSeeder extends Seeder
     public function run()
     {
         $KPH = new Company();
-        $KPH->name = 'KPH';
-        $KPH->description = 'Dr. Klippe Philippines Corporation';
+        $KPH->name = 'company 1';
+        $KPH->description = 'Company 1';
         $KPH->save();
         
         $FCA = new Company();
-        $FCA->name = 'FCA';
-        $FCA->description = 'Flood Control Asia RS';
+        $FCA->name = 'Company 2';
+        $FCA->description = 'Company 2';
         $FCA->save();
 
         $KTV = new Company();
-        $KTV->name = 'KTV';
-        $KTV->description = 'Klipp TV';
+        $KTV->name = 'Company 3';
+        $KTV->description = 'Company 3';
         $KTV->save();
     }
 }
